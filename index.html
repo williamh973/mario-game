@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="style.css">
-   
+    <link rel="stylesheet" href="index-style.css">
     <title>Mario</title>
 </head>
 <body>
+ 
+       
+ 
     <canvas id="canvas"></canvas>
-    <p id="score"></p>
+ 
+
+ <div id="container-stats">
     <p id="vie"></p>
     <p id="timer"></p>
- 
+    <p id="score"></p>
+</div>
+    <div class="blackScreen">
+        <p id="win">Gagné!</p>
+         <p id="lose">Perdu!</p>
+            <p id="reload">Recommencer</p>
+    </div>
+  
+    <div id="container-prog">
+    
+<div class="progress-bar">
+    <div id="purple-bar"></div>
+    <span class="number" data-value="100"></span>
+    <svg height="150" width="150">
+    </svg>
+</div>
+</div>
+
+
+
 
 <script src="app.js" type="module"></script>
 </body>
