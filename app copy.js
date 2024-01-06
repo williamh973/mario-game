@@ -1,16 +1,61 @@
 import { canvasParams } from "./canvas.js";
-import { Player } from "./class/player/player.class.js";
-import { MushroomB1, MushroomB2, MushroomB3, MushroomB4, MushroomB5, MushroomB6, MushroomB7, MushroomB8, MushroomB9, MushroomB10, MushroomB11, MushroomB12, MushroomB13, MushroomB14, MushroomB15, MushroomB16 } from "./class/blueMushroom/mushroomB.class.js";
+
+
+const gravity = 0.5
+
+ 
+
+ 
+// sprites player 
+function createSpriteSRight() {
+    const spriteStandRight = new Image()
+    spriteStandRight.src = "./images/SpriteStandRight.png"
+    return spriteStandRight
+}
+let marioStandRight = createSpriteSRight("./images/SpriteStandRight.png")
+
+function createSpriteSLeft() {
+    const spriteStandLeft = new Image()
+    spriteStandLeft.src = "./images/SpriteStandLeft.png"
+    return spriteStandLeft
+}
+let marioStandLeft = createSpriteSRight("./images/SpriteStandLeft.png")
+
+
+function createSpriteRunRight() {
+    const spriteRunRight = new Image()
+    spriteRunRight.src = "./images/SpriteRunRight.png"
+    return spriteRunRight
+}
+let marioRunRight = createSpriteRunRight("./images/SpriteRunRight.png")
+
+
+function createSpriteRunLeft() {
+    const spriteRunLeft = new Image()
+    spriteRunLeft.src = "./images/SpriteRunLeft.png"
+    return spriteRunLeft
+}
+let marioRunLeft = createSpriteRunLeft("./images/SpriteRunLeft.png")
+
+
+function createSpriteDrown() {
+    const marioDrowns = new Image()
+    marioDrowns.src = "./images/SpriteDrown.png"
+    return marioDrowns
+}
+let marioDrowns = createSpriteDrown("./images/SpriteDrown.png")
+
+
 
 
 
 // sprites blue Mushrooms
-// function createMushroomBSprite() {
-//     const MushroombSprite = new Image()
-//     MushroombSprite.src = "./images/MushroomBSpriteStand.png"
-//     return MushroombSprite
-// }
-// let mushroombSprite = createMushroomBSprite("./images/MushroomBSpriteStand.png")
+function createMushroomBSprite() {
+    const MushroombSprite = new Image()
+    MushroombSprite.src = "./images/MushroomBSpriteStand.png"
+    return MushroombSprite
+}
+let mushroombSprite = createMushroomBSprite("./images/MushroomBSpriteStand.png")
 
 
 
@@ -170,6 +215,840 @@ class ParticulePlatformBigS{
         this.draw()
     }
  }
+
+class MushroomB1 {
+    constructor() {
+        this.position = {  
+           x: 1500,
+           y: 459
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB2 {
+    constructor() {
+        this.position = {  
+           x: 1560,
+           y: 459
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB3 {
+    constructor() {
+        this.position = { 
+           x: 2896,
+           y: 325
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB4 {
+    constructor() {
+        this.position = { 
+           x: 5066,
+           y: 459
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB5 {
+    constructor() {
+        this.position = { 
+           x: 9800,
+           y: 495
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB6 {
+    constructor() {
+        this.position = { 
+            x: 8180,
+            y: 161,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB7 {
+    constructor() {
+        this.position = { 
+            x: 10650,
+            y: 151,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB8 {
+    constructor() {
+        this.position = {  
+            x: 10710,
+            y: 151,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB9 {
+    constructor() {
+        this.position = {  
+            x: 10770,
+            y: 151,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB10 {
+    constructor() {
+        this.position = {  
+            x: 11250,
+            y: 250,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB11 {
+    constructor() {
+        this.position = {  
+            x: 17995,
+            y: 279,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB12 {
+    constructor() {
+        this.position = {  
+            x: 19100,
+            y: 85,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB13 {
+    constructor() {
+        this.position = {  
+            x: 19220,
+            y: 85,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB14 {
+    constructor() {
+        this.position = {  
+            x: 19100,
+            y: 356,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB15 {
+    constructor() {
+        this.position = {  
+            x: 19200,
+            y: 356,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+class MushroomB16 {
+    constructor() {
+        this.position = {  
+            x: 19400,
+            y: 356,
+        }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                right: createMushroomBSprite(mushroombSprite),
+                left: createMushroomBSprite(mushroombSprite),
+                cropWidth: 61,
+                width: 60
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 61
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            60,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 15 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+
+            else if (this.frames > 20 &&
+                (this.currentSprite === this.sprites.crash.right ||
+                    this.currentSprite === this.sprites.crash.left)
+            )
+                this.frames = 0
+
+        this.draw()
+    }
+}
+
 
 
 // brown mushrooms 
@@ -2517,81 +3396,81 @@ update() {
 }
 
 
-// class Player {
-//     constructor() {
-//         this.speed = 7  
-//         this.position = {  
-//             x: 400, 
-//             y: 400 
-//         }
-//         this.velocity = {  
-//             x: 1, 
-//             y: 1   
-//         }
-//         this.width = 55  
-//         this.height = 55  
-//         this.image = createSpriteSRight(marioStandRight)
-//         this.frames = 0
-//         this.sprites = {
-//             stand: {
-//                  right: createSpriteSRight(marioStandRight),
-//                  left: createSpriteSLeft(marioStandLeft),
-//                  cropWidth: 40,
-//                  width: 55
-//             },
-//             run: {
-//                  right: createSpriteRunRight(marioRunRight),
-//                  left: createSpriteRunLeft(marioRunLeft),
-//                  cropWidth: 40,
-//                  width: 55
-//             },
-//             drown: {
-//                 right : createSpriteDrown(marioDrowns),
-//                 cropWidth: 70,
-//                 width: 70
-//             },
-//         }
-//         this.currentSprite = this.sprites.stand.right
-//         this.currentCropWidth = 40
-//     }
-//     draw() {
-//         canvasParams.c.drawImage(
-//             this.currentSprite,
-//             this.currentCropWidth * this.frames,
-//             0,
-//             this.currentCropWidth,
-//             42,
-//             this.position.x,
-//             this.position.y,
-//             this.width,
-//             this.height
-//         )
-//     }
-//     update() {
-//         this.frames++
-//         if (
-//             this.frames > 24 &&
-//             (this.currentSprite === this.sprites.stand.right ||
-//                 this.currentSprite === this.sprites.stand.left)
-//         )
-//             this.frames = 0
-//         else if (this.frames > 24 &&
-//             (this.currentSprite === this.sprites.run.right ||
-//                 this.currentSprite === this.sprites.run.left)
-//         )
-//             this.frames = 0
-//          else if (this.frames > 12 &&
-//             this.currentSprite === this.sprites.drown.right
-//             )
-//             this.frames = 0
-//         this.draw()
-//         this.position.y += this.velocity.y,  
-//             this.position.x += this.velocity.x
+class Player {
+    constructor() {
+        this.speed = 7  
+        this.position = {  
+            x: 400, 
+            y: 400 
+        }
+        this.velocity = {  
+            x: 1, 
+            y: 1   
+        }
+        this.width = 55  
+        this.height = 55  
+        this.image = createSpriteSRight(marioStandRight)
+        this.frames = 0
+        this.sprites = {
+            stand: {
+                 right: createSpriteSRight(marioStandRight),
+                 left: createSpriteSLeft(marioStandLeft),
+                 cropWidth: 40,
+                 width: 55
+            },
+            run: {
+                 right: createSpriteRunRight(marioRunRight),
+                 left: createSpriteRunLeft(marioRunLeft),
+                 cropWidth: 40,
+                 width: 55
+            },
+            drown: {
+                right : createSpriteDrown(marioDrowns),
+                cropWidth: 70,
+                width: 70
+            },
+        }
+        this.currentSprite = this.sprites.stand.right
+        this.currentCropWidth = 40
+    }
+    draw() {
+        canvasParams.c.drawImage(
+            this.currentSprite,
+            this.currentCropWidth * this.frames,
+            0,
+            this.currentCropWidth,
+            42,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        )
+    }
+    update() {
+        this.frames++
+        if (
+            this.frames > 24 &&
+            (this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left)
+        )
+            this.frames = 0
+        else if (this.frames > 24 &&
+            (this.currentSprite === this.sprites.run.right ||
+                this.currentSprite === this.sprites.run.left)
+        )
+            this.frames = 0
+         else if (this.frames > 12 &&
+            this.currentSprite === this.sprites.drown.right
+            )
+            this.frames = 0
+        this.draw()
+        this.position.y += this.velocity.y,  
+            this.position.x += this.velocity.x
 
-//         if (this.position.y + this.height + this.velocity.y <= canvas.height)
-//             this.velocity.y += gravity
-//     }
-// }
+        if (this.position.y + this.height + this.velocity.y <= canvas.height)
+            this.velocity.y += gravity
+    }
+}
 
 
 
