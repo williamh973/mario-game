@@ -2,10 +2,10 @@ import { canvasParams } from "../../canvas.js";
 
 function createMushroomBSprite() {
     const MushroombSprite = new Image()
-    MushroombSprite.src = "./images/MushroomBSpriteStand.png"
+    MushroombSprite.src = "../../images/MushroomBSpriteStand.png"
     return MushroombSprite
 }
-let mushroombSprite = createMushroomBSprite("./images/MushroomBSpriteStand.png")
+let mushroombSprite = createMushroomBSprite("../../images/MushroomBSpriteStand.png")
 
 
 

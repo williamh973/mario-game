@@ -4199,16 +4199,16 @@ let time = 300;
 let counter = 0;
 let counterDiseapearBigS = 0;  // counter for the disappearance of metal platforms
 let compteurGoomba = 0
-let counterKeydown = 0
+// let counterKeydown = 0
 
-let keys = {
-    ArrowLeft: { pressed: false },
-    ArrowRight: { pressed: false },
-    ArrowUp: { pressed: false },
-    q: { pressed: false },
-    d: { pressed: false },
-    z: { pressed: false }
-}
+// let keys = {
+//     ArrowLeft: { pressed: false },
+//     ArrowRight: { pressed: false },
+//     ArrowUp: { pressed: false },
+//     q: { pressed: false },
+//     d: { pressed: false },
+//     z: { pressed: false }
+// }
 
 
 
