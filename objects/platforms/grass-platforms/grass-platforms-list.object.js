@@ -1,206 +1,296 @@
-import { Platform, thePlatformSmall, thePlatformSmallTall, theplatform, thePlatform02, theplateform10, theplateform12, theplateform11, theplateform4, theplateform8, theplateform9, theplateform7 } from "../../../class/platforms/platforms.class.js";
+import { Platform, thePlatformSmall, thePlatformSmallTall, theplatform01, thePlatform02, theplateform10, theplateform12, theplateform11, theplateform4, theplateform8, theplateform9, theplateform7, adjustIJPlatformPositions } from "../../../class/platforms/platforms.class.js";
 
 
-export let platformList = []
+export let platformList = [];
 
-platformList = [
-    new Platform({
-        x: -1,
-        y: 515,
-        image: theplatform
+
+// let randomFactor = Math.random(); 
+// let randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+
+// randomFactor = Math.random(); 
+// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+// let randomNumberBetween0And1000 = Math.floor(randomFactor * 1000);
+// let randomNumberY1 = randomNumberBetween100And516;
+
+// randomFactor = Math.random(); 
+// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+// let randomNumberBetween1000And2000 = Math.floor(randomFactor * 1000) + 1000;
+// let randomNumberY2 = randomNumberBetween100And516;
+
+// randomFactor = Math.random(); 
+// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+// let randomNumberBetween2000And3000 = Math.floor(randomFactor * 1000) + 2000;
+// let randomNumberY3 = randomNumberBetween100And516;
+
+// randomFactor = Math.random(); 
+// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+// let randomNumberBetween3000And4000= Math.floor(randomFactor * 1000) + 3000;
+// let randomNumberY4 = randomNumberBetween100And516;
+
+// randomFactor = Math.random(); 
+// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+// let randomNumberBetween4000And5000 = Math.floor(randomFactor * 1000) + 4000;
+// let randomNumberY5 = randomNumberBetween100And516;
+
+
+
+// platformList = [
+
+//     new Platform({
+//         x: randomNumberBetween0And1000,
+//         y: randomNumberY1,
+//         image: theplatform01
+//     }),
+//     new Platform({
+//         x: randomNumberBetween1000And2000,
+//         y: randomNumberY2,
+//         image: theplatform01
+//     }),
+//     new Platform({
+//         x: randomNumberBetween2000And3000,
+//         y: randomNumberY3,
+//         image: theplatform01
+//     }),
+//     new Platform({
+//         x: randomNumberBetween3000And4000,
+//         y: randomNumberY4,
+//         image: theplatform01
+//     }),
+//     new Platform({
+//         x: randomNumberBetween4000And5000,
+//         y: randomNumberY5,
+//         image: theplatform01
+//     }),
+
+// ];
+
+
+
+for (let i = 0; i < 5; i++) {
+    let randomFactor = Math.random();
+    let randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
+
+    randomFactor = Math.random();
+    let randomNumberBetweenX = Math.floor(randomFactor * 1000) + i * 1000;
+
+    platformList.push(
+        new Platform({
+        x: randomNumberBetweenX,
+        y: randomNumberBetween100And516,
+        image: theplatform01
     }),
-  
-    new Platform({
-        x: theplatform.width - 3,
-        y: 515,
-        image: theplatform
-    }),
+    // new Platform({
+    //     x: randomNumberBetweenX,
+    //     y: randomNumberBetween100And516,
+    //     image: thePlatform02
+    // }),
+    );
+};
+console.log(platformList);
 
-    new Platform({
-        x: theplatform.width * 2 + 200, 
-        y: 515,
-        image: theplatform
-    }),
+adjustIJPlatformPositions(platformList);
+// adjustIKPlatformPositions(platformList);
+// adjustJKPlatformPositions(platformList);
 
-    new Platform({
-        x: theplatform.width * 3 + 400, //  
-        y: 515,
-        image: theplatform
-    }),
-    // plateforme 5
-    new Platform({
-        x: theplatform.width * 4 + 300, //  
-        y: 515,
-        image: theplatform
-    }),
-    // Moyenne plateforme en hauteur 1
-    new Platform({
-        x: thePlatformSmallTall.width * 5 + 2100,
-        y: 380,
-        image: thePlatformSmallTall
-    }),
+    // new Platform({
+    //     // x: theplatform.width - 3,
+    //     // y: 515,
+    //     x: randomNumberX,
+    //     y: randomNumberY,
+    //     image: theplatform
+    // }),
 
-     // plateforme 6
-   new Platform({
-    x: theplatform.width * 6 + 400, //  
-    y: 515,
-    image: theplatform
-}),
+//     new Platform({
+//         x: theplatform.width * 2 + 200, 
+//         y: 515,
+//         image: theplatform
+//     }),
 
-// Vide //
+//     new Platform({
+//         x: theplatform.width * 3 + 400, //  
+//         y: 515,
+//         image: theplatform
+//     }),
+//     // plateforme 5
+//     new Platform({
+//         x: theplatform.width * 4 + 300, //  
+//         y: 515,
+//         image: theplatform
+//     }),
+//     // Moyenne plateforme en hauteur 1
+//     new Platform({
+//         x: thePlatformSmallTall.width * 5 + 2100,
+//         y: 380,
+//         image: thePlatformSmallTall
+//     }),
 
-// plateforme 7
-new Platform({
-    x: theplatform.width * 7 + 700, //  
-    y: 515,
-    image: theplatform
-}),
-// plateforme 8
-new Platform({
-    x: theplatform.width * 8 + 700, //  
-    y: 515,
-    image: theplatform
-}),
-// plateforme 9
-new Platform({
-    x: theplatform.width * 9 + 700, //  
-    y: 515,
-    image: theplatform
-}),
+//      // plateforme 6
+//    new Platform({
+//     x: theplatform.width * 6 + 400, //  
+//     y: 515,
+//     image: theplatform
+// }),
 
-// Vide //
+// // Vide //
 
-// plateforme 10
-new Platform({
-    x: theplatform.width * 10 + 700, //  
-    y: 515,
-    image: theplatform
-}),
+// // plateforme 7
+// new Platform({
+//     x: theplatform.width * 7 + 700, //  
+//     y: 515,
+//     image: theplatform
+// }),
+// // plateforme 8
+// new Platform({
+//     x: theplatform.width * 8 + 700, //  
+//     y: 515,
+//     image: theplatform
+// }),
+// // plateforme 9
+// new Platform({
+//     x: theplatform.width * 9 + 700, //  
+//     y: 515,
+//     image: theplatform
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme au sol 1
-new Platform({
-    x: thePlatformSmall.width * 82, //  
-    y: 515,
-    image: thePlatformSmall
-}),
+// // plateforme 10
+// new Platform({
+//     x: theplatform.width * 10 + 700, //  
+//     y: 515,
+//     image: theplatform
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme au sol 2
-new Platform({
-    x: thePlatformSmall.width * 87, //  
-    y: 515,
-    image: thePlatformSmall
-}),
+// // petite plateforme au sol 1
+// new Platform({
+//     x: thePlatformSmall.width * 82, //  
+//     y: 515,
+//     image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme au sol 3
-new Platform({
-    x: thePlatformSmall.width * 92, //  
-    y: 515,
-    image: thePlatformSmall
-}),
+// // petite plateforme au sol 2
+// new Platform({
+//     x: thePlatformSmall.width * 87, //  
+//     y: 515,
+//     image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 1
-new Platform({
-    x: thePlatformSmall.width * 94, //  
-    y: 400,
-    image: thePlatformSmall
-}),
+// // petite plateforme au sol 3
+// new Platform({
+//     x: thePlatformSmall.width * 92, //  
+//     y: 515,
+//     image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
+
+// // petite plateforme en hauteur 1
+// new Platform({
+//     x: thePlatformSmall.width * 94, //  
+//     y: 400,
+//     image: thePlatformSmall
+// }),
+
+// // Vide //
 
 
-// petite plateforme en hauteur 2
-new Platform({
-x: 7200,
-y: 280,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 2
+// new Platform({
+// x: 7200,
+// y: 280,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 3
-new Platform({
-x: 7100,
-y: 220,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 3
+// new Platform({
+// x: 7100,
+// y: 220,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 4
-new Platform({
-x: 6900,
-y: 160,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 4
+// new Platform({
+// x: 6900,
+// y: 160,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 5
-new Platform({
-x: 6700,
-y: 180,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 5
+// new Platform({
+// x: 6700,
+// y: 180,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 6
-new Platform({
-x: 6500,
-y: 140,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 6
+// new Platform({
+// x: 6500,
+// y: 140,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 7
-new Platform({
-x: 6270,
-y: 150,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 7
+// new Platform({
+// x: 6270,
+// y: 150,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 8
-new Platform({
-x: 6062,
-y: 140,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 8
+// new Platform({
+// x: 6062,
+// y: 140,
+// image: thePlatformSmall
+// }),
 
-// Vide //
+// // Vide //
 
-// petite plateforme en hauteur 9
-new Platform({
-x: 5932,
-y: 160,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 9
+// new Platform({
+// x: 5932,
+// y: 160,
+// image: thePlatformSmall
+// }),
 
-// petite plateforme en hauteur 10
-new Platform({
-x: 5662,
-y: 140,
-image: thePlatformSmall
-}),
+// // petite plateforme en hauteur 10
+// new Platform({
+// x: 5662,
+// y: 140,
+// image: thePlatformSmall
+// }),
 
-// petite plateforme en hauteur 11
-new Platform({
-x: 5382,
-y: 140,
-image: thePlatformSmall
-})
+// // petite plateforme en hauteur 11
+// new Platform({
+// x: 5382,
+// y: 140,
+// image: thePlatformSmall
+// })
 
-];
+
 
 
 export function spawnNewPlatforms() {

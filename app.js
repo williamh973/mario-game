@@ -126,20 +126,6 @@ import { mooveGomba } from "./objects/objects-movement-handler/gombas-movement-h
 // let mushroomR3 = new MushroomR3();
 
 
-// let scoreTag = document.getElementById('score');
-// let lifeTag = document.getElementById('vie');
-// let timerTag = document.getElementById('timer');
-// let blackScreen = document.querySelector('.blackScreen');
-// let loseTag = document.getElementById('lose');
-// let winTag = document.getElementById('win');
-// let btnRestart = document.querySelector('#reload');
-// let progScreen = document.getElementById('container-prog');
-// let progBar = document.querySelector('.progress-bar');
-// let vie = 1;
-// let stock = 0;
-// let time = 300;
-// let counter = 0;
-// let counterDiseapearBigS = 0;  // counter for the disappearance of metal platforms
 
 
 
@@ -302,8 +288,8 @@ function animate() {
         genericObject.draw()
     })
 
-    platformList.forEach((theplatform) => {
-        theplatform.draw()
+    platformList.forEach((platform) => {
+        platform.draw()
     })
 
 
