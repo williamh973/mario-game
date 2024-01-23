@@ -1,5 +1,7 @@
 import { player, keys } from "../../keyboard.js";
-import { platformList } from "../../objects/platforms/grass-platforms/grass-platforms-list.object.js"; 
+import { Platform } from "../../class/platforms/platforms.class.js";
+import { canvasParams } from "../../canvas.js";
+import { platformList494x72, platformList84x72, platformList150x72, platformList202x56 } from "../../objects/platforms/grass-platforms/grass-platforms-list.object.js"; 
 import { genericObjectList } from "../generic/sky-and-hills/sky-and-hills.object.js";
 import { waterfall, waterfall02 } from "../../class/waterfall/waterfall.class.js";
 import { bounty1, bounty2, bounty3, bounty4, bounty5, bounty6, bounty7, bounty8, bounty9, bounty10, bounty11, bounty12, bounty13, bounty14, bounty15, bounty16, bounty17, bounty18, bounty19, bounty20, bounty21, bounty22, bounty23, bounty24, bounty25, bounty26, bounty27, bounty28, bounty29, bounty30, bounty31, bounty32, bounty33, bounty34, bounty35, bounty36, bounty37, bounty38, bounty39, bounty40, bounty41, bounty42 } from "../../class/coins/coins.class.js";
@@ -10,13 +12,31 @@ export let scrollOffsetY = 0;
 
 
 export function objectMovements() {
-if (keys.ArrowRight.pressed || keys.d.pressed ) {
+if (
+    (
+      keys.ArrowRight.pressed || 
+      keys.d.pressed 
+      ) &&
+      player.position.x >= 400
+    ) {
 
     scrollOffsetX += player.speed
 
-    platformList.forEach((createPlatform) => {
+    platformList494x72.forEach((createPlatform) => {
         createPlatform.position.x -= player.speed
-        });
+     })
+
+    platformList84x72.forEach((createPlatform) => {
+       createPlatform.position.x -= player.speed
+    })
+
+    platformList150x72.forEach((createPlatform) => {
+        createPlatform.position.x -= player.speed
+     })
+
+     platformList202x56.forEach((createPlatform) => {
+        createPlatform.position.x -= player.speed
+     })
 
     genericObjectList.forEach((genericObject) => {
        genericObject.position.x -= player.speed/5  
@@ -81,13 +101,26 @@ if (keys.ArrowRight.pressed || keys.d.pressed ) {
             keys.ArrowLeft.pressed ||
             keys.q.pressed 
             ) && 
-            scrollOffsetX > 0
+            scrollOffsetX > 0  
             ) {
                 scrollOffsetX -= player.speed
 
-                platformList.forEach((createPlatform) => {
+                platformList494x72.forEach((createPlatform) => {
+                    createPlatform.position.x += player.speed
+                 })
+
+                platformList84x72.forEach((createPlatform) => {
                    createPlatform.position.x += player.speed
                 })
+
+                platformList150x72.forEach((createPlatform) => {
+                    createPlatform.position.x += player.speed
+                 })
+
+                 platformList202x56.forEach((createPlatform) => {
+                    createPlatform.position.x += player.speed
+                 })
+
 
                 genericObjectList.forEach((genericObject) => {
                    genericObject.position.x += player.speed/5 
@@ -187,11 +220,19 @@ if (keys.ArrowRight.pressed || keys.d.pressed ) {
 
 export function canvasTrackingOffsetY() {
 
- if
-    (
-        keys.ArrowUp.pressed || 
-        keys.z.pressed 
+// console.log(player.position.y);
+}
+
+export function overTheCanvasLimit() {
+    if (player.position.y < canvasParams.canvas.height - 576) {
+        player.velocity.y = +10
+    } else if ( 
+        player.position.y >= 522 
         ) {
-            scrollOffsetY += player.position.y
- }
+        player.position.x = player.position.x - 250
+        player.position.y = player.position.y - 250
+        player.currentSprite = player.sprites.stand.right
+        player.currentCropWidth = player.sprites.stand.cropWidth
+        player.width = player.sprites.stand.width
+    }
 }

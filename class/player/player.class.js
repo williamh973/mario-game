@@ -41,13 +41,29 @@ function createSpriteDrown() {
 let marioDrowns = createSpriteDrown("../../images/SpriteDrown.png")
 
 
+function createSpriteJumpRight() {
+    const marioJumpRight = new Image()
+    marioJumpRight.src = "../../images/SpriteJumpRight.png"
+    return marioJumpRight
+}
+let marioJumpRight = createSpriteJumpRight("../../images/SpriteJumpRight.png")
+
+
+function createSpriteJumpLeft() {
+    const marioJumpLeft = new Image()
+    marioJumpRight.src = "../../images/SpriteJumpLeft.png"
+    return marioJumpLeft
+}
+let marioJumpLeft = createSpriteJumpLeft("../../images/SpriteJumpRight.png")
+
+
 
 export class Player {
     constructor() {
         this.speed = 7  
         this.position = {  
             x: 400, 
-            y: 400 
+            y: 100 
         }
         this.velocity = {  
             x: 1, 
@@ -72,6 +88,12 @@ export class Player {
             },
             drown: {
                 right : createSpriteDrown(marioDrowns),
+                cropWidth: 70,
+                width: 70
+            },
+            jump: {
+                right : createSpriteJumpRight(marioJumpRight),
+                left : createSpriteJumpLeft(marioJumpLeft),
                 cropWidth: 70,
                 width: 70
             },
@@ -105,10 +127,14 @@ export class Player {
                 this.currentSprite === this.sprites.run.left)
         )
             this.frames = 0
-         else if (this.frames > 12 &&
-            this.currentSprite === this.sprites.drown.right
-            )
+        else if (this.frames > 12 &&
+           this.currentSprite === this.sprites.drown.right
+           ) 
             this.frames = 0
+        // else if (this.frames > 1 &&
+        //     this.currentSprite === this.sprites.jump.right
+        //     )
+        //     this.frames = 0
         this.draw()
         this.position.y += this.velocity.y,  
             this.position.x += this.velocity.x

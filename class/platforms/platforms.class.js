@@ -81,22 +81,20 @@ function createPlatform12() {
 }
 
 
-export let theplatform01 = createPlatform("../../images/platform1.png");
+export let thePlatform494x72 = createPlatform("../../images/platform1.png");
 export let thePlatform02 = createplatform02("../../images/platform2.png")
 export let theplateform4 = createPlatformMedium1("../../images/plateform4.png")
 export let theplateform5 = createPlatformMedium2("../../images/plateform5.png")
 export let theplateform6 = createPlatformMedium3("../../images/plateform6.png")
 export let theplateform7 = createPlatformMedium4("../../images/plateform7.png")
 export let theplateform8 = createPlatformMedium5("../../images/plateform8.png")
-export let theplateform9 = createPlatformMedium6("../../images/plateform9.png")
+export let theplateform84x72 = createPlatformMedium6("../../images/plateform9.png")
 export let theplateform10 = createPlatformPlate("../../images/plateform10.png")
 export let theplateform11 = createPlatform11("../../images/plateform11.png")
-export let theplateform12 = createPlatform12("../../images/plateform12.png")
-export let thePlatformSmallTall = createPlatformSmallTall("../../images/platformSmallTall.png")
-export let thePlatformSmall = createPlatformSmall("../../images/platformSmall.png")
+export let theplateform202x56 = createPlatform12("../../images/plateform12.png")
+export let thePlatform150x72 = createPlatformSmallTall("../../images/platformSmallTall.png")
+export let thePlatformSmall = createPlatformSmall("../../images/platformSmall.png") 
 
-let randomFactor = Math.random(); 
-let randomNumber = Math.floor(randomFactor * (100)) + 75;
 
 
 export class Platform {
@@ -126,81 +124,55 @@ export class Platform {
            this.position.y + this.height > otherPlatform.position.y
        );
     }
-    
-    placeAwayFrom(referencePlatform) {
-       this.position.x = referencePlatform.position.x + randomNumber;
-       this.position.y = referencePlatform.position.y + randomNumber;
-       console.log(this.position.y);
-    }
-    overCanvasLimit() {
+    placePlatform494x72AwayFromPlatform494x72(referencePlatform) {
+          let randomFactorX = Math.random(); 
+          let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
 
+          let randomFactorY = Math.random(); 
+          let randomNumberY = Math.floor(randomFactorY * (76)) + 100;
+          
+          this.position.x = referencePlatform.position.x + randomNumberX;
+          this.position.y = referencePlatform.position.y + randomNumberY;
+    }
+     placePlatform84x72AwayFromPlatform84x72(referencePlatform) {
+          let randomFactorX = Math.random(); 
+          let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
+
+          let randomFactorY = Math.random(); 
+          let randomNumberY = Math.floor(randomFactorY * (76)) + 100;
+          
+          this.position.x = referencePlatform.position.x + randomNumberX;
+          this.position.y = referencePlatform.position.y + randomNumberY;
+    }
+    placePlatform84x72AwayFromPlatform150x72(referencePlatform) {
+          let randomFactorX = Math.random(); 
+          let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
+
+          let randomFactorY = Math.random(); 
+          let randomNumberY = Math.floor(randomFactorY * (76)) + 75;
+          
+          this.position.x = referencePlatform.position.x + randomNumberX;
+          this.position.y = referencePlatform.position.y + randomNumberY;
+    }
+    placePlatform84x72AwayFromPlatform202x56(referencePlatform) {
+        let randomFactorX = Math.random(); 
+        let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
+
+        let randomFactorY = Math.random(); 
+        let randomNumberY = Math.floor(randomFactorY * (70)) - 130;
+        
+        this.position.x = referencePlatform.position.x + randomNumberX;
+        this.position.y = referencePlatform.position.y - 70;
+    }
+    placePlatform84x72AwayFromPlatform494x72(referencePlatform) {
+      let randomFactorX = Math.random(); 
+      let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
+  
+      let randomFactorY = Math.random(); 
+      let randomNumberY = Math.floor(randomFactorY * (20)) - 100;
+      
+      this.position.x = referencePlatform.position.x + randomNumberX;
+      this.position.y = referencePlatform.position.y - randomNumberY;
     }
 };
 
-
-
-
-export function adjustIJPlatformPositions(platformList) {
-    for (let i = 0; i < platformList.length; i++) {
-        for (let j = i + 1; j < platformList.length; j++) {
-
-                if (platformList[i].overlapsWith(platformList[j])) {
-                    console.log("overlaps!");
-                    platformList[j].placeAwayFrom(platformList[i]);
-                }
-        }
-    }
-};
-
-// export function adjustIKPlatformPositions(platformList) {
-//     for (let i = 0; i < platformList.length; i++) {
-//         for (let k = i + 2; k < platformList.length; k++) {
-
-//                 if (platformList[i].overlapsWith(platformList[k])) {
-//                     platformList[k].placeAwayFrom(platformList[i]);
-//                 }
-//         }
-//     }
-// };
-
-// export function adjustJKPlatformPositions(platformList) {
-//     for (let j = 0; j < platformList.length; j++) {
-//         for (let k = j + 1; k < platformList.length; k++) {
-
-//                 if (platformList[j].overlapsWith(platformList[k])) {
-//                     platformList[k].placeAwayFrom(platformList[j]);
-//                 }
-//         }
-//     }
-// };
-
-// platformList[i].overlapsWith(platformList[k]) 
-// platformList[j].overlapsWith(platformList[i]) 
-// platformList[j].overlapsWith(platformList[k]) 
-// platformList[k].overlapsWith(platformList[i]) 
-// platformList[k].overlapsWith(platformList[j])
-
-
-// platformList[k].placeAwayFrom(platformList[i]);
-// platformList[i].placeAwayFrom(platformList[j]);
-// platformList[k].placeAwayFrom(platformList[j]);
-// platformList[j].placeAwayFrom(platformList[k]);
-// platformList[i].placeAwayFrom(platformList[k]);
-
-
-// export function adjustPlatformPositions2(platformList) {
-//     for (let j = 0; j < platformList.length; j++) {
-//         for (let j = j + 1; j < platformList.length; j++) {
-//             for (let k = i + 2; k < platformList.length; k++) {
-                
-//                 if (
-//                     platformList[j].overlapsWith(platformList[j]) ||
-//                     platformList[j].overlapsWith(platformList[k])
-//                 ) {
-//                     platformList[j].placeAwayFrom(platformList[j]);
-//                     platformList[k].placeAwayFrom(platformList[j]);
-//                 }
-//             }
-//         }
-//     }
-// }

@@ -1,102 +1,35 @@
-import { Platform, thePlatformSmall, thePlatformSmallTall, theplatform01, thePlatform02, theplateform10, theplateform12, theplateform11, theplateform4, theplateform8, theplateform9, theplateform7, adjustIJPlatformPositions } from "../../../class/platforms/platforms.class.js";
+import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../platforms-manager/platform-dispach.js";
+import { adjustGrassPlatform494x72Positions, adjustGrassPlatform84x72Positions, adjustGrassPlatform84x72And150x72Positions, adjustGrassPlatform84x72And202x56Positions, adjustGrassPlatform84x72And494x72Positions } from "../platforms-manager/platform-adjustment.js";
+
+export let platformList494x72 = [];
+export let platformList84x72 = [];
+export let platformList150x72 = [];
+export let platformList202x56 = [];
 
 
-export let platformList = [];
-
-
-// let randomFactor = Math.random(); 
-// let randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-
-// randomFactor = Math.random(); 
-// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-// let randomNumberBetween0And1000 = Math.floor(randomFactor * 1000);
-// let randomNumberY1 = randomNumberBetween100And516;
-
-// randomFactor = Math.random(); 
-// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-// let randomNumberBetween1000And2000 = Math.floor(randomFactor * 1000) + 1000;
-// let randomNumberY2 = randomNumberBetween100And516;
-
-// randomFactor = Math.random(); 
-// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-// let randomNumberBetween2000And3000 = Math.floor(randomFactor * 1000) + 2000;
-// let randomNumberY3 = randomNumberBetween100And516;
-
-// randomFactor = Math.random(); 
-// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-// let randomNumberBetween3000And4000= Math.floor(randomFactor * 1000) + 3000;
-// let randomNumberY4 = randomNumberBetween100And516;
-
-// randomFactor = Math.random(); 
-// randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-// let randomNumberBetween4000And5000 = Math.floor(randomFactor * 1000) + 4000;
-// let randomNumberY5 = randomNumberBetween100And516;
-
-
-
-// platformList = [
-
-//     new Platform({
-//         x: randomNumberBetween0And1000,
-//         y: randomNumberY1,
-//         image: theplatform01
-//     }),
-//     new Platform({
-//         x: randomNumberBetween1000And2000,
-//         y: randomNumberY2,
-//         image: theplatform01
-//     }),
-//     new Platform({
-//         x: randomNumberBetween2000And3000,
-//         y: randomNumberY3,
-//         image: theplatform01
-//     }),
-//     new Platform({
-//         x: randomNumberBetween3000And4000,
-//         y: randomNumberY4,
-//         image: theplatform01
-//     }),
-//     new Platform({
-//         x: randomNumberBetween4000And5000,
-//         y: randomNumberY5,
-//         image: theplatform01
-//     }),
-
-// ];
-
-
-
-for (let i = 0; i < 5; i++) {
-    let randomFactor = Math.random();
-    let randomNumberBetween100And516 = Math.floor(randomFactor * 416) + 100;
-
-    randomFactor = Math.random();
-    let randomNumberBetweenX = Math.floor(randomFactor * 1000) + i * 1000;
-
-    platformList.push(
-        new Platform({
-        x: randomNumberBetweenX,
-        y: randomNumberBetween100And516,
-        image: theplatform01
-    }),
-    // new Platform({
-    //     x: randomNumberBetweenX,
-    //     y: randomNumberBetween100And516,
-    //     image: thePlatform02
-    // }),
-    );
+export function spawnAreaLevelOne(platformAdded) {
+    dispachGrassPlatforms494x72();
+    dispachGrassPlatforms84x72();
+    dispachGrassPlatforms150x72();
+    dispachGrassPlatforms202x56();
+    ajustPlatforms();
+    ajustPlatforms();
+    ajustPlatforms();
+    platformAdded = false;
 };
-console.log(platformList);
 
-adjustIJPlatformPositions(platformList);
-// adjustIKPlatformPositions(platformList);
-// adjustJKPlatformPositions(platformList);
+
+
+
+function ajustPlatforms() {
+    adjustGrassPlatform494x72Positions(platformList494x72);
+    adjustGrassPlatform84x72And150x72Positions(platformList84x72, platformList150x72);
+    adjustGrassPlatform84x72And202x56Positions(platformList84x72, platformList202x56);
+    adjustGrassPlatform84x72And494x72Positions(platformList84x72, platformList494x72)
+    adjustGrassPlatform84x72Positions(platformList84x72);
+}
+
+
 
     // new Platform({
     //     // x: theplatform.width - 3,
@@ -293,13 +226,6 @@ adjustIJPlatformPositions(platformList);
 
 
 
-export function spawnNewPlatforms() {
-    platformList.push(
-  
-
-)
-
-};
 
 
 // // sur-plateforme 1

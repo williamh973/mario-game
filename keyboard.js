@@ -63,12 +63,17 @@ window.addEventListener('keydown', (event) => {
                 player.width = player.sprites.run.width
                 break
             case 'z':
+                keys.z.pressed = true;
+                // player.frames = 1
+                // player.currentSprite.src = "./images/SpriteJumpRight.png"
+                // player.currentCropWidth = player.sprites.jump.cropWidth
+                // player.width = player.sprites.jump.width
                 if(event.repeat) {
                     return 
                 }
                 counterKeydown++
                 if( counterKeydown === 1) {
-                    keys.ArrowUp.pressed = true;
+                    keys.z.pressed = true;
                     player.velocity.y -= 12
                     setTimeout(() => {
                         counterKeydown = 0
@@ -121,7 +126,12 @@ window.addEventListener('keyup', (event) => {
     
             case 'z':
                 keys.z.pressed = false;
-
+                // if (condition) {
+                    
+                // }
+                // player.currentSprite = player.sprites.stand.right
+                // player.currentCropWidth = player.sprites.stand.cropWidth
+                // player.width = player.sprites.stand.width
                 break
             case 's':
     
