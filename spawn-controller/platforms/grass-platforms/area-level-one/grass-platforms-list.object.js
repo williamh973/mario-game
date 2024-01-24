@@ -1,33 +1,15 @@
-import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../platforms-manager/platform-dispach.js";
-import { adjustGrassPlatform494x72Positions, adjustGrassPlatform84x72Positions, adjustGrassPlatform84x72And150x72Positions, adjustGrassPlatform84x72And202x56Positions, adjustGrassPlatform84x72And494x72Positions } from "../platforms-manager/platform-adjustment.js";
-
-export let platformList494x72 = [];
-export let platformList84x72 = [];
-export let platformList150x72 = [];
-export let platformList202x56 = [];
+import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../platforms-manager/platform-dispach.js";
+import { checkFiveTimesIfPlatformsAreAdjusted } from "../../platforms-manager/platform-adjustment.js";
 
 
-export function spawnAreaLevelOne(platformAdded) {
-    dispachGrassPlatforms494x72();
-    dispachGrassPlatforms84x72();
-    dispachGrassPlatforms150x72();
-    dispachGrassPlatforms202x56();
-    ajustPlatforms();
-    ajustPlatforms();
-    ajustPlatforms();
-    platformAdded = false;
+export async function spawnAreaLevelOne(platformAdded) {
+   await dispachGrassPlatforms494x72();
+   await dispachGrassPlatforms84x72();
+   await dispachGrassPlatforms150x72();
+   await dispachGrassPlatforms202x56();
+   await checkFiveTimesIfPlatformsAreAdjusted();
+   platformAdded = false;
 };
-
-
-
-
-function ajustPlatforms() {
-    adjustGrassPlatform494x72Positions(platformList494x72);
-    adjustGrassPlatform84x72And150x72Positions(platformList84x72, platformList150x72);
-    adjustGrassPlatform84x72And202x56Positions(platformList84x72, platformList202x56);
-    adjustGrassPlatform84x72And494x72Positions(platformList84x72, platformList494x72)
-    adjustGrassPlatform84x72Positions(platformList84x72);
-}
 
 
 

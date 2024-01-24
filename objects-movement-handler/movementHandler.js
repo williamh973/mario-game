@@ -1,11 +1,11 @@
-import { player, keys } from "../../keyboard.js";
+import { player, keys } from "../keyboard.js";
 import { Platform } from "../../class/platforms/platforms.class.js";
-import { canvasParams } from "../../canvas.js";
-import { platformList494x72, platformList84x72, platformList150x72, platformList202x56 } from "../../objects/platforms/grass-platforms/grass-platforms-list.object.js"; 
-import { genericObjectList } from "../generic/sky-and-hills/sky-and-hills.object.js";
-import { waterfall, waterfall02 } from "../../class/waterfall/waterfall.class.js";
-import { bounty1, bounty2, bounty3, bounty4, bounty5, bounty6, bounty7, bounty8, bounty9, bounty10, bounty11, bounty12, bounty13, bounty14, bounty15, bounty16, bounty17, bounty18, bounty19, bounty20, bounty21, bounty22, bounty23, bounty24, bounty25, bounty26, bounty27, bounty28, bounty29, bounty30, bounty31, bounty32, bounty33, bounty34, bounty35, bounty36, bounty37, bounty38, bounty39, bounty40, bounty41, bounty42 } from "../../class/coins/coins.class.js";
-import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "../../class/gombas/gombas.class.js";
+import { canvasParams } from "../canvas.js";
+import { platformList494x72, platformList84x72, platformList150x72, platformList202x56 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
+import { genericObjectList } from "../spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
+import { waterfall, waterfall02 } from "../class/waterfall/waterfall.class.js";
+import { bounty1, bounty2, bounty3, bounty4, bounty5, bounty6, bounty7, bounty8, bounty9, bounty10, bounty11, bounty12, bounty13, bounty14, bounty15, bounty16, bounty17, bounty18, bounty19, bounty20, bounty21, bounty22, bounty23, bounty24, bounty25, bounty26, bounty27, bounty28, bounty29, bounty30, bounty31, bounty32, bounty33, bounty34, bounty35, bounty36, bounty37, bounty38, bounty39, bounty40, bounty41, bounty42 } from "../class/coins/coins.class.js";
+import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "../class/gombas/gombas.class.js";
 
 export let scrollOffsetX = 0;
 export let scrollOffsetY = 0;

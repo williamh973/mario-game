@@ -1,16 +1,17 @@
 import { canvasParams } from "./canvas.js";
-import { player, keys } from "./keyboard.js";
-import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, spawnAreaLevelOne } from "./objects/platforms/grass-platforms/grass-platforms-list.object.js"; 
-import { genericObjectList } from "./objects/generic/sky-and-hills/sky-and-hills.object.js";
+import { player } from "./keyboard.js";
+import { spawnAreaLevelOne } from "./spawn-controller/platforms/grass-platforms/area-level-one/grass-platforms-list.object.js"; 
+import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { genericObjectList } from "./spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
 import { MushroomB1, MushroomB2, MushroomB3, MushroomB4, MushroomB5, MushroomB6, MushroomB7, MushroomB8, MushroomB9, MushroomB10, MushroomB11, MushroomB12, MushroomB13, MushroomB14, MushroomB15, MushroomB16 } from "./class/blueMushroom/mushroomB.class.js";
 import { MushroomRouge, MushroomR2, MushroomR3 } from "./class/redMushroom/redMushroom.class.js";
 import { Bounty1, Bounty2, Bounty3, Bounty4, Bounty5, Bounty6, Bounty7, Bounty8, Bounty9, Bounty10, Bounty11, Bounty12, Bounty13, Bounty14, Bounty15, Bounty16, Bounty17, Bounty18, Bounty19, Bounty20, Bounty21, Bounty22, Bounty23, Bounty24, Bounty25, Bounty26, Bounty27, Bounty28, Bounty29, Bounty30, Bounty31, Bounty32, Bounty33, Bounty34, Bounty35, Bounty36, Bounty37, Bounty38, Bounty39, Bounty40, Bounty41, Bounty42 } from "./class/coins/coins.class.js";
-import { DisepearBounty1, DisepearBounty2, DisepearBounty3, DisepearBounty4, DisepearBounty5, DisepearBounty6, DisepearBounty7, DisepearBounty8, DisepearBounty9, DisepearBounty10, DisepearBounty11, DisepearBounty12, DisepearBounty13, DisepearBounty14, DisepearBounty15, DisepearBounty16, DisepearBounty17, DisepearBounty18, DisepearBounty19, DisepearBounty20, DisepearBounty21, DisepearBounty22, DisepearBounty23, DisepearBounty24, DisepearBounty25, DisepearBounty26, DisepearBounty27, DisepearBounty28, DisepearBounty29, DisepearBounty30, DisepearBounty31, DisepearBounty32, DisepearBounty33, DisepearBounty34, DisepearBounty35, DisepearBounty36, DisepearBounty37, DisepearBounty38, DisepearBounty39, DisepearBounty40, DisepearBounty41, DisepearBounty42 } from "./objects/coins/disepear-coin.js";
+import { DisepearBounty1, DisepearBounty2, DisepearBounty3, DisepearBounty4, DisepearBounty5, DisepearBounty6, DisepearBounty7, DisepearBounty8, DisepearBounty9, DisepearBounty10, DisepearBounty11, DisepearBounty12, DisepearBounty13, DisepearBounty14, DisepearBounty15, DisepearBounty16, DisepearBounty17, DisepearBounty18, DisepearBounty19, DisepearBounty20, DisepearBounty21, DisepearBounty22, DisepearBounty23, DisepearBounty24, DisepearBounty25, DisepearBounty26, DisepearBounty27, DisepearBounty28, DisepearBounty29, DisepearBounty30, DisepearBounty31, DisepearBounty32, DisepearBounty33, DisepearBounty34, DisepearBounty35, DisepearBounty36, DisepearBounty37, DisepearBounty38, DisepearBounty39, DisepearBounty40, DisepearBounty41, DisepearBounty42 } from "./spawn-controller/coins/coins-manager/disepear-coin.js";
 import { Cloud, theCloud } from "./class/cloud/cloud.class.js";
-import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, canvasTrackingOffsetY, overTheCanvasLimit } from "./objects/objects-movement-handler/movementHandler.js";
+import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, canvasTrackingOffsetY, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
-import { mooveGomba } from "./objects/objects-movement-handler/gombas-movement-handler.js";
+import { mooveGomba } from "./objects-movement-handler/gombas-movement-handler.js";
 
 
 

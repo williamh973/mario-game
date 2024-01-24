@@ -1,4 +1,4 @@
-import { bounty1, bounty2, bounty3, bounty4, bounty5, bounty6, bounty7, bounty8, bounty9, bounty10, bounty11, bounty12, bounty13, bounty14, bounty15, bounty16, bounty17, bounty18, bounty19, bounty20, bounty21, bounty22, bounty23, bounty24, bounty25, bounty26, bounty27, bounty28, bounty29, bounty30, bounty31, bounty32, bounty33, bounty34, bounty35, bounty36, bounty37, bounty38, bounty39, bounty40, bounty41, bounty42 } from "../../class/coins/coins.class.js";
+import { bounty1, bounty2, bounty3, bounty4, bounty5, bounty6, bounty7, bounty8, bounty9, bounty10, bounty11, bounty12, bounty13, bounty14, bounty15, bounty16, bounty17, bounty18, bounty19, bounty20, bounty21, bounty22, bounty23, bounty24, bounty25, bounty26, bounty27, bounty28, bounty29, bounty30, bounty31, bounty32, bounty33, bounty34, bounty35, bounty36, bounty37, bounty38, bounty39, bounty40, bounty41, bounty42 } from "../../../class/coins/coins.class.js";
 
 
 export function DisepearBounty1() {
