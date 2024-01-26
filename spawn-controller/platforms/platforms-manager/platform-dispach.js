@@ -5,9 +5,9 @@ import { platformList494x72, platformList150x72, platformList84x72, platformList
 export function dispachGrassPlatforms494x72() {
     return new Promise((resolve) => {
         
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 13; i++) {
             let randomFactor = Math.random();
-            let randomNumberBetweenX = Math.floor(randomFactor * (100)) + 100 + i * 350; // + i * 50 controle l'étendue
+            let randomNumberBetweenX = Math.floor(randomFactor * (100)) + 100 + i * 600; // + i * 50 controle l'étendue
             
             platformList494x72.push(
                 new Platform({
@@ -30,7 +30,7 @@ export function dispachGrassPlatforms202x56() {
             platformList202x56.push(
             new Platform({
                 x: randomNumberBetweenX,
-                y: 448.5,
+                y: 455,
                 image: theplateform202x56
               }),
             )

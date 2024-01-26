@@ -172,7 +172,16 @@ export class Platform {
       let randomNumberY = Math.floor(randomFactorY * (20)) - 100;
       
       this.position.x = referencePlatform.position.x + randomNumberX;
-      this.position.y = referencePlatform.position.y - randomNumberY;
+      this.position.y = referencePlatform.position.y + randomNumberY;
     }
+    placePlatform202x56AwayFromPlatform494x72(referencePlatform) {
+        let randomFactorX = Math.random(); 
+        let randomNumberX = Math.floor(randomFactorX * (180)) + 70;
+
+        let platform202x56Height = 56
+    
+        this.position.x = referencePlatform.position.x + randomNumberX;
+        this.position.y = referencePlatform.position.y - platform202x56Height;
+      }
 };
 
