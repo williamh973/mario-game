@@ -1,12 +1,12 @@
-import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../platforms-manager/platform-dispach.js";
-import { checkFiveTimesIfPlatformsAreAdjusted } from "../../platforms-manager/platform-adjustment.js";
-import { dispachRandomRedMushroom } from "../../../redMushroom/redMushroom-manager/redMushroom-dispach.js";
-import { checkFiveTimesIfAllRedMushroomsAreAdjusted } from "../../../redMushroom/redMushroom-manager/redMushroom-adjustment.js";
-import { dispachRandomGoldCoins } from "../../../coins/coins-manager/coins-dispach.js";
-import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../../coins/coins-manager/coins-adjustment.js";
+import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../spawn-controller/platforms/platforms-manager/platform-dispach.js";
+import { checkFiveTimesIfPlatformsAreAdjusted } from "../../spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { dispachRandomRedMushroom } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
+import { checkFiveTimesIfAllRedMushroomsAreAdjusted } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-adjustment.js";
+import { dispachRandomGoldCoins } from "../../spawn-controller/coins/coins-manager/coins-dispach.js";
+import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../spawn-controller/coins/coins-manager/coins-adjustment.js";
 
 
-export async function spawnAreaLevelOne(platformAdded) {
+export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
    await dispachGrassPlatforms494x72();
    await dispachGrassPlatforms84x72();
    await dispachGrassPlatforms150x72();
@@ -16,7 +16,7 @@ export async function spawnAreaLevelOne(platformAdded) {
    await checkFiveTimesIfAllRedMushroomsAreAdjusted();
    await dispachRandomGoldCoins();
    await checkFiveTimesIfAllGoldCoinsAreAdjusted();
-   platformAdded = false;
+   isAreaLevelOneAdded = false;
 };
 
 

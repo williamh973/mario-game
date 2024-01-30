@@ -1,13 +1,11 @@
 import { canvasParams } from "./canvas.js";
 import { player } from "./keyboard.js";
-import { spawnAreaLevelOne } from "./spawn-controller/platforms/grass-platforms/area-level-one/grass-platforms-list.object.js"; 
+import { spawnAreaLevelOne } from "./areas/area-level-one/area.js"; 
 import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
 import { genericObjectList } from "./spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
-import { spawnCoin } from "./spawn-controller/coins/coins-manager/area-level-one/coin-list.object.js";
-import { spawnRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/area-level-one/redMushroom-list.object.js";
 import { Cloud, theCloud } from "./class/cloud/cloud.class.js";
 import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, canvasTrackingOffsetY, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
@@ -41,10 +39,6 @@ import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-mana
 // let mushroomB14 = new MushroomB14();
 // let mushroomB15 = new MushroomB15();
 // let mushroomB16 = new MushroomB16();
-
-// let mushroomR1 = new MushroomRouge();
-// let mushroomR2 = new MushroomR2();
-// let mushroomR3 = new MushroomR3();
 
 
 
@@ -183,30 +177,19 @@ import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-mana
 
 
 
-let platformAdded = false;
-let coinAdded = false;
-let redMushroomAdded = false;
+let isAreaLevelOneAdded = false;
+
 
 function animate() {
     requestAnimationFrame(animate)
     canvasParams.c.fillStyle = ' white '
     canvasParams.c.fillRect(0, 0, canvasParams.canvas.width, canvasParams.canvas.height) 
     
-    if (!platformAdded && scrollOffsetX === 0) {
-        spawnAreaLevelOne(platformAdded);
-        platformAdded = true;
+    if (!isAreaLevelOneAdded && scrollOffsetX === 0) {
+        spawnAreaLevelOne(isAreaLevelOneAdded);
+        isAreaLevelOneAdded = true;
     }
-    
-    if (!coinAdded && scrollOffsetX === 0) {
-        spawnCoin(coinAdded);
-        coinAdded = true;
-    }
-    
-    
-    if (!redMushroomAdded && scrollOffsetX === 0) {
-        spawnRedMushroom(redMushroomAdded);
-        redMushroomAdded = true;
-    }
+
     
     
     // console.log(scrollOffsetX);
