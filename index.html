@@ -7,17 +7,19 @@
     <title>Mario</title>
 </head>
 <body>
- 
-       
- 
-    <canvas id="canvas"></canvas>
- 
-
- <div id="container-stats">
-    <p id="vie"></p>
-    <p id="timer"></p>
-    <p id="score"></p>
-</div>
+    
+        <canvas id="canvas"></canvas>
+        
+        <div id="container-UI">
+            <div id="container-stats">
+              <p id="score"></p>
+              <p id="user-name"></p>
+              <p id="life"></p>
+              <p id="timer"></p>
+            </div>
+        </div>
+        
+    
     <div class="blackScreen">
         <p id="win">Gagné!</p>
          <p id="lose">Perdu!</p>
@@ -36,7 +38,7 @@
 
 
 
-
+<script src="./interface/interface.js" type="module"></script>
 <script src="app.js" type="module"></script>
 </body>
 </html>

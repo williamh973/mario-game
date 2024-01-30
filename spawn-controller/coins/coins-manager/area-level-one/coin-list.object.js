@@ -1,6 +1,8 @@
-import { dispachGoldCoins } from "../coins-dispach.js";
+import { dispachRandomGoldCoins } from "../coins-dispach.js";
+import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../coins-adjustment.js";
 
-export function spawnCoin(coinAdded) {
-    dispachGoldCoins()
+export async function spawnCoin(coinAdded) {
+    // await dispachRandomGoldCoins();
+    // await checkFiveTimesIfAllGoldCoinsAreAdjusted();
     coinAdded = false
 }

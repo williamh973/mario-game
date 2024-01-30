@@ -2,9 +2,9 @@ import { goldCoinList } from "../../coins/coins-manager/coins-adjustment.js";
 import { Coin } from "../../../class/coins/coins.class.js";
 
 
-export function dispachGoldCoins() {
-        
-        for (let i = 0; i < 2; i++) {
+export function dispachRandomGoldCoins() {
+    return new Promise((resolve) => {
+        for (let i = 0; i < 40; i++) {
 
             let randomFactorX = Math.random();
             let randomNumberBetweenX = Math.floor(randomFactorX * (100)) + 100 + i * 200; 
@@ -19,8 +19,9 @@ export function dispachGoldCoins() {
             })
             goldCoinList.push(coin)
         }
-        console.log(goldCoinList);
-
+        resolve();
+    })
+    
 };
 
 

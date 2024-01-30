@@ -1,5 +1,9 @@
 import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../platforms-manager/platform-dispach.js";
 import { checkFiveTimesIfPlatformsAreAdjusted } from "../../platforms-manager/platform-adjustment.js";
+import { dispachRandomRedMushroom } from "../../../redMushroom/redMushroom-manager/redMushroom-dispach.js";
+import { checkFiveTimesIfAllRedMushroomsAreAdjusted } from "../../../redMushroom/redMushroom-manager/redMushroom-adjustment.js";
+import { dispachRandomGoldCoins } from "../../../coins/coins-manager/coins-dispach.js";
+import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../../coins/coins-manager/coins-adjustment.js";
 
 
 export async function spawnAreaLevelOne(platformAdded) {
@@ -8,6 +12,10 @@ export async function spawnAreaLevelOne(platformAdded) {
    await dispachGrassPlatforms150x72();
    await dispachGrassPlatforms202x56();
    await checkFiveTimesIfPlatformsAreAdjusted();
+   await dispachRandomRedMushroom();
+   await checkFiveTimesIfAllRedMushroomsAreAdjusted();
+   await dispachRandomGoldCoins();
+   await checkFiveTimesIfAllGoldCoinsAreAdjusted();
    platformAdded = false;
 };
 

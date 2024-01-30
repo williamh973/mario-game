@@ -7,71 +7,16 @@ import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
 import { spawnCoin } from "./spawn-controller/coins/coins-manager/area-level-one/coin-list.object.js";
+import { spawnRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/area-level-one/redMushroom-list.object.js";
 import { Cloud, theCloud } from "./class/cloud/cloud.class.js";
 import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, canvasTrackingOffsetY, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
 import { mooveGomba } from "./objects-movement-handler/gombas-movement-handler.js";
-import { ParticleCoin } from "./class/particles/particles-coin.class.js";
+import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-take.js";
+import { particulesRedMushroomList } from "./spawn-controller/particles/particle-redMushroom.js";
+import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 
-
-
-
-// class Particule{
-//     constructor({position,velocity,radius,color}) {
-//         this.position = position
-//         this.velocity = velocity
-//         this.radius = radius
-//         this.color = color
-//         this.opacity = 1
-//     }
-//     draw(){
-//         canvasParams.c.save();
-//         canvasParams.c.globalAlpha = this.opacity;                         
-//         canvasParams.c.beginPath();
-//         canvasParams.c.fillStyle=this.color;
-//         canvasParams.c.arc(this.position.x,this.position.y, this.radius,0,Math.PI *2)
-//         canvasParams.c.fill()
-//         canvasParams.c.closePath()
-//         canvasParams.c.restore();
-//     }
-//     update(){
-//         this.position.x += this.velocity.x;
-//         this.position.y += this.velocity.y;
-//         if(this.opacity > 0){
-//             this.opacity -=0.01;
-//         }
-//         this.draw()
-//     }
-//  }
-
-// class ParticulePlatformBigS{
-//     constructor({position,velocity,radius,color}) {
-//         this.position = position
-//         this.velocity = velocity
-//         this.radius = radius
-//         this.color = color
-//         this.opacity = 1
-//     }
-//     draw(){
-//         canvasParams.c.save();
-//         canvasParams.c.globalAlpha = this.opacity;                         
-//         canvasParams.c.beginPath();
-//         canvasParams.c.fillStyle=this.color;
-//         canvasParams.c.arc(this.position.x,this.position.y, this.radius,0,Math.PI *2)
-//         canvasParams.c.fill()
-//         canvasParams.c.closePath()
-//         canvasParams.c.restore();
-//     }
-//     update(){
-//         this.position.x += this.velocity.x;
-//         this.position.y += this.velocity.y;
-//         if(this.opacity > 0){
-//             this.opacity -=0.01;
-//         }
-//         this.draw()
-//     }
-//  }
 
 
 
@@ -238,30 +183,31 @@ import { ParticleCoin } from "./class/particles/particles-coin.class.js";
 
 
 
-
-
-
-//  ---------------------- ANIMATE ----------------------------
-
 let platformAdded = false;
 let coinAdded = false;
+let redMushroomAdded = false;
 
 function animate() {
     requestAnimationFrame(animate)
     canvasParams.c.fillStyle = ' white '
     canvasParams.c.fillRect(0, 0, canvasParams.canvas.width, canvasParams.canvas.height) 
     
-    
     if (!platformAdded && scrollOffsetX === 0) {
         spawnAreaLevelOne(platformAdded);
         platformAdded = true;
     }
-
+    
     if (!coinAdded && scrollOffsetX === 0) {
         spawnCoin(coinAdded);
         coinAdded = true;
     }
-
+    
+    
+    if (!redMushroomAdded && scrollOffsetX === 0) {
+        spawnRedMushroom(redMushroomAdded);
+        redMushroomAdded = true;
+    }
+    
     
     // console.log(scrollOffsetX);
     // console.log(platformList84x72);
@@ -295,17 +241,32 @@ function animate() {
         }
     })
 
+    redMushroomList.forEach((redMushroom) => {
+        if (!redMushroom.isTaken) {
+            redMushroom.update()
+        }
+    })
+
     particulesCoinList.forEach((particules, index) => {
         if (particulesCoinList.opacity <= 0) {
             particulesCoinList.splice(index, 1)
         } else {
             particules.update();
         }
-    }) 
-    // coin.update()
+    })
+    
+    particulesRedMushroomList.forEach((particules, index) => {
+        if (particulesRedMushroomList.opacity <= 0) {
+            particulesRedMushroomList.splice(index, 1)
+        } else {
+            particules.update();
+        }
+    })
+    
 
+    
     // waters.forEach((water) => {
-    //     water.draw()
+        //     water.draw()
     // // })
 
     // rocks.forEach((theRock) => {
@@ -653,7 +614,7 @@ overTheCanvasLimit();
     })
  
     takeCoin();
-
+    takeRedMushroom();
  
 //   // To make the player jump on a metal platform
 //  function moveOnPlatformBigS01() {
@@ -1691,55 +1652,6 @@ animate()
 
 
 
-
-// ///////////////////  SCORE   LIFE  &  TIMER   ////////////////////////
-
-
-// // score
-// scoreTag.innerText = "Score : 0";
-
-// //  life
-// lifeTag.innerText = "Vie : " + vie;
-
-
-// // timer
-// timerTag.innerText = time;
-
-// function diminuerTemps() {
-//     let minutes = parseInt(time / 60, 10)
-//     let secondes = parseInt(time % 60, 10)
-//     secondes = secondes < 10 ? "0" + secondes : secondes
-
-//       timerTag.innerText = minutes + " : " + secondes;
-
-//       time = time <= 0 ? 0 : time - 1
-//   }
-//   setInterval(diminuerTemps, 1000)
-
-
-
-
-
-// function lifeLost() {
-//         vie -= 1;
-//         lifeTag.innerText = "Vie : " + vie;
-// }
-
-// function adLife() {
-//     vie += 1;
-//     lifeTag.innerText = "Vie : " + vie;
-// }
-
-// function adStock() {
-//     stock += 7;
-//     scoreTag.innerText = "Score : " + stock
-    
-// }
-
-
-
-
- 
 
 
 

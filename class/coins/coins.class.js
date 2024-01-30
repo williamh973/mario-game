@@ -67,4 +67,35 @@ export class Coin {
         this.draw()
         this.animateFrames()
     }
-};
+    overlapsWith(platform) {
+        return (
+            this.position.x < platform.position.x + platform.width &&
+            this.position.x + this.width > platform.position.x &&
+            this.position.y < platform.position.y + platform.height &&
+            this.position.y + this.height > platform.position.y
+        );
+     }
+     placeGoldCoinAwayFromPlatform494x72(referencePlatform) {
+        let randomFactorX = Math.random(); 
+        let randomNumberX = Math.floor(randomFactorX * (500)) + 40;
+    
+        this.position.x = referencePlatform.position.x + randomNumberX;
+        this.position.y = referencePlatform.position.y - this.height;
+      }
+      placeGoldCoinAwayFromPlatform84x72(referencePlatform) {
+        this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
+        this.position.y = referencePlatform.position.y -  this.height;
+      }
+      placeGoldCoinAwayFromPlatform150x72(referencePlatform) {
+        this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
+        this.position.y = referencePlatform.position.y -  this.height;
+      }
+      placeGoldCoinAwayFromPlatform202x56(referencePlatform) {
+        this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
+        this.position.y = referencePlatform.position.y -  this.height;
+      }
+      placeGoldCoinAwayFromGoldCoins(referencePlatform) {
+        this.position.x = referencePlatform.position.x + this.width;
+        this.position.y = referencePlatform.position.y;
+      }
+    };

@@ -1,5 +1,4 @@
 import { player, keys } from "../keyboard.js";
-import { Platform } from "../../class/platforms/platforms.class.js";
 import { canvasParams } from "../canvas.js";
 import { platformList494x72, platformList84x72, platformList150x72, platformList202x56 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
 import { genericObjectList } from "../spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
@@ -7,6 +6,7 @@ import { waterfall, waterfall02 } from "../class/waterfall/waterfall.class.js";
 // import { coin } from "../spawn-controller/coins/coins-manager/coins-dispach.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "../class/gombas/gombas.class.js";
 import { goldCoinList } from "../spawn-controller/coins/coins-manager/coins-adjustment.js";
+import { redMushroomList } from "../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 
 export let scrollOffsetX = 0;
 export let scrollOffsetY = 0;
@@ -47,6 +47,9 @@ if (
         coin.position.x -= player.speed
      });
 
+     redMushroomList.forEach((redMushroomList) => {  
+        redMushroomList.position.x -= player.speed
+    });
     
     
     goomba01.position.x -= player.speed
@@ -92,6 +95,9 @@ if (
                     coin.position.x += player.speed
                  });
 
+                redMushroomList.forEach((redMushroomList) => {  
+                    redMushroomList.position.x += player.speed
+                });
     
         goomba01.position.x += player.speed
         goomba02.position.x += player.speed
@@ -148,8 +154,8 @@ export function canvasTrackingOffsetY() {
 }
 
 export function overTheCanvasLimit() {
-    if (player.position.y < canvasParams.canvas.height - 655) {
-        player.velocity.y = +5
+    if (player.position.y < canvasParams.canvas.height - 590) {
+        player.velocity.y = + 5
     } else if ( 
         player.position.y >= 522 
         ) {
