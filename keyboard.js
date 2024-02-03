@@ -2,6 +2,7 @@ import { Player } from "./class/player/player.class.js";
 
 
 export let player = new Player();
+export let isPlayerCanMove = true;
 
 export let keys = {
     ArrowLeft: { pressed: false },
@@ -15,7 +16,6 @@ export let keys = {
 
 
 let counterKeydown = 0;
-
 
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -51,16 +51,21 @@ window.addEventListener('keydown', (event) => {
             break
             // -----------------------------------------------------------------
             case 'q':
-                keys.q.pressed = true;
-                player.currentSprite = player.sprites.run.left
-                player.currentCropWidth = player.sprites.run.cropWidth
-                player.width = player.sprites.run.width
+                if (isPlayerCanMove) {   
+                    keys.q.pressed = true;
+                    player.currentSprite = player.sprites.run.left
+                    player.currentCropWidth = player.sprites.run.cropWidth
+                    player.width = player.sprites.run.width
+                }
                 break
             case 'd':
-                keys.d.pressed = true;
-                player.currentSprite = player.sprites.run.right
-                player.currentCropWidth = player.sprites.run.cropWidth
-                player.width = player.sprites.run.width
+                if (isPlayerCanMove) {
+                    keys.d.pressed = true;
+                    player.currentSprite = player.sprites.run.right
+                    player.currentCropWidth = player.sprites.run.cropWidth
+                    player.width = player.sprites.run.width
+                    
+                }
                 break
             case 'z':
                 keys.z.pressed = true;

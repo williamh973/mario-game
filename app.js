@@ -15,7 +15,7 @@ import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-mana
 import { particulesRedMushroomList } from "./spawn-controller/particles/particle-redMushroom.js";
 import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { blueMushroomList } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
-import { collideOnTheLeftOrRightBlueMushroom, collideOnTheTopBlueMushroom } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-collide.js";
+import { collideOnBelowBlueMushroom, collideOnTheLeftOrRightBlueMushroom, collideOnTheTopBlueMushroom } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-collide.js";
 import { particulesBlueMushroomList } from "./spawn-controller/particles/particle-blueMushroom.js";
 import { platformCollide } from "./spawn-controller/platforms/platforms-manager/platforms-collide.js";
 
@@ -438,6 +438,7 @@ overTheCanvasLimit();
     platformCollide();
     collideOnTheLeftOrRightBlueMushroom();
     collideOnTheTopBlueMushroom();
+    collideOnBelowBlueMushroom();
 
     // console.log("player.velocity.x", player.velocity.x);
     
