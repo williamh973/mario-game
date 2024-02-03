@@ -7,42 +7,20 @@ import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
 import { Cloud, theCloud } from "./class/cloud/cloud.class.js";
-import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, canvasTrackingOffsetY, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
+import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
 import { mooveGomba } from "./objects-movement-handler/gombas-movement-handler.js";
 import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-take.js";
 import { particulesRedMushroomList } from "./spawn-controller/particles/particle-redMushroom.js";
 import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
+import { blueMushroomList } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
+import { collideOnTheLeftOrRightBlueMushroom, collideOnTheTopBlueMushroom } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-collide.js";
+import { particulesBlueMushroomList } from "./spawn-controller/particles/particle-blueMushroom.js";
+import { platformCollide } from "./spawn-controller/platforms/platforms-manager/platforms-collide.js";
 
 
-
-
-
-
-
-
-
-// let mushroomB1 = new MushroomB1();
-// let mushroomB2 = new MushroomB2();
-// let mushroomB3 = new MushroomB3();
-// let mushroomB4 = new MushroomB4();
-// let mushroomB5 = new MushroomB5();
-// let mushroomB6 = new MushroomB6();
-// let mushroomB7 = new MushroomB7();
-// let mushroomB8 = new MushroomB8();
-// let mushroomB9 = new MushroomB9();
-// let mushroomB10 = new MushroomB10();
-// let mushroomB11 = new MushroomB11();
-// let mushroomB12 = new MushroomB12();
-// let mushroomB13 = new MushroomB13();
-// let mushroomB14 = new MushroomB14();
-// let mushroomB15 = new MushroomB15();
-// let mushroomB16 = new MushroomB16();
-
-
-
-
+ 
 
 
 
@@ -96,27 +74,6 @@ import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-mana
 //     theBridgeRight = createBridgeRight("./images/bridge-right.png")
 //     theFlag = createFlag("./images/flag.png")
 
-
-//     mushroomB1 = new MushroomB1();
-//     mushroomB2 = new MushroomB2();
-//     mushroomB3 = new MushroomB3();
-//     mushroomB4 = new MushroomB4();
-//     mushroomB5 = new MushroomB5();
-//     mushroomB6 = new MushroomB6();
-//     mushroomB7 = new MushroomB7();
-//     mushroomB8 = new MushroomB8();
-//     mushroomB9 = new MushroomB9();
-//     mushroomB10 = new MushroomB10();
-//     mushroomB11 = new MushroomB11();
-//     mushroomB12 = new MushroomB12();
-//     mushroomB13 = new MushroomB13();
-//     mushroomB14 = new MushroomB14();
-//     mushroomB15 = new MushroomB15();
-//     mushroomB16 = new MushroomB16();
-
-//     mushroomR1 = new MushroomRouge();
-//     mushroomR2 = new MushroomR2();
-//     mushroomR3 = new MushroomR3();
 
 //     goomba01 = new Goomba();
 //     goomba02 = new Goomba02();
@@ -191,11 +148,6 @@ function animate() {
     }
 
     
-    
-    // console.log(scrollOffsetX);
-    // console.log(platformList84x72);
-    
-    
     genericObjectList.forEach((genericObject) => {
         genericObject.draw()
     })
@@ -230,6 +182,12 @@ function animate() {
         }
     })
 
+    blueMushroomList.forEach((blueMushroom) => {
+            blueMushroom.update()
+            blueMushroom.drawDebugCollisionSquare();
+    })
+
+
     particulesCoinList.forEach((particules, index) => {
         if (particulesCoinList.opacity <= 0) {
             particulesCoinList.splice(index, 1)
@@ -246,8 +204,19 @@ function animate() {
         }
     })
     
-
+    particulesBlueMushroomList.forEach((particules, index) => {
+        if (particulesBlueMushroomList.opacity <= 0) {
+            particulesBlueMushroomList.splice(index, 1)
+        } else {
+            particules.update();
+        }
+    })
     
+    player.update();
+    player.drawDebugCollisionSquare();
+
+    console.log(player.velocity.x);
+
     // waters.forEach((water) => {
         //     water.draw()
     // // })
@@ -313,50 +282,12 @@ function animate() {
     //     theCloud.draw()
     // })
 
-
-
-// particle on the player when colliding with a Mushroom B
-//     particules.forEach((particule,index)=>{
-//         if(particule.opacity <= 0){
-//             particules.splice(index,1)
-//         }else{
-//             particule.update();
-//         }
-//     }) 
-
-// // particle on the player when colliding with a gold coin
-
-
-
 canvasTrackingOffsetX();
-canvasTrackingOffsetY();
 objectMovements()
 overTheCanvasLimit();
 // /////////////////////  TO GET AWAY FROM OBJECTS  ///////////////////////////////
 
         
-
-// mushroomB1.position.x -= player.speed
-// mushroomB2.position.x -= player.speed
-// mushroomB3.position.x -= player.speed
-// mushroomB4.position.x -= player.speed
-// mushroomB5.position.x -= player.speed
-// mushroomB6.position.x -= player.speed
-// mushroomB7.position.x -= player.speed
-// mushroomB8.position.x -= player.speed
-// mushroomB9.position.x -= player.speed
-// mushroomB10.position.x -= player.speed
-// mushroomB11.position.x -= player.speed
-// mushroomB12.position.x -= player.speed
-// mushroomB13.position.x -= player.speed
-// mushroomB14.position.x -= player.speed
-// mushroomB15.position.x -= player.speed
-// mushroomB16.position.x -= player.speed
-
-
-// mushroomR1.position.x -= player.speed
-// mushroomR2.position.x -= player.speed    
-// mushroomR3.position.x -= player.speed 
 
 // plateformBigSteel.position.x -= player.speed
 // plateformBigSteel02.position.x -= player.speed
@@ -430,47 +361,6 @@ overTheCanvasLimit();
 
 
 
-//             particulesBountys.forEach((particulesBounty) => {
-//                 particulesBounty.position.x -= player.speed
-//             })
-
-
-
-
-
-
-
-// ///////////////////  TO GET CLOSE TO OBJECTS  ///////////////////////////////
-
-
-  
-
-
-
-//             mushroomB1.position.x += player.speed
-//             mushroomB2.position.x += player.speed
-//             mushroomB3.position.x += player.speed
-//             mushroomB4.position.x += player.speed
-//             mushroomB5.position.x += player.speed
-//             mushroomB6.position.x += player.speed
-//             mushroomB7.position.x += player.speed
-//             mushroomB8.position.x += player.speed
-//             mushroomB9.position.x += player.speed
-//             mushroomB10.position.x += player.speed
-//             mushroomB11.position.x += player.speed
-//             mushroomB12.position.x += player.speed
-//             mushroomB13.position.x += player.speed
-//             mushroomB14.position.x += player.speed
-//             mushroomB15.position.x += player.speed
-//             mushroomB16.position.x += player.speed
-           
-
-//             mushroomR1.position.x += player.speed
-//             mushroomR2.position.x += player.speed
-//             mushroomR3.position.x += player.speed 
-
-
-
 // plateformBigSteel.position.x += player.speed
 // plateformBigSteel02.position.x += player.speed
 // plateformBigSteel03.position.x += player.speed
@@ -539,66 +429,22 @@ overTheCanvasLimit();
 //            flag.position.x += player.speed
 //            });
 
-//             particulesBountys.forEach((particulesBounty) => {
-//                 particulesBounty.position.x += player.speed
-//             })
-
-//         }
-
-//     }
 
 
 
-
-
-
-//     // To make the player jump on a platform
-    platformList494x72.forEach((createPlatform) => {
-        if (
-            player.position.y + player.height <= createPlatform.position.y &&
-            player.position.y + player.height + player.velocity.y >= createPlatform.position.y &&
-            player.position.x + player.width >= createPlatform.position.x + 23 &&  // ajustement des bords coté gauche de chaque plateformes lorsque mario tombe.
-            player.position.x + player.width <= createPlatform.position.x + createPlatform.width + 35  // ajustement des bords coté droit de chaque plateformes lorsque mario tombe.
-        ) {
-            player.velocity.y = 0
-        }
-    })
-
-    platformList202x56.forEach((createPlatform) => {
-        if (
-            player.position.y + player.height <= createPlatform.position.y &&
-            player.position.y + player.height + player.velocity.y >= createPlatform.position.y &&
-            player.position.x + player.width >= createPlatform.position.x + 23 &&  // ajustement des bords coté gauche de chaque plateformes lorsque mario tombe.
-            player.position.x + player.width <= createPlatform.position.x + createPlatform.width + 35  // ajustement des bords coté droit de chaque plateformes lorsque mario tombe.
-        ) {
-            player.velocity.y = 0
-        }
-    })
-
-    platformList84x72.forEach((createPlatform) => {
-        if (
-            player.position.y + player.height <= createPlatform.position.y &&
-            player.position.y + player.height + player.velocity.y >= createPlatform.position.y &&
-            player.position.x + player.width >= createPlatform.position.x + 23 &&  // ajustement des bords coté gauche de chaque plateformes lorsque mario tombe.
-            player.position.x + player.width <= createPlatform.position.x + createPlatform.width + 35  // ajustement des bords coté droit de chaque plateformes lorsque mario tombe.
-        ) {
-            player.velocity.y = 0
-        }
-    })
-
-    platformList150x72.forEach((createPlatform) => {
-        if (
-            player.position.y + player.height <= createPlatform.position.y &&
-            player.position.y + player.height + player.velocity.y >= createPlatform.position.y &&
-            player.position.x + player.width >= createPlatform.position.x + 23 && 
-            player.position.x + player.width <= createPlatform.position.x + createPlatform.width + 35         ) {
-            player.velocity.y = 0
-        }
-    })
  
     takeCoin();
-    takeRedMushroom();
- 
+    takeRedMushroom(); 
+    platformCollide();
+    collideOnTheLeftOrRightBlueMushroom();
+    collideOnTheTopBlueMushroom();
+
+    // console.log("player.velocity.x", player.velocity.x);
+    
+
+
+
+
 //   // To make the player jump on a metal platform
 //  function moveOnPlatformBigS01() {
 //     if (
@@ -793,34 +639,11 @@ overTheCanvasLimit();
 // gameOver()
 
 
-// mushroomB1.update()
-// mushroomB2.update()
-// mushroomB3.update()
-// mushroomB4.update()
-// mushroomB5.update()
-// mushroomB6.update()
-// mushroomB7.update()
-// mushroomB8.update()
-// mushroomB9.update()
-// mushroomB10.update()
-// mushroomB11.update()
-// mushroomB12.update()
-// mushroomB13.update()
-// mushroomB14.update()
-// mushroomB15.update()
-// mushroomB16.update()
-
-
 // goomba01.update()
 // goomba02.update()
 // goomba03.update()
 // goomba04.update()
 // goomba05.update()
-
-
-// mushroomR1.update()
-// mushroomR2.update()
-// mushroomR3.update()
 
 
 // waterfall.update()
@@ -832,7 +655,6 @@ overTheCanvasLimit();
 // plateformBigSteel04.update()
 
 
-player.update()
 
 
 // collisionWater()
@@ -1568,31 +1390,6 @@ animate()
 //             player.velocity.y = +10
 //         }
 //     })
-// }
-
-
-
-
-// ///////////////  Disparition d'objet  ///////////////
-
-
-// function DisepearMushroomR() {
-//     mushroomR1.position.x = (-400)
-//     mushroomR1.position.y = (-400)
-// }
-
-
-// function DisepearMushroomR2() {
-//     mushroomR2.position.x = (-400)
-//     mushroomR2.position.y = (-400)
-// }
-// function DisepearMushroomR3() {
-//     mushroomR3.position.x = (-400)
-//     mushroomR3.position.y = (-400)
-// }
-
-
-
 
 
 

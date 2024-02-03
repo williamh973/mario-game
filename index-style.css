@@ -16,7 +16,7 @@ body{
     color: rgb(232, 232, 232);
     display: flex;
     justify-content: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 #container-stats {
@@ -25,7 +25,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgb(42, 189, 1);
+    /* border: 1px solid rgb(42, 189, 1); */
     letter-spacing: 0.8px;
     font-size: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

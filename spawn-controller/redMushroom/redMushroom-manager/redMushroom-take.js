@@ -15,5 +15,5 @@ export function takeRedMushroom() {
             showParticlesRedMushroom();
             addLife();
         }
-    })
+    }) 
 };

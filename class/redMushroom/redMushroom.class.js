@@ -12,10 +12,10 @@ let mushroomRSprite = createMushroomRouge("../../images/MushroomRougeSprite.png"
 
  
 export class RedMushroom {
-    constructor({x, y}) {
+    constructor() {
         this.position = {  
-            x,  
-            y 
+            x : 0,  
+            y : 0 
         }
         this.width = 60   
         this.height = 60 
@@ -79,21 +79,21 @@ export class RedMushroom {
      }
      placeRedMushroomOnRandomPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (490)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (434)) + 10;
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;
     }
     placeRedMushroomOnRandomPlatform150x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (140)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (90)) + 10;
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;
     }
     placeRedMushroomOnRandomPlatform202x56(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (192)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (142)) + 10;
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;

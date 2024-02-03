@@ -62,7 +62,7 @@ export class Player {
     constructor() {
         this.speed = 7  
         this.position = {  
-            x: 400, 
+            x: 380, 
             y: 100 
         }
         this.velocity = {  
@@ -141,5 +141,21 @@ export class Player {
 
         if (this.position.y + this.height + this.velocity.y <= canvas.height)
             this.velocity.y += gravity
+    }
+    drawDebugCollisionSquare() {
+        const ctx = canvasParams.c;
+        ctx.beginPath();
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 2;
+
+        ctx.rect(
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        );
+
+        ctx.stroke();
+        ctx.closePath();
     }
 }

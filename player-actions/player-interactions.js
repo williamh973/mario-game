@@ -16,6 +16,11 @@ export function addScore() {
     interfaceVariables.scoreTag.innerText = "Score" + " : " + interfaceVariables.score;
 }
 
+export function loseLife() {
+    interfaceVariables.life -= 1;
+    interfaceVariables.lifeTag.innerText = "Life" + " : " + interfaceVariables.life;
+}
+
 
 
 

@@ -98,4 +98,10 @@ export class Coin {
         this.position.x = referencePlatform.position.x + this.width;
         this.position.y = referencePlatform.position.y;
       }
+      placeGoldCoinAwayFromBlueMushroom(referenceBlueMushroom) {
+        this.position.x = referenceBlueMushroom.position.x + this.width + 20;
+      }
+      placeGoldCoinAwayFromRedMushroom(referenceRedMushroom) {
+        this.position.x = referenceRedMushroom.position.x + this.width + 20;
+      }
     };

@@ -1,9 +1,11 @@
 import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../spawn-controller/platforms/platforms-manager/platform-dispach.js";
 import { checkFiveTimesIfPlatformsAreAdjusted } from "../../spawn-controller/platforms/platforms-manager/platform-adjustment.js";
-import { dispachRandomRedMushroom } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
-import { checkFiveTimesIfAllRedMushroomsAreAdjusted } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-adjustment.js";
+import { dispachAllRedMushroom } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { dispachRandomGoldCoins } from "../../spawn-controller/coins/coins-manager/coins-dispach.js";
 import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../spawn-controller/coins/coins-manager/coins-adjustment.js";
+import { dispachAllBlueMushrooms } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
+import { checkFiveTimesIfBlueMushroomAreAdjusted } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-ajustment.js";
+// import { checkFiveTimesIfRedMushroomAreAdjusted } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushrooms-ajustment.js";
 
 
 export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
@@ -12,8 +14,9 @@ export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
    await dispachGrassPlatforms150x72();
    await dispachGrassPlatforms202x56();
    await checkFiveTimesIfPlatformsAreAdjusted();
-   await dispachRandomRedMushroom();
-   await checkFiveTimesIfAllRedMushroomsAreAdjusted();
+   await dispachAllRedMushroom();
+   await dispachAllBlueMushrooms();
+   await checkFiveTimesIfBlueMushroomAreAdjusted();
    await dispachRandomGoldCoins();
    await checkFiveTimesIfAllGoldCoinsAreAdjusted();
    isAreaLevelOneAdded = false;

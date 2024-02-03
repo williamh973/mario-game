@@ -1,3 +1,5 @@
+import { blueMushroomList } from "../../blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
+import { redMushroomList } from "../../redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { platformList494x72, platformList84x72, platformList150x72, platformList202x56 } from "../../platforms/platforms-manager/platform-adjustment.js";
 
 export let goldCoinList = [];
@@ -94,12 +96,48 @@ export function adjustGoldCoinsPositionsRelativeToGoldCoins() {
 };
 
 
+export function adjustGoldCoinsPositionsRelativeToRedMushrooms() {
+  return new Promise((resolve) => {
+
+  for (let i = 0; i < goldCoinList.length; i++) {
+        for (let j = 0; j < redMushroomList.length; j++) {
+
+          if (goldCoinList[i].overlapsWith(redMushroomList[j])) {
+                  goldCoinList[i].placeGoldCoinAwayFromRedMushroom(redMushroomList[j]);
+          }
+
+      }
+  }
+  resolve();
+  })
+};
+
+
+export function adjustGoldCoinsPositionsRelativeToBlueMushrooms() {
+  return new Promise((resolve) => {
+
+  for (let i = 0; i < goldCoinList.length; i++) {
+        for (let j = 0; j < blueMushroomList.length; j++) {
+
+          if (goldCoinList[i].overlapsWith(blueMushroomList[j])) {
+                  goldCoinList[i].placeGoldCoinAwayFromBlueMushroom(blueMushroomList[j]);
+          }
+
+      }
+  }
+  resolve();
+  })
+};
+
+
 export async function ajustAllGoldCoins() {
     await adjustGoldCoinsPositionsRelativeToPlatform494x72();
     await adjustGoldCoinsPositionsRelativeToPlatform84x72();
     await adjustGoldCoinsPositionsRelativeToPlatform150x72();
     await adjustGoldCoinsPositionsRelativeToPlatform202x56();
     await adjustGoldCoinsPositionsRelativeToGoldCoins();
+    await adjustGoldCoinsPositionsRelativeToRedMushrooms();
+    await adjustGoldCoinsPositionsRelativeToBlueMushrooms();
  };
 
 
