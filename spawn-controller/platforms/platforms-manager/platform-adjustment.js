@@ -112,11 +112,11 @@ export function adjustGrassPlatform202x56And494x72Positions(platformList202x56, 
 
 export async function ajustAllPlatforms(platformList494x72, platformList84x72, platformList150x72, platformList202x56) {
    await adjustGrassPlatform494x72Positions(platformList494x72);
-   await adjustGrassPlatform202x56And494x72Positions(platformList202x56, platformList494x72);
+   await adjustGrassPlatform84x72Positions(platformList84x72);
+   await adjustGrassPlatform84x72And494x72Positions(platformList84x72, platformList494x72);
    await adjustGrassPlatform84x72And150x72Positions(platformList84x72, platformList150x72);
    await adjustGrassPlatform84x72And202x56Positions(platformList84x72, platformList202x56);
-   await adjustGrassPlatform84x72And494x72Positions(platformList84x72, platformList494x72);
-   await adjustGrassPlatform84x72Positions(platformList84x72);
+   await adjustGrassPlatform202x56And494x72Positions(platformList202x56, platformList494x72);
 };
 
 

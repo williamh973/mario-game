@@ -9,12 +9,21 @@ import { blueMushroomList } from "../spawn-controller/blue-mushroom/blueMushroom
 import { particulesBlueMushroomList } from "../spawn-controller/particles/particle-blueMushroom.js";
 import { particulesRedMushroomList } from "../spawn-controller/particles/particle-redMushroom.js";
 import { particulesCoinList } from "../spawn-controller/particles/particle-coin-loop.js";
+import { bigCloudList, littleCloudList } from "../spawn-controller/clouds/clouds-manager/clouds-dispach.js";
 
 
 
 
 export function playerMovesAwayFromObjects() {
-    
+
+    littleCloudList.forEach((cloud) => {
+        cloud.position.x += player.speed /10
+     })
+
+     bigCloudList.forEach((cloud) => {
+        cloud.position.x += player.speed /10
+     })
+
     platformList494x72.forEach((createPlatform) => {
         createPlatform.position.x += player.speed
      })

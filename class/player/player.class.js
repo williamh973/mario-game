@@ -4,33 +4,33 @@ const gravity = 0.5
 
 function createSpriteSRight() {
     const spriteStandRight = new Image()
-    spriteStandRight.src = "../../images/SpriteStandRight.png"
+    spriteStandRight.src = "../../images/marioSpriteStandRight.png"
     return spriteStandRight
 }
-let marioStandRight = createSpriteSRight("../../images/SpriteStandRight.png")
+let marioStandRight = createSpriteSRight("../../images/marioSpriteStandRight.png")
 
 function createSpriteSLeft() {
     const spriteStandLeft = new Image()
-    spriteStandLeft.src = "../../images/SpriteStandLeft.png"
+    spriteStandLeft.src = "../../images/marioSpriteStandLeft.png"
     return spriteStandLeft
 }
-let marioStandLeft = createSpriteSRight("../../images/SpriteStandLeft.png")
+let marioStandLeft = createSpriteSRight("../../images/marioSpriteStandLeft.png")
 
 
 function createSpriteRunRight() {
     const spriteRunRight = new Image()
-    spriteRunRight.src = "../../images/SpriteRunRight.png"
+    spriteRunRight.src = "../../images/marioSpriteRunRight.png"
     return spriteRunRight
 }
-let marioRunRight = createSpriteRunRight("../../images/SpriteRunRight.png")
+let marioRunRight = createSpriteRunRight("../../images/marioSpriteRunRight.png")
 
 
 function createSpriteRunLeft() {
     const spriteRunLeft = new Image()
-    spriteRunLeft.src = "../../images/SpriteRunLeft.png"
+    spriteRunLeft.src = "../../images/marioSpriteRunLeft.png"
     return spriteRunLeft
 }
-let marioRunLeft = createSpriteRunLeft("../../images/SpriteRunLeft.png")
+let marioRunLeft = createSpriteRunLeft("../../images/marioSpriteRunLeft.png")
 
 
 function createSpriteDrown() {
@@ -57,7 +57,7 @@ function createSpriteJumpLeft() {
 let marioJumpLeft = createSpriteJumpLeft("../../images/SpriteJumpRight.png")
 
 
-
+ 
 export class Player {
     constructor() {
         this.speed = 7  
@@ -69,7 +69,7 @@ export class Player {
             x: 1, 
             y: 1   
         }
-        this.width = 55  
+        this.width = 55 
         this.height = 55  
         this.image = createSpriteSRight(marioStandRight)
         this.frames = 0
@@ -105,9 +105,9 @@ export class Player {
         canvasParams.c.drawImage(
             this.currentSprite,
             this.currentCropWidth * this.frames,
-            0,
+            -3,
             this.currentCropWidth,
-            42,
+            38,
             this.position.x,
             this.position.y,
             this.width,
@@ -146,7 +146,7 @@ export class Player {
         const ctx = canvasParams.c;
         ctx.beginPath();
         ctx.strokeStyle = 'red';
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 1;
 
         ctx.rect(
             this.position.x,

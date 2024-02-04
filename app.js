@@ -6,7 +6,6 @@ import { genericObjectList } from "./spawn-controller/generic/sky-and-hills/sky-
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
-import { Cloud, theCloud } from "./class/cloud/cloud.class.js";
 import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
@@ -18,6 +17,7 @@ import { blueMushroomList } from "./spawn-controller/blue-mushroom/blueMushrooms
 import { collideOnBelowBlueMushroom, collideOnTheLeftOrRightBlueMushroom, collideOnTheTopBlueMushroom } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-collide.js";
 import { particulesBlueMushroomList } from "./spawn-controller/particles/particle-blueMushroom.js";
 import { platformCollide } from "./spawn-controller/platforms/platforms-manager/platforms-collide.js";
+import { bigCloudList, littleCloudList } from "./spawn-controller/clouds/clouds-manager/clouds-dispach.js";
 
 
  
@@ -152,6 +152,13 @@ function animate() {
         genericObject.draw()
     })
     
+    littleCloudList.forEach((cloud) => {
+        cloud.draw()
+    })
+    
+    bigCloudList.forEach((cloud) => {
+        cloud.draw()
+    })
     
     
     platformList150x72.forEach((platform) => {
@@ -215,7 +222,15 @@ function animate() {
     player.update();
     player.drawDebugCollisionSquare();
 
-    console.log(player.velocity.x);
+
+    
+    littleCloudList.forEach((cloud) => {
+        cloud.position.x -= player.speed / 50
+     })
+
+     bigCloudList.forEach((cloud) => {
+        cloud.position.x -= player.speed / 50
+     })
 
     // waters.forEach((water) => {
         //     water.draw()
@@ -278,9 +293,6 @@ function animate() {
     //     flag.draw()
     // })
 
-    // clouds.forEach((theCloud) => {
-    //     theCloud.draw()
-    // })
 
 canvasTrackingOffsetX();
 objectMovements()
@@ -294,11 +306,6 @@ overTheCanvasLimit();
 // plateformBigSteel03.position.x -= player.speed
 // plateformBigSteel04.position.x -= player.speed
 
-
-
-// clouds.forEach((theCloud) => {
-//     theCloud.position.x -= player.speed/100  //
-// })
 
 // rocks.forEach((createRock) => {
 // createRock.position.x -= player.speed
@@ -366,11 +373,6 @@ overTheCanvasLimit();
 // plateformBigSteel03.position.x += player.speed
 // plateformBigSteel04.position.x += player.speed
 
-
-
-//             clouds.forEach((theCloud) => {
-//                 theCloud.position.x += player.speed/50 
-//             })
 
 //             rocks.forEach((createRock) => {
 //                 createRock.position.x += player.speed
@@ -666,534 +668,6 @@ overTheCanvasLimit();
 
 // //////////////////  COLLISIONS    ////////////////////////////////////
 
-// // MushroomB1
-// if (
-//     player.position.y + player.height <= mushroomB1.position.y + mushroomB1.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB1.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB1.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB1.position.x + mushroomB1.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB2
-// if (
-//     player.position.y + player.height <= mushroomB2.position.y + mushroomB2.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB2.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB2.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB2.position.x + mushroomB2.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB3
-// if (
-//     player.position.y + player.height <= mushroomB3.position.y + mushroomB3.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB3.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB3.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB3.position.x + mushroomB3.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB4
-// if (
-//     player.position.y + player.height <= mushroomB4.position.y + mushroomB4.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB4.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB4.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB4.position.x + mushroomB4.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB5
-// if (
-//     player.position.y + player.height <= mushroomB5.position.y + mushroomB5.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB5.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB5.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB5.position.x + mushroomB5.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB6
-// if (
-//     player.position.y + player.height <= mushroomB6.position.y + mushroomB6.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB6.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB6.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB6.position.x + mushroomB6.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB7
-// if (
-//     player.position.y + player.height <= mushroomB7.position.y + mushroomB7.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB7.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB7.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB7.position.x + mushroomB7.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-
-// // MushroomB8
-// if (
-//     player.position.y + player.height <= mushroomB8.position.y + mushroomB8.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB8.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB8.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB8.position.x + mushroomB8.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB9
-// if (
-//     player.position.y + player.height <= mushroomB9.position.y + mushroomB9.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB9.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB9.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB9.position.x + mushroomB9.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-
-// // MushroomB10
-// if (
-//     player.position.y + player.height <= mushroomB10.position.y + mushroomB10.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB10.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB10.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB10.position.x + mushroomB10.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-// // MushroomB11
-// if (
-//     player.position.y + player.height <= mushroomB11.position.y + mushroomB11.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB11.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB11.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB11.position.x + mushroomB11.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB12
-// if (
-//     player.position.y + player.height <= mushroomB12.position.y + mushroomB12.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB12.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB12.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB12.position.x + mushroomB12.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB13
-// if (
-//     player.position.y + player.height <= mushroomB13.position.y + mushroomB13.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB13.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB13.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB13.position.x + mushroomB13.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB14
-// if (
-//     player.position.y + player.height <= mushroomB14.position.y + mushroomB14.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB14.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB14.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB14.position.x + mushroomB14.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB15
-// if (
-//     player.position.y + player.height <= mushroomB1.position.y + mushroomB1.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB1.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB1.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB1.position.x + mushroomB1.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-// // MushroomB16
-// if (
-//     player.position.y + player.height <= mushroomB16.position.y + mushroomB16.width &&
-//     player.position.y + player.height + player.velocity.y >= mushroomB16.position.y + 30  &&
-//     player.position.x + player.width >= mushroomB16.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomB16.position.x + mushroomB16.width +25   // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = (300)
-// lifeLost()
-// }
-
-
-
-
-
-
-
-
-// // MushroomR1
-//     if (
-//             player.position.y + player.height <= mushroomR1.position.y + mushroomR1.width +25 &&
-//             player.position.y + player.height + player.velocity.y >= mushroomR1.position.y  &&
-//             player.position.x + player.width >= mushroomR1.position.x + 25  &&  // ajustement des bords coté gauche 
-//             player.position.x + player.width <= mushroomR1.position.x + mushroomR1.width +25   // ajustement des bords coté droit 
-//     ) {
-//         DisepearMushroomR()
-//         adLife()
-//             // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'white'
-//     }))
-// }
-// }
-
-
-// // MushroomR2
-// if (
-//     player.position.y + player.height <= mushroomR2.position.y + mushroomR2.width +25 &&
-//             player.position.y + player.height + player.velocity.y >= mushroomR2.position.y  &&
-//             player.position.x + player.width >= mushroomR2.position.x + 25  &&  // ajustement des bords coté gauche 
-//             player.position.x + player.width <= mushroomR2.position.x + mushroomR2.width +25   // ajustement des bords coté droit 
-// ) {
-// DisepearMushroomR2()
-// adLife()
-//     // particle effect
-// for(let i = 0; i < 22 ; i++) {
-// particules.push(new Particule({
-// position:{
-//     x: player.position.x + player.width/2, // /2
-//     y: player.position.y + player.height/2
-// },
-// velocity:{
-//     x: (Math.random()-0.5)*2,
-//     y:(Math.random()-0.5)*2
-// },
-// radius: Math.random()*2,
-// color:'white'
-// }))
-// }
-// }
-
-// // MushroomR3
-// if (
-//     player.position.y + player.height <= mushroomR3.position.y + mushroomR3.width +25 &&
-//     player.position.y + player.height + player.velocity.y >= mushroomR3.position.y  &&
-//     player.position.x + player.width >= mushroomR3.position.x + 25  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= mushroomR3.position.x + mushroomR3.width +25   // ajustement des bords coté droit 
-// ) {
-// DisepearMushroomR3()
-// adLife()
-//     // particle effect
-// for(let i = 0; i < 22 ; i++) {
-// particules.push(new Particule({
-// position:{
-//     x: player.position.x + player.width/2, // /2
-//     y: player.position.y + player.height/2
-// },
-// velocity:{
-//     x: (Math.random()-0.5)*2,
-//     y:(Math.random()-0.5)*2
-// },
-// radius: Math.random()*2,
-// color:'white'
-// }))
-// }
-// }
-
 
 
 // // goombas 01
@@ -1428,20 +902,6 @@ animate()
 //     plateformBigSteel04.position.y = 470 
 // }
 //     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 canvasParams.c.imageSmoothingEnabled = true

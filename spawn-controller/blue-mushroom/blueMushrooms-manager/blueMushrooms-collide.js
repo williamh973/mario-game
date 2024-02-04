@@ -11,10 +11,8 @@ export function collideOnTheLeftOrRightBlueMushroom() {
             player.position.y <= blueMushroom.position.y + blueMushroom.height &&
             player.position.x + player.width >= blueMushroom.position.x &&
             player.position.x <= blueMushroom.position.x + blueMushroom.width
-        
-        ))
+         ))
         {
-            console.log("touché");
             respawnPlayer(blueMushroom);
         }
     })
@@ -30,7 +28,6 @@ export function collideOnTheTopBlueMushroom() {
             player.position.x + player.width >= blueMushroom.position.x &&
             player.position.x <= blueMushroom.position.x + blueMushroom.width
         ) {
-            console.log("touché par le haut");
             player.velocity.y = - 7;
 
             showParticlesBlueMushroom(blueMushroom);
@@ -48,7 +45,6 @@ export function collideOnBelowBlueMushroom() {
             player.position.x + player.width >= blueMushroom.position.x &&
             player.position.x <= blueMushroom.position.x + blueMushroom.width
         ) {
-            console.log("touché par le bas");
             player.velocity.y = +7;
 
             showParticlesBlueMushroom(blueMushroom);
@@ -61,11 +57,9 @@ export function collideOnBelowBlueMushroom() {
 
 function respawnPlayer(blueMushroom) {
     if ((keys.ArrowRight.pressed || keys.d.pressed)) {
-        console.log("côté gauche");
         player.position.x = blueMushroom.position.x - player.width - 50;
         loseLife();
     } else if ((keys.ArrowLeft.pressed || keys.q.pressed)) {
-        console.log("côté droit");
         player.position.x = blueMushroom.position.x + blueMushroom.width + 50;
         loseLife();
     }

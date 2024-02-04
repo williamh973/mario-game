@@ -102,8 +102,8 @@ export class BlueMushroom {
     drawDebugCollisionSquare() {
         const ctx = canvasParams.c;
         ctx.beginPath();
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 1;
 
         ctx.rect(
             this.position.x,

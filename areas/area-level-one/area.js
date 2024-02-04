@@ -5,6 +5,7 @@ import { dispachRandomGoldCoins } from "../../spawn-controller/coins/coins-manag
 import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { dispachAllBlueMushrooms } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
 import { checkFiveTimesIfBlueMushroomAreAdjusted } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-ajustment.js";
+import { dispachBigClouds, dispachLittleClouds } from "../../spawn-controller/clouds/clouds-manager/clouds-dispach.js";
 // import { checkFiveTimesIfRedMushroomAreAdjusted } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushrooms-ajustment.js";
 
 
@@ -14,6 +15,8 @@ export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
    await dispachGrassPlatforms150x72();
    await dispachGrassPlatforms202x56();
    await checkFiveTimesIfPlatformsAreAdjusted();
+   await dispachLittleClouds();
+   await dispachBigClouds();
    await dispachAllRedMushroom();
    await dispachAllBlueMushrooms();
    await checkFiveTimesIfBlueMushroomAreAdjusted();
