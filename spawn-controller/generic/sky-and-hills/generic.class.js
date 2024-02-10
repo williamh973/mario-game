@@ -1,4 +1,4 @@
-import { canvasParams } from "../../canvas.js";
+import { canvasParams } from "../../../canvas.js";
 
 function createSky() {
     const sky = new Image()

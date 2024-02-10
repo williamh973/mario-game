@@ -1,32 +1,56 @@
-import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72 } from "../../spawn-controller/platforms/platforms-manager/platform-dispach.js";
+import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72, dispachGrassPlatforms500x43, dispachGrassPlatform630x217, dispachGrassPlatforms202x56OnPlatform630x217 } from "../../spawn-controller/platforms/platforms-manager/platform-dispach.js";
 import { checkFiveTimesIfPlatformsAreAdjusted } from "../../spawn-controller/platforms/platforms-manager/platform-adjustment.js";
 import { dispachAllRedMushroom } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { dispachRandomGoldCoins } from "../../spawn-controller/coins/coins-manager/coins-dispach.js";
 import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { dispachAllBlueMushrooms } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
-import { checkFiveTimesIfBlueMushroomAreAdjusted } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-ajustment.js";
+import { checkIfBlueMushroomAreAdjusted } from "../../spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-ajustment.js";
 import { dispachBigClouds, dispachLittleClouds } from "../../spawn-controller/clouds/clouds-manager/clouds-dispach.js";
-// import { checkFiveTimesIfRedMushroomAreAdjusted } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushrooms-ajustment.js";
+import { dispachAllBushes } from "../../spawn-controller/bushs/bush-manager/bush-dispach.js";
+import { checkFiveTimesIfAllBushesAreAdjusted } from "../../spawn-controller/bushs/bush-manager/bush-adjust.js";
+import { dispachAllTrees } from "../../spawn-controller/trees/tree-manager/tree-dispach.js";
+import { spawnGenericObject } from "../../spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
+import { placeWaterfallOnPlatform630x217 } from "../../spawn-controller/waterfall/waterfall-manager/waterfall-place.js";
+import { checkIfWaterfallsAreAdjusted } from "../../spawn-controller/waterfall/waterfall-manager/waterfall-ajust.js";
+import { placeBridgeOnPlatform630x217 } from "../../spawn-controller/bridges/bridge-manager/bridge-place.js";
+import { checkIfBridgeAreAdjusted } from "../../spawn-controller/bridges/bridge-manager/bridge-adjust.js";
 
 
 export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
+   await spawnGenericObject();
+   await dispachLittleClouds();
+   await dispachBigClouds();
    await dispachGrassPlatforms494x72();
    await dispachGrassPlatforms84x72();
    await dispachGrassPlatforms150x72();
    await dispachGrassPlatforms202x56();
+   // await dispachGrassPlatforms500x43();
+   await dispachGrassPlatform630x217();
+   await dispachGrassPlatforms202x56OnPlatform630x217();
+   await placeWaterfallOnPlatform630x217();
+   await checkIfWaterfallsAreAdjusted();
+   await placeBridgeOnPlatform630x217();
+   await checkIfBridgeAreAdjusted();
    await checkFiveTimesIfPlatformsAreAdjusted();
-   await dispachLittleClouds();
-   await dispachBigClouds();
+   await dispachAllBushes();
+   await dispachAllTrees();
+   await checkFiveTimesIfAllBushesAreAdjusted();
    await dispachAllRedMushroom();
    await dispachAllBlueMushrooms();
-   await checkFiveTimesIfBlueMushroomAreAdjusted();
+   await checkIfBlueMushroomAreAdjusted();
    await dispachRandomGoldCoins();
    await checkFiveTimesIfAllGoldCoinsAreAdjusted();
    isAreaLevelOneAdded = false;
 };
 
 
-
+export async function spawnAreaLevelTwo(isAreaLevelTwoAdded) {
+   await spawnGenericObject();
+   await dispachLittleClouds();
+   await dispachBigClouds();
+   await dispachGrassPlatforms500x43();
+   isAreaLevelTwoAdded = false;
+ };
     // new Platform({
     //     // x: theplatform.width - 3,
     //     // y: 515,

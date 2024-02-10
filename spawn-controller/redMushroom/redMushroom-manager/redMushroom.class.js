@@ -1,4 +1,4 @@
-import { canvasParams } from "../../canvas.js";
+import { canvasParams } from "../../../canvas.js";
 
 
 function createMushroomRouge() {
@@ -79,21 +79,21 @@ export class RedMushroom {
      }
      placeRedMushroomOnRandomPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (434)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 1.5));
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;
     }
     placeRedMushroomOnRandomPlatform150x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (90)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 3));
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;
     }
     placeRedMushroomOnRandomPlatform202x56(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (142)) + 10;
+        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 2));
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 10;

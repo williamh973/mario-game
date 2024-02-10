@@ -20,87 +20,50 @@ function createPlateformLittleSteel() {
 export let plateformLittleS = createPlateformLittleSteel("../../images/plateform-steel02.png")
 export let plateformBigS = createPlateformBigSteel("../../images/plateform-steel01.png")
 
-export let plateformBigSteel = new PlatformBigSteel();
-export let plateformBigSteel02 = new PlatformBigSteel02();
-export let plateformBigSteel03 = new PlatformBigSteel03();
-export let plateformBigSteel04 = new PlatformBigSteel04();
 
 
 
-export class PlatformBigSteel {
-    constructor() {
+export class SteelPlatform {
+    constructor({ x, y, image }) {
         this.position = {
-            x: 15920,
-            y: 0,  // the position there is managed in the DisepearSteelPlatform() function
+            x,
+            y
+        }
+        this.velocity = {
+            x : 0,
+            y : 0
         }
 
-        this.image = createPlateformBigSteel(plateformBigS)
-        this.width = 89,
-        this.height = 320
+        this.image = image
+        this.width = image.width
+        this.height = image.height
     }
     draw() {
-        canvasParams.c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+        canvasParams.c.drawImage(
+            this.image, 
+            this.position.x, 
+            this.position.y, 
+            this.width, 
+            this.height
+            )
     }
-    update() {
-        this.draw() 
-        }
-}
+    overlapsWith(otherPlatform) {
+        return (
+            this.position.x < otherPlatform.position.x + otherPlatform.width &&
+            this.position.x + this.width > otherPlatform.position.x &&
+            this.position.y < otherPlatform.position.y + otherPlatform.height &&
+            this.position.y + this.height > otherPlatform.position.y
+        );
+     }
+     placePlatform494x72AwayFromPlatform494x72(referencePlatform) {
+        let randomFactorX = Math.random(); 
+        let randomNumberX = Math.floor(randomFactorX * (100)) + 100;
 
-export class PlatformBigSteel02 {
-    constructor() {
-        this.position = {
-            x: 17230,
-            y: 0  // the position there is managed in the DisepearSteelPlatform() function
-        }
+        let randomFactorY = Math.random(); 
+        let randomNumberY = Math.floor(randomFactorY * (76)) + 100;
+        
+        this.position.x = referencePlatform.position.x + randomNumberX;
+        this.position.y = referencePlatform.position.y + randomNumberY;
+  }
 
-        this.image = createPlateformBigSteel(plateformBigS)
-        this.width = 89,
-        this.height = 320
-    }
-    draw() {
-        canvasParams.c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-    }
-    update() {
-        this.draw() 
-        }
-}
-
-
-export class PlatformBigSteel03 {
-    constructor() {
-        this.position = {
-            x: 18280,
-            y: 0  // the position there is managed in the DisepearSteelPlatform() function
-        }
-
-        this.image = createPlateformBigSteel(plateformBigS)
-        this.width = 89,
-        this.height = 320
-    }
-    draw() {
-        canvasParams.c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-    }
-    update() {
-        this.draw() 
-        }
-}
-
-
-export class PlatformBigSteel04 {
-    constructor() {
-        this.position = {
-            x: 18680,
-            y: 0  // the position there is managed in the DisepearSteelPlatform() function
-        }
-
-        this.image = createPlateformBigSteel(plateformBigS)
-        this.width = 89,
-        this.height = 320
-    }
-    draw() {
-        canvasParams.c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
-    }
-    update() {
-        this.draw() 
-        }
 }

@@ -1,4 +1,4 @@
-import { canvasParams } from "../../canvas.js";
+import { canvasParams } from "../../../canvas.js";
 
 function createBountySprite() {
     const bountyStand = new Image()
@@ -99,7 +99,7 @@ export class Coin {
         this.position.y = referencePlatform.position.y;
       }
       placeGoldCoinAwayFromBlueMushroom(referenceBlueMushroom) {
-        this.position.x = referenceBlueMushroom.position.x + this.width + 20;
+        this.position.x = referenceBlueMushroom.position.x + referenceBlueMushroom.width + 30;
       }
       placeGoldCoinAwayFromRedMushroom(referenceRedMushroom) {
         this.position.x = referenceRedMushroom.position.x + this.width + 20;

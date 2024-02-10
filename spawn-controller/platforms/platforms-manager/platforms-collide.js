@@ -1,5 +1,5 @@
 import { player } from "../../../keyboard.js"
-import { platformList150x72, platformList202x56, platformList494x72, platformList84x72 } from "./platform-adjustment.js"
+import { platformList150x72, platformList202x56, platformList494x72, platformList500x43, platformList84x72 } from "./platform-adjustment.js"
 
 
 
@@ -47,4 +47,16 @@ export function platformCollide() {
             player.velocity.y = 0
         }
     })
+
+    platformList500x43.forEach((createPlatform) => {
+        if (
+            player.position.y + player.height <= createPlatform.position.y &&
+            player.position.y + player.height + player.velocity.y >= createPlatform.position.y &&
+            player.position.x + player.width >= createPlatform.position.x + 23 && 
+            player.position.x + player.width <= createPlatform.position.x + createPlatform.width + 35
+            ) {
+            player.velocity.y = 0
+        }
+    })
+
 }

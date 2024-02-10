@@ -5,5 +5,5 @@ c : canvas.getContext('2d'),
 
 }
 
-canvasParams.canvas.width = 800, // 800
-canvasParams.canvas.height = 676  // 576
+canvasParams.canvas.width = 800,
+canvasParams.canvas.height = 576  

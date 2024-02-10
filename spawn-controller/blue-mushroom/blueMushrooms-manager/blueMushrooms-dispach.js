@@ -1,12 +1,13 @@
-import { BlueMushroom } from "../../../class/blueMushroom/blue-mushroom.class.js";
-import { platformList150x72, platformList202x56, platformList494x72, platformList84x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { BlueMushroom } from "./blue-mushroom.class.js";
+import { platformList150x72, platformList202x56, platformList494x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+
 
 export let blueMushroomList = [];
 
 
 export async function dispachAllBlueMushrooms() {
     return new Promise((resolve) => {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 20; i++) {
             spawnBlueMushroom();
         }
         resolve();
@@ -23,48 +24,77 @@ function spawnBlueMushroom() {
 
 function dispachBlueMushroom(blueMushroom) {
         let randomFactor = Math.random(); 
-        let randomNumber = Math.floor(randomFactor * (400));
+        let randomNumber = Math.floor(randomFactor * (300));
 
         if (randomNumber <= 100) {
-
-            for (let i = 0; i < blueMushroomList.length; i++) {
 
                 const randomPlatformIndex = Math.floor(Math.random() * platformList494x72.length);
                 const randomPlatform = platformList494x72[randomPlatformIndex];  
     
                 blueMushroom.placeBlueMushroomOnRandomPlatform494x72(randomPlatform);
-            }
+
+                for (let i = 0; i < blueMushroomList.length; i++) {
+                    for (let j = i + 1; j < blueMushroomList.length; j++) {
+                    
+                        if (blueMushroomList[i].overlapsWith(blueMushroomList[j]) ) {
+
+                            const index = blueMushroomList.indexOf(blueMushroom);
+                            
+                            if (index !== -1) {
+                                blueMushroomList.splice(index, 1);
+                            }
+                            
+                        }
+                   }
+                }
 
         } else if (randomNumber > 100 && randomNumber <= 200) {
-
-            for (let i = 0; i < blueMushroomList.length; i++) {
                 
                 const randomPlatformIndex = Math.floor(Math.random() * platformList150x72.length);
                 const randomPlatform = platformList150x72[randomPlatformIndex];
                 
                 blueMushroom.placeBlueMushroomOnRandomPlatform150x72(randomPlatform);
-            }
 
+                for (let i = 0; i < blueMushroomList.length; i++) {
+                    for (let j = i + 1; j < blueMushroomList.length; j++) {
+                    
+                        if (blueMushroomList[i].overlapsWith(blueMushroomList[j]) ) {
+                            
+                            const index = blueMushroomList.indexOf(blueMushroom);
+                            
+                            if (index !== -1) {
+                                blueMushroomList.splice(index, 1);
+                            }
+                            
+                        }
+                   }
+                }
+          
         } else if (randomNumber > 200 && randomNumber <= 300) {
-
-            for (let i = 0; i < blueMushroomList.length; i++) {
-                
+    
                 const randomPlatformIndex = Math.floor(Math.random() * platformList202x56.length);
                 const randomPlatform = platformList202x56[randomPlatformIndex];  
                 
                 blueMushroom.placeBlueMushroomOnRandomPlatform202x56(randomPlatform);
-            }
-
-        } else if (randomNumber > 300 && randomNumber <= 400) {
 
             for (let i = 0; i < blueMushroomList.length; i++) {
+                for (let j = i + 1; j < blueMushroomList.length; j++) {
                 
-                const randomPlatformIndex = Math.floor(Math.random() * platformList84x72.length);
-                const randomPlatform = platformList84x72[randomPlatformIndex]; 
-                
-                blueMushroom.placeBlueMushroomOnRandomPlatform84x72(randomPlatform);
+                    if (blueMushroomList[i].overlapsWith(blueMushroomList[j]) ) {
+                        console.log("overlaps blueMushroom with other blueMushroom");
+                        
+                        const index = blueMushroomList.indexOf(blueMushroom);
+                        
+                        if (index !== -1) {
+                            blueMushroomList.splice(index, 1);
+                            console.log("blueMushroom supprimé");
+                        }
+                        
+                    }
+               }
             }
         }
-    
-};
+        
+    };
+
 

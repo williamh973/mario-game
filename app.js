@@ -1,13 +1,12 @@
 import { canvasParams } from "./canvas.js";
 import { player } from "./keyboard.js";
-import { spawnAreaLevelOne } from "./areas/area-level-one/area.js"; 
-import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { spawnAreaLevelOne, spawnAreaLevelTwo } from "./areas/area-level-one/area.js"; 
+import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
 import { genericObjectList } from "./spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
 import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
-import { waterfall, waterfall02 } from "./class/waterfall/waterfall.class.js";
 import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
 import { mooveGomba } from "./objects-movement-handler/gombas-movement-handler.js";
 import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-take.js";
@@ -18,7 +17,10 @@ import { collideOnBelowBlueMushroom, collideOnTheLeftOrRightBlueMushroom, collid
 import { particulesBlueMushroomList } from "./spawn-controller/particles/particle-blueMushroom.js";
 import { platformCollide } from "./spawn-controller/platforms/platforms-manager/platforms-collide.js";
 import { bigCloudList, littleCloudList } from "./spawn-controller/clouds/clouds-manager/clouds-dispach.js";
-
+import { bushList120x100 } from "./spawn-controller/bushs/bush-manager/bush-dispach.js";
+import { waterfallList } from "./spawn-controller/waterfall/waterfall-manager/waterfall-place.js";
+import { bridgeList } from "./spawn-controller/bridges/bridge-manager/bridge-place.js";
+import { bridgeCollide } from "./spawn-controller/bridges/bridge-manager/bridge-collide.js";
 
  
 
@@ -75,13 +77,6 @@ import { bigCloudList, littleCloudList } from "./spawn-controller/clouds/clouds-
 //     theFlag = createFlag("./images/flag.png")
 
 
-//     goomba01 = new Goomba();
-//     goomba02 = new Goomba02();
-//     goomba03 = new Goomba03();
-//     goomba04 = new Goomba04();
-//     goomba05 = new Goomba05();
-
-
 
 //     // plateformBigSteel = new PlatformBigSteel();
 //     // plateformBigSteel02 = new PlatformBigSteel02();
@@ -135,7 +130,7 @@ import { bigCloudList, littleCloudList } from "./spawn-controller/clouds/clouds-
 
 
 let isAreaLevelOneAdded = false;
-
+let isAreaLevelTwoAdded = false;
 
 function animate() {
     requestAnimationFrame(animate)
@@ -146,6 +141,11 @@ function animate() {
         spawnAreaLevelOne(isAreaLevelOneAdded);
         isAreaLevelOneAdded = true;
     }
+console.log(scrollOffsetX); 
+    // if (!isAreaLevelTwoAdded && scrollOffsetX >= 1) {
+    //     spawnAreaLevelTwo(isAreaLevelTwoAdded);
+    //     isAreaLevelTwoAdded = true;
+    // }
 
     
     genericObjectList.forEach((genericObject) => {
@@ -160,15 +160,6 @@ function animate() {
         cloud.draw()
     })
     
-    
-    platformList150x72.forEach((platform) => {
-        platform.draw()
-    })
-    
-    platformList84x72.forEach((platform) => {
-        platform.draw()
-    })
-    
     platformList202x56.forEach((platform) => {
         platform.draw()
     })
@@ -176,7 +167,43 @@ function animate() {
     platformList494x72.forEach((platform) => {
         platform.draw()
     })
+
     
+    platformList150x72.forEach((platform) => {
+        platform.draw()
+    })
+    
+    platformList500x43.forEach((platform) => {
+        platform.draw()
+    })
+
+    platformList84x72.forEach((platform) => {
+        platform.draw()
+    })
+
+    platformList630x217.forEach((platform) => {
+        platform.draw()
+    })
+    
+    bridgeList.forEach((bridge) => {
+        bridge.draw()
+    })
+
+    waterfallList.forEach((waterfall) => {
+        waterfall.update()
+    })
+
+    
+    // treeList.forEach((tree) => {
+    //     tree.draw()
+    // })
+    
+    bushList120x100.forEach((bush) => {
+        bush.draw()
+    })
+
+
+
     goldCoinList.forEach((coin) => {
         if (!coin.isTaken) {
             coin.update()
@@ -188,11 +215,12 @@ function animate() {
             redMushroom.update()
         }
     })
-
+    
     blueMushroomList.forEach((blueMushroom) => {
             blueMushroom.update()
-            blueMushroom.drawDebugCollisionSquare();
+            // blueMushroom.drawDebugCollisionSquare();
     })
+
 
 
     particulesCoinList.forEach((particules, index) => {
@@ -297,14 +325,7 @@ function animate() {
 canvasTrackingOffsetX();
 objectMovements()
 overTheCanvasLimit();
-// /////////////////////  TO GET AWAY FROM OBJECTS  ///////////////////////////////
 
-        
-
-// plateformBigSteel.position.x -= player.speed
-// plateformBigSteel02.position.x -= player.speed
-// plateformBigSteel03.position.x -= player.speed
-// plateformBigSteel04.position.x -= player.speed
 
 
 // rocks.forEach((createRock) => {
@@ -438,6 +459,7 @@ overTheCanvasLimit();
     takeCoin();
     takeRedMushroom(); 
     platformCollide();
+    bridgeCollide();
     collideOnTheLeftOrRightBlueMushroom();
     collideOnTheTopBlueMushroom();
     collideOnBelowBlueMushroom();
@@ -651,13 +673,6 @@ overTheCanvasLimit();
 
 // waterfall.update()
 // waterfall02.update()
-
-// plateformBigSteel.update()
-// plateformBigSteel02.update()
-// plateformBigSteel03.update()
-// plateformBigSteel04.update()
-
-
 
 
 // collisionWater()

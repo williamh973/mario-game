@@ -1,5 +1,5 @@
 import { goldCoinList } from "../../coins/coins-manager/coins-adjustment.js";
-import { Coin } from "../../../class/coins/coins.class.js";
+import { Coin } from "./coins.class.js";
 
 
 export function dispachRandomGoldCoins() {

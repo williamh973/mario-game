@@ -23,11 +23,12 @@ export function collideOnTheLeftOrRightBlueMushroom() {
 export function collideOnTheTopBlueMushroom() {
     blueMushroomList.forEach((blueMushroom) => {
         if (
-            player.position.y + player.height <= blueMushroom.position.y + 5 &&
-            player.position.y + player.height + player.velocity.y >= blueMushroom.position.y + 5 &&
+            player.position.y + player.height <= blueMushroom.position.y + 1 &&
+            player.position.y + player.height + player.velocity.y >= blueMushroom.position.y + 1 &&
             player.position.x + player.width >= blueMushroom.position.x &&
             player.position.x <= blueMushroom.position.x + blueMushroom.width
         ) {
+
             player.velocity.y = - 7;
 
             showParticlesBlueMushroom(blueMushroom);

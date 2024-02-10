@@ -1,4 +1,4 @@
-import { theLittleCloud, theBigCloud, Cloud } from "../../../class/cloud/cloud.class.js";
+import { theLittleCloud, theBigCloud, Cloud } from "./cloud.class.js";
 
 export let littleCloudList = [];
 export let bigCloudList = [];
@@ -6,10 +6,10 @@ export let bigCloudList = [];
 
 export function dispachLittleClouds() {
     return new Promise((resolve) => {
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 10; i++) {
             
             let randomFactor = Math.random();
-            let randomNumberBetweenX = Math.floor(randomFactor * (500)) + i * 700; 
+            let randomNumberBetweenX = Math.floor(randomFactor * (300)) + i * 500; 
         
             randomFactor = Math.random();
             let randomNumberBetweenY = Math.floor(randomFactor * (250)); 
@@ -31,7 +31,7 @@ export function dispachBigClouds() {
         for (let i = 0; i < 10; i++) {
             
             let randomFactor = Math.random();
-            let randomNumberBetweenX = Math.floor(randomFactor * (500)) + i * 800; 
+            let randomNumberBetweenX = Math.floor(randomFactor * (300)) + i * 500; 
             
             randomFactor = Math.random();
             let randomNumberBetweenY = Math.floor(randomFactor * (250)); 

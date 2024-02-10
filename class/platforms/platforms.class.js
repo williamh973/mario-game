@@ -89,8 +89,8 @@ export let theplateform6 = createPlatformMedium3("../../images/plateform6.png")
 export let theplateform7 = createPlatformMedium4("../../images/plateform7.png")
 export let theplateform8 = createPlatformMedium5("../../images/plateform8.png")
 export let theplateform84x72 = createPlatformMedium6("../../images/plateform9.png")
-export let theplateform10 = createPlatformPlate("../../images/plateform10.png")
-export let theplateform11 = createPlatform11("../../images/plateform11.png")
+export let theplateform500x43 = createPlatformPlate("../../images/plateform10.png")
+export let theplateform630x217 = createPlatform11("../../images/plateform11.png")
 export let theplateform202x56 = createPlatform12("../../images/plateform12.png")
 export let thePlatform150x72 = createPlatformSmallTall("../../images/platformSmallTall.png")
 export let thePlatformSmall = createPlatformSmall("../../images/platformSmall.png") 
@@ -106,14 +106,15 @@ export class Platform {
         this.image = image
         this.width = image.width
         this.height = image.height
+        this.scale = 1
     }
     draw() {
         canvasParams.c.drawImage(
             this.image, 
             this.position.x, 
             this.position.y, 
-            this.width, 
-            this.height
+            this.image.width * this.scale,
+            this.image.height * this.scale
             )
     }
     overlapsWith(otherPlatform) {
@@ -143,6 +144,19 @@ export class Platform {
           
           this.position.x = referencePlatform.position.x + randomNumberX;
           this.position.y = referencePlatform.position.y + randomNumberY;
+    }
+    placePlatform500x43AwayFromPlatform500x43(referencePlatform) {
+        let randomFactorX = Math.random(); 
+        let randomNumberX = Math.floor(randomFactorX * (100));
+
+        let randomFactorY = Math.random(); 
+        let randomNumberY = Math.floor(randomFactorY * (25)) + 75;
+        
+        this.position.x = referencePlatform.position.x + randomNumberX;
+        this.position.y = referencePlatform.position.y + randomNumberY;
+    }
+    placePlatform630x217AwayFromPlatform630x217(referencePlatform) {    
+      this.position.y = referencePlatform.position.y - this.height + 12;
     }
     placePlatform84x72AwayFromPlatform150x72(referencePlatform) {
           let randomFactorX = Math.random(); 
@@ -174,6 +188,9 @@ export class Platform {
       this.position.x = referencePlatform.position.x + randomNumberX;
       this.position.y = referencePlatform.position.y - randomNumberY;
     }
+    placePlatform202x56AwayFromPlatform202x56(referencePlatform) {
+        this.position.x = referencePlatform.position.x + 438;
+      }
     placePlatform202x56AwayFromPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
         let randomNumberX = Math.floor(randomFactorX * (180)) + 70;
@@ -182,6 +199,10 @@ export class Platform {
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - platform202x56Height;
+      }
+      placePlatform202x56OnPlatform630x217(referencePlatform) {
+        this.position.x = referencePlatform.position.x - 3;
+        this.position.y = referencePlatform.position.y - this.height;
       }
 };
 

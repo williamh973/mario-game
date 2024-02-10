@@ -1,4 +1,4 @@
-import { RedMushroom } from "../../../class/redMushroom/redMushroom.class.js";
+import { RedMushroom } from "./redMushroom.class.js";
 import { platformList150x72, platformList202x56, platformList494x72, platformList84x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
 
 export let redMushroomList = [];
