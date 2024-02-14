@@ -1,7 +1,7 @@
 import { canvasParams } from "../../../canvas.js";
 
 
-export class Cloud {
+export class Platform {
     constructor({ x, y, image }) {
         this.position = {
             x,
@@ -12,6 +12,12 @@ export class Cloud {
         this.height = image.height
     }
     draw() {
-        canvasParams.c.drawImage(this.image, this.position.x, this.position.y)
+        canvasParams.c.drawImage(
+            this.image, 
+            this.position.x, 
+            this.position.y, 
+            this.width, 
+            this.height
+            )
     }
-};
+}

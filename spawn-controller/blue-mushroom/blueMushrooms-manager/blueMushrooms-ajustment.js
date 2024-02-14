@@ -15,7 +15,7 @@ function adjustBlueMushroomsPositionsRelativeToRedMushroom(blueMushroomList, red
         for (let i = 0; i < blueMushroomList.length; i++) {
             for (let j = 0; j < redMushroomList.length; j++) {
                 if (blueMushroomList[i].overlapsWith(redMushroomList[j])) {
-                    console.log("overlaps blueMushroom with redMushroom");
+                    // console.log("overlaps blueMushroom with redMushroom");
                     blueMushroomList[i].placeBlueMushroomAwayFromRedMushroom(redMushroomList[j]);
                 }
             }

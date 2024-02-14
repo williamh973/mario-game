@@ -1,12 +1,12 @@
-import { ParticleCoin } from "../../class/particles/particles-coin.class.js";
-import { player } from "../../keyboard.js";
+import { player } from "../../../keyboard.js";
+import { Particle } from "./particle-class.js";
 
-export let particulesCoinList = [];
+export let particulesRedMushroomList = [];
 
-export function showParticlesCoin() {
+export function showParticlesRedMushroom() {
 
     for(let i = 0; i < 50 ; i++) {
-        particulesCoinList.push(new ParticleCoin({
+        particulesRedMushroomList.push(new Particle({
             position:{
                 x: player.position.x + player.width / 2, 
                 y: player.position.y + player.height / 2
@@ -16,7 +16,7 @@ export function showParticlesCoin() {
                 y: ( Math.random() -0.5 ) * 4
             },
             radius: Math.random() * 1,
-            color:'yellow'
+            color:'white'
         }))
     }
 };

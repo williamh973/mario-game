@@ -1,5 +1,6 @@
-import { Bush, theBush } from "./bushs.class.js";
+import { Bush } from "./bushs.class.js";
 import { platformList202x56, platformList494x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { theBush } from "./bush-assets.js";
 
 
 export let bushList120x100 = [];

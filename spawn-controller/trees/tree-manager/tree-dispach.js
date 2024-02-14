@@ -1,5 +1,6 @@
-import { Tree, theTree } from "./trees.class.js";
-import { platformList202x56, platformList494x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { Tree } from "./trees.class.js";
+import { platformList500x43 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { theMiniTree } from "./tree-assets.js";
 
 
 export let treeList = [];
@@ -7,7 +8,7 @@ export let treeList = [];
 
 export async function dispachAllTrees() {
     return new Promise((resolve) => {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 15; i++) {
             spawnTree();
         }
         resolve();
@@ -17,8 +18,8 @@ export async function dispachAllTrees() {
 
 function spawnTree() {
     let tree = new Tree({
-        image : theTree,
-        scale : 0.6
+        image : theMiniTree,
+        scale : 1
     });
     treeList.push(tree);
     dispachTree(tree);
@@ -27,25 +28,19 @@ function spawnTree() {
 
 function dispachTree(tree) {
 
-                const randomPlatformIndex = Math.floor(Math.random() * platformList494x72.length);
-                const randomPlatform = platformList494x72[randomPlatformIndex];  
+    const randomPlatformIndex = Math.floor(Math.random() * platformList500x43.length);
+    const randomPlatform = platformList500x43[randomPlatformIndex];  
     
-                tree.placeTreeOnRandomPlatform494x72(randomPlatform);
+    tree.placeTreeOnRandomPlatform500x43(randomPlatform);
 
-                for (let i = 0; i < treeList.length; i++) {
-                    for (let j = i + 1; j < treeList.length; j++) {
-                    
-                        if (treeList[i].overlapsWith(treeList[j]) ) {
-                            console.log("overlaps tree with other tree");
-                            const index = treeList.indexOf(tree);
-                            
-                            if (index !== -1) {
-                                treeList.splice(index, 1);
-                            }
-                            
-                        }
-                   }
-                }
+    for (let i = 0; i < treeList.length; i++) {
+        if (tree.overlapsWith(treeList[i])) {
+            console.log("overlaps tree with other tree");
+            tree.placeTreeOnRandomPlatform500x43(randomPlatform);
+        }
+        
+    }
+
 };
 
 

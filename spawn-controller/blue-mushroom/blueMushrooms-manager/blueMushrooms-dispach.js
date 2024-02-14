@@ -81,13 +81,13 @@ function dispachBlueMushroom(blueMushroom) {
                 for (let j = i + 1; j < blueMushroomList.length; j++) {
                 
                     if (blueMushroomList[i].overlapsWith(blueMushroomList[j]) ) {
-                        console.log("overlaps blueMushroom with other blueMushroom");
+                        // console.log("overlaps blueMushroom with other blueMushroom");
                         
                         const index = blueMushroomList.indexOf(blueMushroom);
                         
                         if (index !== -1) {
                             blueMushroomList.splice(index, 1);
-                            console.log("blueMushroom supprimé");
+                            // console.log("blueMushroom supprimé");
                         }
                         
                     }

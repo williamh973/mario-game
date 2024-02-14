@@ -9,37 +9,53 @@ import { dispachBigClouds, dispachLittleClouds } from "../../spawn-controller/cl
 import { dispachAllBushes } from "../../spawn-controller/bushs/bush-manager/bush-dispach.js";
 import { checkFiveTimesIfAllBushesAreAdjusted } from "../../spawn-controller/bushs/bush-manager/bush-adjust.js";
 import { dispachAllTrees } from "../../spawn-controller/trees/tree-manager/tree-dispach.js";
-import { spawnGenericObject } from "../../spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
+import { spawnGenericObject } from "../../spawn-controller/generic/generic-manager/generic-place.js";
 import { placeWaterfallOnPlatform630x217 } from "../../spawn-controller/waterfall/waterfall-manager/waterfall-place.js";
 import { checkIfWaterfallsAreAdjusted } from "../../spawn-controller/waterfall/waterfall-manager/waterfall-ajust.js";
 import { placeBridgeOnPlatform630x217 } from "../../spawn-controller/bridges/bridge-manager/bridge-place.js";
 import { checkIfBridgeAreAdjusted } from "../../spawn-controller/bridges/bridge-manager/bridge-adjust.js";
+import { dispachGoombas } from "../../spawn-controller/gombas/gombas-manager/gombas-dispach.js";
+import { checkGoombasAreAdjusted } from "../../spawn-controller/gombas/gombas-manager/goombas-ajust.js";
+
 
 
 export async function spawnAreaLevelOne(isAreaLevelOneAdded) {
    await spawnGenericObject();
+   
    await dispachLittleClouds();
    await dispachBigClouds();
+   
    await dispachGrassPlatforms494x72();
    await dispachGrassPlatforms84x72();
    await dispachGrassPlatforms150x72();
    await dispachGrassPlatforms202x56();
-   // await dispachGrassPlatforms500x43();
    await dispachGrassPlatform630x217();
    await dispachGrassPlatforms202x56OnPlatform630x217();
+   await dispachGrassPlatforms500x43();
+   await checkFiveTimesIfPlatformsAreAdjusted();
+
    await placeWaterfallOnPlatform630x217();
    await checkIfWaterfallsAreAdjusted();
+   
    await placeBridgeOnPlatform630x217();
    await checkIfBridgeAreAdjusted();
-   await checkFiveTimesIfPlatformsAreAdjusted();
+   
    await dispachAllBushes();
-   await dispachAllTrees();
    await checkFiveTimesIfAllBushesAreAdjusted();
+   
+   await dispachAllTrees();
+   
    await dispachAllRedMushroom();
+   
    await dispachAllBlueMushrooms();
    await checkIfBlueMushroomAreAdjusted();
+   
    await dispachRandomGoldCoins();
    await checkFiveTimesIfAllGoldCoinsAreAdjusted();
+   
+   await dispachGoombas();
+   await checkGoombasAreAdjusted();
+   
    isAreaLevelOneAdded = false;
 };
 

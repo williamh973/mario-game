@@ -1,6 +1,6 @@
 import { goldCoinList } from "../../../spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { player } from "../../../keyboard.js";
-import { showParticlesCoin } from "../../../spawn-controller/particles/particle-coin-loop.js";
+import { showParticlesCoin } from "../../particles/particles-manager/particle-coin.js";
 import { addScore } from "../../../player-actions/player-interactions.js";
 
 export function takeCoin() {

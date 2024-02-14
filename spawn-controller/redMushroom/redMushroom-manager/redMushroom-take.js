@@ -1,5 +1,5 @@
 import { player } from "../../../keyboard.js";
-import { showParticlesRedMushroom } from "../../particles/particle-redMushroom.js";
+import { showParticlesRedMushroom } from "../../particles/particles-manager/particle-redMushroom.js";
 import { addLife } from "../../../player-actions/player-interactions.js";
 import { redMushroomList } from "./redMushroom-dispach.js";
 

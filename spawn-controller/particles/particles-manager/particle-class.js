@@ -1,6 +1,6 @@
- import { canvasParams } from "../../canvas.js";
+ import { canvasParams } from "../../../canvas.js";
  
- export class ParticleBlueMushroom{
+ export class Particle {
     constructor({position, velocity, radius, color}) {
         this.position = position
         this.velocity = velocity

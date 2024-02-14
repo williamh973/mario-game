@@ -1,4 +1,5 @@
-import { Platform, thePlatform494x72, theplateform84x72, theplateform202x56, thePlatform150x72, theplateform500x43, theplateform630x217 } from "../../../class/platforms/platforms.class.js";
+import { Platform } from "./platforms.class.js";
+import {  thePlatform494x72, theplateform84x72, theplateform202x56, thePlatform150x72, theplateform500x43, theplateform630x217 } from "./platform-assets.js";
 import { platformList494x72, platformList150x72, platformList84x72, platformList202x56, platformList500x43, platformList630x217 } from "../../platforms/platforms-manager/platform-adjustment.js";
 
 
@@ -7,13 +8,14 @@ export function dispachGrassPlatforms494x72() {
         
         for (let i = 0; i < 13; i++) {
             let randomFactor = Math.random();
-            let randomNumberBetweenX = Math.floor(randomFactor * (100)) + 100 + i * 600; // + i * 50 controle l'étendue
+            let randomNumberBetweenX = Math.floor(randomFactor * (100)) + 100 + i * 600; 
             
             platformList494x72.push(
                 new Platform({
                     x: randomNumberBetweenX,
                     y: 505,
-                    image: thePlatform494x72
+                    image: thePlatform494x72,
+                    scale : 1
                 })
             )
         }
@@ -31,7 +33,8 @@ export function dispachGrassPlatforms202x56() {
             new Platform({
                 x: randomNumberBetweenX,
                 y: 455,
-                image: theplateform202x56
+                image: theplateform202x56,
+                scale : 1
               }),
             )
         }
@@ -53,7 +56,8 @@ export function dispachGrassPlatforms84x72() {
       new Platform({
           x: randomNumberBetweenX,
           y: randomNumberBetween100And516,
-          image: theplateform84x72
+          image: theplateform84x72,
+          scale : 1
         }),
         )
     }
@@ -75,7 +79,8 @@ export function dispachGrassPlatforms150x72() {
         new Platform({
             x: randomNumberBetweenX,
             y: randomNumberBetween100And516,
-            image: thePlatform150x72
+            image: thePlatform150x72,
+            scale : 1
           }),
           )
       }
@@ -83,29 +88,6 @@ export function dispachGrassPlatforms150x72() {
     })
 };
 
-
-export function dispachGrassPlatforms500x43() {
-    return new Promise((resolve) => {
-        
-        for (let i = 0; i < 4; i++) {
-            let randomFactor = Math.random();
-            let randomNumberBetweenX =  7500;
-
-            randomFactor = Math.random();
-            let randomNumberBetweenY = Math.floor(randomFactor * (405)) + 100;
-            
-            platformList500x43.push(
-                new Platform({
-                    x: randomNumberBetweenX,
-                    y: randomNumberBetweenY,
-                    image: theplateform500x43
-                })
-            )
-
-        }
-        resolve();
-    })
-};
 
 
 export function dispachGrassPlatform630x217() {
@@ -115,9 +97,10 @@ export function dispachGrassPlatform630x217() {
             
             platformList630x217.push(
                 new Platform({
-                    x: 100, 
+                    x: 8000, 
                     y: 360,
-                    image: theplateform630x217
+                    image: theplateform630x217,
+                    scale : 1
                 })
             )
         }
@@ -133,8 +116,9 @@ export function dispachGrassPlatforms202x56OnPlatform630x217() {
             let platform202x56 = new Platform({
                 x: 0,
                 y: 0,
-                image: theplateform202x56
-              })
+                image: theplateform202x56,
+                scale : 1
+            })
 
             platformList202x56.push(platform202x56)
             
@@ -147,3 +131,28 @@ export function dispachGrassPlatforms202x56OnPlatform630x217() {
     })
 
 };
+    
+    export function dispachGrassPlatforms500x43() {
+        return new Promise((resolve) => {
+            
+            for (let i = 0; i < 6; i++) {
+    
+                let randomFactor = Math.random();
+                let randomNumberBetweenX = Math.floor(randomFactor * (150)) + 150 + i * 700;
+    
+                randomFactor = Math.random();
+                let randomNumberBetweenY = Math.floor(randomFactor * (150)) + 250;
+                
+                platformList500x43.push(
+                    new Platform({
+                        x: randomNumberBetweenX,
+                        y: randomNumberBetweenY,
+                        image: theplateform500x43,
+                        scale : 1
+                    })
+                )
+    
+            }
+            resolve();
+        })
+    };

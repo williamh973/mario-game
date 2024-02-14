@@ -1,5 +1,8 @@
 import { platformList630x217 } from "../../platforms/platforms-manager/platform-adjustment.js";
-import { Bridge, theBridgeLeft, theBridgeRight } from "./bridges.class.js";
+import { Bridge } from "./bridges.class.js";
+import { theBridgeLeft, theBridgeRight } from "./bridges-assets.js";
+
+
 
 export let bridgeList = [];
 

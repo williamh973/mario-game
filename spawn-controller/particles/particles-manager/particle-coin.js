@@ -1,12 +1,12 @@
-import { ParticleRedMushroom } from "../../class/particles/particles-redMushroom.class.js";
-import { player } from "../../keyboard.js";
+import { player } from "../../../keyboard.js";
+import { Particle } from "./particle-class.js";
 
-export let particulesRedMushroomList = [];
+export let particulesCoinList = [];
 
-export function showParticlesRedMushroom() {
+export function showParticlesCoin() {
 
     for(let i = 0; i < 50 ; i++) {
-        particulesRedMushroomList.push(new ParticleRedMushroom({
+        particulesCoinList.push(new Particle({
             position:{
                 x: player.position.x + player.width / 2, 
                 y: player.position.y + player.height / 2
@@ -16,7 +16,7 @@ export function showParticlesRedMushroom() {
                 y: ( Math.random() -0.5 ) * 4
             },
             radius: Math.random() * 1,
-            color:'white'
+            color:'yellow'
         }))
     }
 };

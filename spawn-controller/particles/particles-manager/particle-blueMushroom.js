@@ -1,5 +1,4 @@
-import { ParticleBlueMushroom } from "../../class/particles/particles-blueMushroom.class.js";
-import { player } from "../../keyboard.js";
+import { Particle } from "./particle-class.js";
 
 
 export let particulesBlueMushroomList = [];
@@ -8,7 +7,7 @@ export let particulesBlueMushroomList = [];
 export function showParticlesBlueMushroom(blueMushroom) {
 
     for(let i = 0; i < 50 ; i++) {
-        particulesBlueMushroomList.push(new ParticleBlueMushroom({
+        particulesBlueMushroomList.push(new Particle({
             position: {
                 x: blueMushroom.position.x + blueMushroom.width / 2, 
                 y: blueMushroom.position.y + blueMushroom.height / 2

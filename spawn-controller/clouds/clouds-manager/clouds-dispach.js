@@ -1,4 +1,5 @@
-import { theLittleCloud, theBigCloud, Cloud } from "./cloud.class.js";
+import { Cloud } from "./cloud.class.js";
+import { theBigCloud, theLittleCloud } from "./clouds-assets.js";
 
 export let littleCloudList = [];
 export let bigCloudList = [];

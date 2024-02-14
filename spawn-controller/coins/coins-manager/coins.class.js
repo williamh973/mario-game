@@ -1,12 +1,5 @@
 import { canvasParams } from "../../../canvas.js";
-
-function createBountySprite() {
-    const bountyStand = new Image()
-    bountyStand.src = "../../images/bounty2.png"
-    return bountyStand
-}
-let bountyStand = createBountySprite("../../images/bounty2.png");
-
+import { createBountySprite, bountyStand } from "./coin-assets.js";
 
 
 export class Coin {

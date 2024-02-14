@@ -1,13 +1,5 @@
 import { canvasParams } from "../../../canvas.js";
-
-function createMushroomBSprite() {
-    const MushroombSprite = new Image()
-    MushroombSprite.src = "../../images/MushroomBSpriteStand.png"
-    return MushroombSprite
-}
-let mushroombSprite = createMushroomBSprite("../../images/MushroomBSpriteStand.png")
-
- 
+import { createMushroomBSprite, mushroombSprite } from "./blue-mushroom-assets.js";
 
 export class BlueMushroom {
     constructor() {
@@ -15,11 +7,6 @@ export class BlueMushroom {
             x : 0,
             y : 0
         }
-        this.width = 60   
-        this.height = 60 
-        this.image = createMushroomBSprite(mushroombSprite)
-        this.frames = 0
-        this.platform = null
         this.sprites = {
             stand: {
                 right: createMushroomBSprite(mushroombSprite),
@@ -28,9 +15,15 @@ export class BlueMushroom {
                 width: 60
             },
         }
+        this.width = 60   
+        this.height = 60 
+        this.image = createMushroomBSprite(mushroombSprite)
+        this.frames = 0
+        this.platform = null
         this.currentSprite = this.sprites.stand.right
         this.currentCropWidth = 61
     }
+   
     draw() {
         canvasParams.c.drawImage(
             this.currentSprite,
@@ -44,16 +37,19 @@ export class BlueMushroom {
             this.height
             )
         }
+   
     update() {
         this.frames++
-        if (
-        this.frames > 15 &&
-        (this.currentSprite === this.sprites.stand.right ||
-            this.currentSprite === this.sprites.stand.left)
-        )
+            if (this.frames > 15 &&
+            (
+                this.currentSprite === this.sprites.stand.right ||
+                this.currentSprite === this.sprites.stand.left
+                )
+            )
         this.frames = 0
         this.draw()
         }
+    
     overlapsWith(otherObject) {
         return (
             this.position.x < otherObject.position.x + otherObject.width &&
@@ -62,6 +58,7 @@ export class BlueMushroom {
             this.position.y + this.height > otherObject.position.y
             );
         }
+    
     placeBlueMushroomOnRandomPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
         let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 1.5));
@@ -69,6 +66,7 @@ export class BlueMushroom {
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 5;
     }
+    
     placeBlueMushroomOnRandomPlatform150x72(referencePlatform) {
         let randomFactorX = Math.random(); 
         let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 3));
@@ -76,6 +74,7 @@ export class BlueMushroom {
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 5;
     }
+    
     placeBlueMushroomOnRandomPlatform202x56(referencePlatform) {
         let randomFactorX = Math.random(); 
         let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 2));
@@ -83,10 +82,10 @@ export class BlueMushroom {
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 5;
     }
+    
     placeBlueMushroomAwayFromRedMushroom(referenceRedMushroom) {
         this.position.x = referenceRedMushroom.position.x + this.width;
     }
-
 
     drawDebugCollisionSquare() {
         const ctx = canvasParams.c;

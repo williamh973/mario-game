@@ -1,6 +1,6 @@
 import { keys, player } from "../../../keyboard.js";
 import { loseLife } from "../../../player-actions/player-interactions.js";
-import { showParticlesBlueMushroom } from "../../particles/particle-blueMushroom.js";
+import { showParticlesBlueMushroom } from "../../particles/particles-manager/particle-blueMushroom.js";
 import { blueMushroomList } from "./blueMushrooms-dispach.js";
 
 

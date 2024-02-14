@@ -2,25 +2,27 @@ import { canvasParams } from "./canvas.js";
 import { player } from "./keyboard.js";
 import { spawnAreaLevelOne, spawnAreaLevelTwo } from "./areas/area-level-one/area.js"; 
 import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
-import { genericObjectList } from "./spawn-controller/generic/sky-and-hills/sky-and-hills.object.js";
+import { genericObjectList } from "./spawn-controller/generic/generic-manager/generic-place.js";
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
-import { particulesCoinList } from "./spawn-controller/particles/particle-coin-loop.js";
+import { particulesCoinList } from "./spawn-controller/particles/particles-manager/particle-coin.js";
 import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
-import { goomba01, goomba02, goomba03, goomba04, goomba05 } from "./class/gombas/gombas.class.js";
-import { mooveGomba } from "./objects-movement-handler/gombas-movement-handler.js";
 import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-take.js";
-import { particulesRedMushroomList } from "./spawn-controller/particles/particle-redMushroom.js";
+import { particulesRedMushroomList } from "./spawn-controller/particles/particles-manager/particle-redMushroom.js";
 import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { blueMushroomList } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-dispach.js";
 import { collideOnBelowBlueMushroom, collideOnTheLeftOrRightBlueMushroom, collideOnTheTopBlueMushroom } from "./spawn-controller/blue-mushroom/blueMushrooms-manager/blueMushrooms-collide.js";
-import { particulesBlueMushroomList } from "./spawn-controller/particles/particle-blueMushroom.js";
+import { particulesBlueMushroomList } from "./spawn-controller/particles/particles-manager/particle-blueMushroom.js";
 import { platformCollide } from "./spawn-controller/platforms/platforms-manager/platforms-collide.js";
 import { bigCloudList, littleCloudList } from "./spawn-controller/clouds/clouds-manager/clouds-dispach.js";
 import { bushList120x100 } from "./spawn-controller/bushs/bush-manager/bush-dispach.js";
 import { waterfallList } from "./spawn-controller/waterfall/waterfall-manager/waterfall-place.js";
 import { bridgeList } from "./spawn-controller/bridges/bridge-manager/bridge-place.js";
 import { bridgeCollide } from "./spawn-controller/bridges/bridge-manager/bridge-collide.js";
+import { treeList } from "./spawn-controller/trees/tree-manager/tree-dispach.js";
+import { goombasList } from "./spawn-controller/gombas/gombas-manager/gombas-dispach.js";
+import { collideOnBelowGoombas, collideOnTheLeftOrRightGoombas, collideOnTheTopGoombas } from "./spawn-controller/gombas/gombas-manager/goombas-collide.js";
+import { particulesGoombaList } from "./spawn-controller/particles/particles-manager/particle-goomba.js";
 
  
 
@@ -127,7 +129,7 @@ import { bridgeCollide } from "./spawn-controller/bridges/bridge-manager/bridge-
 // }
 
 
-
+export const gravity = 0.5;
 
 let isAreaLevelOneAdded = false;
 let isAreaLevelTwoAdded = false;
@@ -141,7 +143,7 @@ function animate() {
         spawnAreaLevelOne(isAreaLevelOneAdded);
         isAreaLevelOneAdded = true;
     }
-console.log(scrollOffsetX); 
+// console.log(scrollOffsetX); 
     // if (!isAreaLevelTwoAdded && scrollOffsetX >= 1) {
     //     spawnAreaLevelTwo(isAreaLevelTwoAdded);
     //     isAreaLevelTwoAdded = true;
@@ -194,9 +196,12 @@ console.log(scrollOffsetX);
     })
 
     
-    // treeList.forEach((tree) => {
-    //     tree.draw()
-    // })
+    treeList.forEach((tree) => {
+        tree.draw()
+        // tree.drawDebugCollisionSquare()
+    })
+
+    // console.log(scrollOffsetX);
     
     bushList120x100.forEach((bush) => {
         bush.draw()
@@ -221,7 +226,11 @@ console.log(scrollOffsetX);
             // blueMushroom.drawDebugCollisionSquare();
     })
 
-
+    goombasList.forEach((goombas) => {
+        goombas.update();
+        goombas.moving();
+        // goombas.drawDebugCollisionSquare();
+    })
 
     particulesCoinList.forEach((particules, index) => {
         if (particulesCoinList.opacity <= 0) {
@@ -246,11 +255,19 @@ console.log(scrollOffsetX);
             particules.update();
         }
     })
+
+    particulesGoombaList.forEach((particules, index) => {
+        if (particulesGoombaList.opacity <= 0) {
+            particulesGoombaList.splice(index, 1)
+        } else {
+            particules.update();
+        }
+    })
     
     player.update();
     player.drawDebugCollisionSquare();
 
-
+    
     
     littleCloudList.forEach((cloud) => {
         cloud.position.x -= player.speed / 50
@@ -266,10 +283,6 @@ console.log(scrollOffsetX);
 
     // rocks.forEach((theRock) => {
     //     theRock.draw()
-    // })
-
-    // trees.forEach((theTree) => {
-    //     theTree.draw()
     // })
 
     // crates.forEach((theCrate) => {
@@ -328,271 +341,21 @@ overTheCanvasLimit();
 
 
 
-// rocks.forEach((createRock) => {
-// createRock.position.x -= player.speed
-// });
-
-
-// trees.forEach((createTree) => {
-//         createTree.position.x -= player.speed
-//     });
-
-
-// crates.forEach((createCrate) => {
-//         createCrate.position.x -= player.speed
-//             })
-
-
-//             signs.forEach((createSign) => {
-//                 createSign.position.x -= player.speed
-//             })
-
-
-//             houses.forEach((theHouse01) => {
-//                 theHouse01.position.x -= player.speed
-//             })
-
-
-//             leaves.forEach((theLeaves) => {
-//                 theLeaves.position.x -= player.speed
-//             })
-
-
-//             bushs.forEach((theBush) => {
-//                 theBush.position.x -= player.speed
-//             })
-
-
-//             fences.forEach((theFence) => {
-//                 theFence.position.x -= player.speed
-//             })
-
-
-//             barrels.forEach((theBarrel) => {
-//                 theBarrel.position.x -= player.speed
-//             })
-
-
-//             waters.forEach((water) => {
-//                 water.position.x -= player.speed
-//             })
-
-
-// bridges.forEach((theBridgeLeft) => {
-//     theBridgeLeft.position.x -= player.speed
-// })
-
-
-// flags.forEach((flag) => {
-//     flag.position.x -= player.speed
-//     });
-
-
-
-// plateformBigSteel.position.x += player.speed
-// plateformBigSteel02.position.x += player.speed
-// plateformBigSteel03.position.x += player.speed
-// plateformBigSteel04.position.x += player.speed
-
-
-//             rocks.forEach((createRock) => {
-//                 createRock.position.x += player.speed
-//             })
-
-
-//             trees.forEach((createTree) => {
-//                 createTree.position.x += player.speed
-//             })
-
-
-//             crates.forEach((createCrate) => {
-//                 createCrate.position.x += player.speed
-//             })
-
-
-//             signs.forEach((createSign) => {
-//                 createSign.position.x += player.speed
-//             })
-
-
-//             houses.forEach((theHouse01) => {
-//                 theHouse01.position.x += player.speed
-//             })
-
-
-//             leaves.forEach((theLeaves) => {
-//                 theLeaves.position.x += player.speed
-//             })
-
-
-//             bushs.forEach((theBush) => {
-//                 theBush.position.x += player.speed
-//             })
-
-
-//             fences.forEach((theFence) => {
-//                 theFence.position.x += player.speed
-//             })
-
-//             barrels.forEach((theBarrel) => {
-//                 theBarrel.position.x += player.speed
-//             })
-
-//             waters.forEach((water) => {
-//                 water.position.x += player.speed
-//             })
-
-//             // le pont
-//             bridges.forEach((theBridgeLeft) => {
-//             theBridgeLeft.position.x += player.speed
-//             })
-
-//             // flag
-//            flags.forEach((flag) => {
-//            flag.position.x += player.speed
-//            });
-
 
 
 
  
-    takeCoin();
-    takeRedMushroom(); 
-    platformCollide();
-    bridgeCollide();
-    collideOnTheLeftOrRightBlueMushroom();
-    collideOnTheTopBlueMushroom();
-    collideOnBelowBlueMushroom();
+takeCoin();
+takeRedMushroom(); 
+platformCollide();
+bridgeCollide();
+collideOnTheLeftOrRightBlueMushroom();
+collideOnTheTopBlueMushroom();
+collideOnBelowBlueMushroom();
+collideOnTheLeftOrRightGoombas();
+collideOnTheTopGoombas();
+collideOnBelowGoombas();
 
-    // console.log("player.velocity.x", player.velocity.x);
-    
-
-
-
-
-//   // To make the player jump on a metal platform
-//  function moveOnPlatformBigS01() {
-//     if (
-//         player.position.y + player.height <= plateformBigSteel.position.y &&
-//         player.position.y + player.height + player.velocity.y >= plateformBigSteel.position.y &&
-//         player.position.x + player.width >= plateformBigSteel.position.x + 23 &&                         // right side
-//         player.position.x + player.width <= plateformBigSteel.position.x + plateformBigSteel.width + 35  // left side
-//     ) {
-//         player.velocity.y = 0
-//     }
-//     if (
-//         player.position.y + player.height <= plateformBigSteel02.position.y &&
-//         player.position.y + player.height + player.velocity.y >= plateformBigSteel02.position.y &&
-//         player.position.x + player.width >= plateformBigSteel02.position.x + 23 &&   // right side
-//         player.position.x + player.width <= plateformBigSteel02.position.x + plateformBigSteel02.width + 35   // left side
-//     ) {
-//         player.velocity.y = 0
-//     }
-//     if (
-//         player.position.y + player.height <= plateformBigSteel03.position.y &&
-//         player.position.y + player.height + player.velocity.y >= plateformBigSteel03.position.y &&
-//         player.position.x + player.width >= plateformBigSteel03.position.x + 23 &&  // right side
-//         player.position.x + player.width <= plateformBigSteel03.position.x + plateformBigSteel03.width + 35  // left side
-//     ) {
-//         player.velocity.y = 0
-//     }
-//     if (
-//         player.position.y + player.height <= plateformBigSteel04.position.y &&
-//         player.position.y + player.height + player.velocity.y >= plateformBigSteel04.position.y &&
-//         player.position.x + player.width >= plateformBigSteel04.position.x + 23 && // right side
-//         player.position.x + player.width <= plateformBigSteel04.position.x + plateformBigSteel04.width + 35  // left side
-//     ) {
-//         player.velocity.y = 0
-//     }
-// }
-
-
-    
-   
-//     rocks.forEach((rock) => {
-//         if (
-//             player.position.y + player.height >= rock.position.y + 20 &&
-//             player.position.y + player.height + player.velocity.y >= rock.position.y &&
-//             player.position.x + player.width >= rock.position.x + 20 &&  // right side
-//             player.position.x + player.width <= rock.position.x + rock.width + 35  // left side
-//         ) {
-//             player.velocity.y = 0
-//         }
-//     })
-   
-//     rocks.forEach((rock) => {
-//         if (
-//             player.position.x + player.width + player.velocity.x <= rock.position.x + rock.width &&
-//             player.position.x + player.width + player.velocity.x >= rock.position.x + 27 &&
-//             player.position.y + player.height >= rock.position.y + 20 &&
-//             player.position.y + player.height + player.velocity.y >= rock.position.y
-//         ) {
-//             player.velocity.x = -10
-
-//         }
-//     })
-   
-//     rocks.forEach((rock) => {
-//         if (
-//             player.position.x + player.width + player.velocity.x <= rock.position.x + rock.width + 23 &&
-//             player.position.x + player.width + player.velocity.x >= rock.position.x + rock.width &&
-//             player.position.y + player.height >= rock.position.y + 20 &&
-//             player.position.y + player.height + player.velocity.y >= rock.position.y
-//         ) {
-//             player.velocity.x = 10
-
-//         }
-//     })
-
-// rocks.forEach((thebigRock) => {
-//     if (
-//         player.position.y + player.height >= thebigRock.position.y + 20 &&
-//         player.position.y + player.height + player.velocity.y >= thebigRock.position.y &&
-//         player.position.x + player.width >= thebigRock.position.x + 20 && 
-//         player.position.x + player.width <= thebigRock.position.x + thebigRock.width + 35 
-//     ) {
-    
-//         player.velocity.y = 0
-//     }
-// })
-
-
-//     crates.forEach((crate) => {
-//         if (
-//             player.position.y + player.height <= crate.position.y &&
-//             player.position.y + player.height + player.velocity.y >= crate.position.y &&
-//             player.position.x + player.width >= crate.position.x + 20 &&  
-//             player.position.x + player.width <= crate.position.x + crate.width + 35 
-//         ) {
-//             player.velocity.y = 0
-//         }
-//     })
-
-
-
-//  barrels.forEach((theBarrel) => {
-//     if (
-//         player.position.y + player.height <= theBarrel.position.y &&
-//         player.position.y + player.height + player.velocity.y >= theBarrel.position.y &&
-//         player.position.x + player.width >= theBarrel.position.x + 20 &&  
-//         player.position.x + player.width <= theBarrel.position.x + theBarrel.width + 35   
-//     ) {
-//         player.velocity.y = 0
-//     }
-// })
-
-
-//   // Pour faire sauter le joueur sur les parties du pont
-//   bridges.forEach((theBridgeLeft) => {
-//     if (
-//         player.position.y + player.height <= theBridgeLeft.position.y &&
-//         player.position.y + player.height + player.velocity.y >= theBridgeLeft.position.y &&
-//         player.position.x + player.width >= theBridgeLeft.position.x + 20 &&  
-//         player.position.x + player.width <= theBridgeLeft.position.x + theBridgeLeft.width + 35   
-//     ) {
-//         player.velocity.y = 0
-//     }
-// })
 
 //  // condition de victoire
 // flags.forEach((theFlag) => {
@@ -612,23 +375,6 @@ overTheCanvasLimit();
 //         timerTag.innerText = "0";
 //     }
 // })
-
-
-
-
-
-//     // if mario falls out of the canvas and he has life left, he is repositioned and loses 1 life point.
-//     if (player.position.y > canvas.height)  {
-
-//         player.position.x = (0)
-//         player.position.y = (0)
-//         player.currentSprite = player.sprites.stand.right
-//         player.currentCropWidth = player.sprites.stand.cropWidth
-//         player.width = player.sprites.stand.width
-//         vie -= 0; // 1
-//         lifeTag.innerText = "Vie : " + vie;
-//     }
-
 
 
         
@@ -664,168 +410,6 @@ overTheCanvasLimit();
 // gameOver()
 
 
-// goomba01.update()
-// goomba02.update()
-// goomba03.update()
-// goomba04.update()
-// goomba05.update()
-
-
-// waterfall.update()
-// waterfall02.update()
-
-
-// collisionWater()
-    
- 
-
-
-
-// //////////////////  COLLISIONS    ////////////////////////////////////
-
-
-
-// // goombas 01
-// if (
-//     player.position.y + player.height <= goomba01.position.y + goomba01.height   &&
-//     player.position.y + player.height + player.velocity.y >= goomba01.position.y + 35 &&
-//     player.position.x + player.width >= goomba01.position.x  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= goomba01.position.x + goomba01.width  + 50  // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = 300 
-// lifeLost()
-// }
-
-// // goombas 02
-// if (
-//     player.position.y + player.height <= goomba02.position.y + goomba02.height   &&
-//     player.position.y + player.height + player.velocity.y >= goomba02.position.y + 35 &&
-//     player.position.x + player.width >= goomba02.position.x  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= goomba02.position.x + goomba02.width  + 50  // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = 300 
-// lifeLost()
-// }
-
-// // goombas 03
-// if (
-//     player.position.y + player.height <= goomba03.position.y + goomba03.height   &&
-//     player.position.y + player.height + player.velocity.y >= goomba03.position.y + 35 &&
-//     player.position.x + player.width >= goomba03.position.x  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= goomba03.position.x + goomba03.width  + 50  // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = 300 
-// lifeLost()
-// }
-
-// // goombas 04
-// if (
-//     player.position.y + player.height <= goomba04.position.y + goomba04.height   &&
-//     player.position.y + player.height + player.velocity.y >= goomba04.position.y + 35 &&
-//     player.position.x + player.width >= goomba04.position.x  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= goomba04.position.x + goomba04.width  + 50  // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = 300 
-// lifeLost()
-// }
-
-// // goombas 05
-// if (
-//     player.position.y + player.height <= goomba05.position.y + goomba05.height   &&
-//     player.position.y + player.height + player.velocity.y >= goomba05.position.y + 35 &&
-//     player.position.x + player.width >= goomba05.position.x  &&  // ajustement des bords coté gauche 
-//     player.position.x + player.width <= goomba05.position.x + goomba05.width  + 50  // ajustement des bords coté droit 
-// ) {
-// // particle effect
-// for(let i = 0; i < 22 ; i++) {
-//     particules.push(new Particule({
-//         position:{
-//             x: player.position.x + player.width/2, // /2
-//             y: player.position.y + player.height/2
-//         },
-//         velocity:{
-//             x: (Math.random()-0.5)*2,
-//             y:(Math.random()-0.5)*2
-//         },
-//         radius: Math.random()*2,
-//         color:'red'
-//     }))
-// }
-// // repositioning of mario and loss of a life
-// player.position.x = 300 
-// lifeLost()
-// }
-
-// DisepearSteelPlatform()
- 
-// moveOnPlatformBigS01()  // To make the player jump on a metal platform
-
-// mooveGomba() 
-
 }
 animate()
 
@@ -860,26 +444,6 @@ animate()
 // setTimeout( function() {
 // clearInterval(loading)
 // }, 30000)
-
-
-
-
-
-// // COLLISION WATER
-//     function collisionWater() {
-//     waters.forEach((thewater02) => {
-//         if (
-//             player.position.y + player.height <= thewater02.position.y + thewater02.width + 30 &&
-//             player.position.y + player.height + player.velocity.y >= thewater02.position.y  &&
-//             player.position.x + player.width >= thewater02.position.x   &&  // ajustement des bords coté gauche 
-//             player.position.x + player.width <= thewater02.position.x + thewater02.width +25   // ajustement des bords coté droit 
-//         ) {
-//             player.currentSprite = player.sprites.drown.right
-//             player.currentCropWidth = player.sprites.drown.cropWidth
-//             player.width = player.sprites.drown.width
-//             player.velocity.y = +10
-//         }
-//     })
 
 
 

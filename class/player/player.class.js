@@ -1,6 +1,7 @@
+import { gravity } from "../../app.js";
 import { canvasParams } from "../../canvas.js";
 
-const gravity = 0.5
+
 
 function createSpriteSRight() {
     const spriteStandRight = new Image()
@@ -131,10 +132,7 @@ export class Player {
            this.currentSprite === this.sprites.drown.right
            ) 
             this.frames = 0
-        // else if (this.frames > 1 &&
-        //     this.currentSprite === this.sprites.jump.right
-        //     )
-        //     this.frames = 0
+
         this.draw()
         this.position.y += this.velocity.y,  
             this.position.x += this.velocity.x
@@ -142,6 +140,7 @@ export class Player {
         if (this.position.y + this.height + this.velocity.y <= canvas.height)
             this.velocity.y += gravity
     }
+    
     drawDebugCollisionSquare() {
         const ctx = canvasParams.c;
         ctx.beginPath();
