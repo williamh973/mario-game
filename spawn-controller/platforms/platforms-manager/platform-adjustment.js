@@ -5,6 +5,7 @@ export let platformList202x56 = [];
 export let platformList500x43 = [];
 export let platformList630x217 = [];
 export let platformList158x78 = [];
+export let platformList105x73 = [];
 
 
 

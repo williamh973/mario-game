@@ -1,7 +1,7 @@
 import { canvasParams } from "./canvas.js";
 import { player } from "./keyboard.js";
 import { spawnAreaLevelOneScrollOffsetXMoreThan5_900, spawnAreaLevelOneScrollOffsetX_0 } from "./areas/area-level-one/area.js"; 
-import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, platformList158x78, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, platformList158x78, platformList105x73, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
 import { genericObjectList, skyList } from "./spawn-controller/generic/generic-manager/generic-place.js";
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
@@ -167,6 +167,10 @@ function animate() {
     
     bigCloudList.forEach((cloud) => {
         cloud.draw()
+    })
+
+    platformList105x73.forEach((platform) => {
+        platform.draw()
     })
 
     platformList158x78.forEach((platform) => {

@@ -1,6 +1,6 @@
 import { Platform } from "./platforms.class.js";
 import {  thePlatform494x72, theplateform84x72, theplateform202x56, thePlatform150x72, theplateform500x43, theplateform630x217, theplateform158x78 } from "./platform-assets.js";
-import { platformList494x72, platformList150x72, platformList84x72, platformList202x56, platformList500x43, platformList630x217, platformList158x78 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { platformList494x72, platformList150x72, platformList84x72, platformList202x56, platformList500x43, platformList630x217, platformList158x78, platformList105x73 } from "../../platforms/platforms-manager/platform-adjustment.js";
 
 
 export function dispachGrassPlatforms494x72() {
@@ -179,5 +179,28 @@ export function dispachGrassPlatforms202x56OnPlatform630x217() {
     
             }
             resolve();
+        })
+    };
+
+
+    export function dispachGreenPlatforms105x73() {
+        return new Promise((resolve) => {
+            for (let i = 0; i < 1; i++) {
+                let platform105x73 = new Platform({
+                    x: 0,
+                    y: 0,
+                    image: theplateformGreenSmall,
+                    scale : 1
+                  })
+                
+                    platformList105x73.push(platform105x73);
+                
+                    const platformIndex = platformList158x78.length - 1;
+                    const platform = platformList158x78[platformIndex];  
+            
+                    platform105x73.placePlatform105x73OnPlatformList158x78(platform);
+            }
+    console.log(platform105x73);
+        resolve();
         })
     };

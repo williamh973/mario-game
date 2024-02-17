@@ -111,4 +111,4 @@ export let thePlatform150x72 = createPlatformSmallTall("../../images/platformSma
 export let thePlatformSmall = createPlatformSmall("../../images/platformSmall.png") 
 
 export let theplateformGreen = createPlateformGreen("../../images/plateform-green.png")
-export let theplateformGreenSmall = createPlateformGreenSmall("../../images/plateform-green02.png")
+export let theplateformGreenSmall = createPlateformGreenSmall("../../images/plateform-green-small.png")

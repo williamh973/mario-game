@@ -1,5 +1,5 @@
 import { player } from "../keyboard.js";
-import { platformList494x72, platformList84x72, platformList150x72, platformList202x56, platformList500x43, platformList630x217, platformList158x78 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
+import { platformList494x72, platformList84x72, platformList150x72, platformList202x56, platformList500x43, platformList630x217, platformList158x78, platformList105x73 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
 import { genericObjectList } from "../spawn-controller/generic/generic-manager/generic-place.js";
 import { goldCoinList } from "../spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { redMushroomList } from "../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
@@ -54,6 +54,10 @@ export function getCloserToTheObjects() {
 
     platformList150x72.forEach((createPlatform) => {
         createPlatform.position.x -= player.speed
+     })
+
+     platformList105x73.forEach((createPlatform) => {
+      createPlatform.position.x -= player.speed
      })
 
      platformList158x78.forEach((createPlatform) => {

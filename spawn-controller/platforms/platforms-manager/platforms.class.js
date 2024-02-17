@@ -126,5 +126,10 @@ export class Platform {
         this.position.x = referencePlatform.position.x + referencePlatform.width - this.width ;
         this.position.y = referencePlatform.position.y - this.height;
     }
+
+    placePlatform105x73OnPlatformList158x78(referencePlatform) {
+        this.position.x = referencePlatform.position.x + referencePlatform.width - this.width ;
+        this.position.y = referencePlatform.position.y - this.height;
+    }
 };
 
