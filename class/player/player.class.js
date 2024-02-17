@@ -1,64 +1,9 @@
 import { gravity } from "../../app.js";
 import { canvasParams } from "../../canvas.js";
+import { createSpriteDrown, createSpriteJumpLeft, createSpriteJumpRight, createSpriteRunLeft, createSpriteRunRight, createSpriteSLeft, createSpriteSRight, marioDrowns, marioJumpLeft, marioJumpRight, marioRunLeft, marioRunRight, marioStandLeft, marioStandRight } from "./player-assets.js";
 
 
 
-function createSpriteSRight() {
-    const spriteStandRight = new Image()
-    spriteStandRight.src = "../../images/marioSpriteStandRight.png"
-    return spriteStandRight
-}
-let marioStandRight = createSpriteSRight("../../images/marioSpriteStandRight.png")
-
-function createSpriteSLeft() {
-    const spriteStandLeft = new Image()
-    spriteStandLeft.src = "../../images/marioSpriteStandLeft.png"
-    return spriteStandLeft
-}
-let marioStandLeft = createSpriteSRight("../../images/marioSpriteStandLeft.png")
-
-
-function createSpriteRunRight() {
-    const spriteRunRight = new Image()
-    spriteRunRight.src = "../../images/marioSpriteRunRight.png"
-    return spriteRunRight
-}
-let marioRunRight = createSpriteRunRight("../../images/marioSpriteRunRight.png")
-
-
-function createSpriteRunLeft() {
-    const spriteRunLeft = new Image()
-    spriteRunLeft.src = "../../images/marioSpriteRunLeft.png"
-    return spriteRunLeft
-}
-let marioRunLeft = createSpriteRunLeft("../../images/marioSpriteRunLeft.png")
-
-
-function createSpriteDrown() {
-    const marioDrowns = new Image()
-    marioDrowns.src = "../../images/SpriteDrown.png"
-    return marioDrowns
-}
-let marioDrowns = createSpriteDrown("../../images/SpriteDrown.png")
-
-
-function createSpriteJumpRight() {
-    const marioJumpRight = new Image()
-    marioJumpRight.src = "../../images/SpriteJumpRight.png"
-    return marioJumpRight
-}
-let marioJumpRight = createSpriteJumpRight("../../images/SpriteJumpRight.png")
-
-
-function createSpriteJumpLeft() {
-    const marioJumpLeft = new Image()
-    marioJumpRight.src = "../../images/SpriteJumpLeft.png"
-    return marioJumpLeft
-}
-let marioJumpLeft = createSpriteJumpLeft("../../images/SpriteJumpRight.png")
-
-
- 
 export class Player {
     constructor() {
         this.speed = 7  
@@ -101,7 +46,9 @@ export class Player {
         }
         this.currentSprite = this.sprites.stand.right
         this.currentCropWidth = 40
+        this.scale = 1
     }
+
     draw() {
         canvasParams.c.drawImage(
             this.currentSprite,
@@ -111,10 +58,11 @@ export class Player {
             38,
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            this.width * this.scale,
+            this.height * this.scale
         )
     }
+
     update() {
         this.frames++
         if (
@@ -150,8 +98,8 @@ export class Player {
         ctx.rect(
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            this.width * this.scale,
+            this.height * this.scale
         );
 
         ctx.stroke();

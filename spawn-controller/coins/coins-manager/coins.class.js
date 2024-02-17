@@ -10,7 +10,6 @@ export class Coin {
         }
         this.width = 40   
         this.height = 40 
-        this.isTaken = false
         this.image = createBountySprite(bountyStand)
         this.sprites = {
             stand: {
@@ -25,8 +24,8 @@ export class Coin {
         this.framesElapsed = 0
         this.framesHold = 2
     }
+
     draw() {
-        if (!this.isTaken) {
             canvasParams.c.drawImage(
                 this.currentSprite,
                 this.framesCurrent * (
@@ -40,8 +39,8 @@ export class Coin {
                 (this.currentSprite.width / this.framesMax ) * this.scale,
                 this.currentSprite.height * this.scale
                 )
-        }
     }
+
     animateFrames() {
         this.framesElapsed++
      
@@ -53,13 +52,12 @@ export class Coin {
            }  
         }
      }
-     take() {
-        this.isTaken = true;
-    }
+    
     update() {
         this.draw()
         this.animateFrames()
     }
+
     overlapsWith(platform) {
         return (
             this.position.x < platform.position.x + platform.width &&
@@ -68,6 +66,7 @@ export class Coin {
             this.position.y + this.height > platform.position.y
         );
      }
+
      placeGoldCoinAwayFromPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
         let randomNumberX = Math.floor(randomFactorX * (500)) + 40;
@@ -75,26 +74,50 @@ export class Coin {
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height;
       }
+      
       placeGoldCoinAwayFromPlatform84x72(referencePlatform) {
         this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
         this.position.y = referencePlatform.position.y -  this.height;
       }
+      
       placeGoldCoinAwayFromPlatform150x72(referencePlatform) {
         this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
         this.position.y = referencePlatform.position.y -  this.height;
       }
+      
       placeGoldCoinAwayFromPlatform202x56(referencePlatform) {
         this.position.x = referencePlatform.position.x + referencePlatform.width / 3;
         this.position.y = referencePlatform.position.y -  this.height;
       }
+      
       placeGoldCoinAwayFromGoldCoins(referencePlatform) {
         this.position.x = referencePlatform.position.x + this.width;
         this.position.y = referencePlatform.position.y;
       }
+      
       placeGoldCoinAwayFromBlueMushroom(referenceBlueMushroom) {
         this.position.x = referenceBlueMushroom.position.x + referenceBlueMushroom.width + 30;
       }
+      
       placeGoldCoinAwayFromRedMushroom(referenceRedMushroom) {
         this.position.x = referenceRedMushroom.position.x + this.width + 20;
       }
+
+      
+    drawDebugCollisionSquare() {
+      const ctx = canvasParams.c;
+      ctx.beginPath();
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 1;
+
+      ctx.rect(
+          this.position.x,
+          this.position.y,
+          this.width * this.scale,
+          this.height * this.scale
+      );
+
+      ctx.stroke();
+      ctx.closePath();
+  }
     };

@@ -2,7 +2,6 @@ import { canvasParams } from "../../../canvas.js";
 
 
 
-
 export class Platform {
     constructor({ x, y, image, scale }) {
         this.position = {
@@ -120,6 +119,11 @@ export class Platform {
       
     placePlatform202x56OnPlatform630x217(referencePlatform) {
         this.position.x = referencePlatform.position.x - 3;
+        this.position.y = referencePlatform.position.y - this.height;
+    }
+
+    placePlatform158x78OnLastPlatformList494x72(referencePlatform) {
+        this.position.x = referencePlatform.position.x + referencePlatform.width - this.width ;
         this.position.y = referencePlatform.position.y - this.height;
     }
 };

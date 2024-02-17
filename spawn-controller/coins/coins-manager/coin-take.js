@@ -5,13 +5,14 @@ import { addScore } from "../../../player-actions/player-interactions.js";
 
 export function takeCoin() {
     goldCoinList.forEach((coin) => {
-        if (
-            player.position.y + player.height <= coin.position.y + 60 &&
-            player.position.y + player.height + player.velocity.y >= coin.position.y &&
-            player.position.x + player.width >= coin.position.x + 25 && 
-            player.position.x + player.width <= coin.position.x + coin.width + 25  
-        ) {
-            coin.position.y = coin.position.y - 500
+        if (            
+            player.position.y + player.height >= coin.position.y &&
+            player.position.y <= coin.position.y + coin.height &&
+            player.position.x + player.width >= coin.position.x + 25 &&
+            player.position.x <= coin.position.x + coin.width - 25
+         )
+        {
+            coin.position.y = coin.position.y - 500;
             showParticlesCoin();
             addScore();
         }

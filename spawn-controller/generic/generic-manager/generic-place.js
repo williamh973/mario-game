@@ -2,7 +2,7 @@ import { theHills, theSky, GenericObject } from "./generic.class.js";
 
 
 export let genericObjectList = [];
-
+export let skyList = [];
 
 export async function spawnGenericObject() {
     return new Promise((resolve) => {
@@ -22,7 +22,7 @@ function spawnSky() {
         image: theSky
     });
   
-    genericObjectList.push(sky);
+    skyList.push(sky);
 };
 
 

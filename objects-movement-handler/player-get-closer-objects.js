@@ -1,5 +1,5 @@
 import { player } from "../keyboard.js";
-import { platformList494x72, platformList84x72, platformList150x72, platformList202x56, platformList500x43, platformList630x217 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
+import { platformList494x72, platformList84x72, platformList150x72, platformList202x56, platformList500x43, platformList630x217, platformList158x78 } from "../spawn-controller/platforms/platforms-manager/platform-adjustment.js"; 
 import { genericObjectList } from "../spawn-controller/generic/generic-manager/generic-place.js";
 import { goldCoinList } from "../spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { redMushroomList } from "../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
@@ -13,10 +13,20 @@ import { treeList } from "../spawn-controller/trees/tree-manager/tree-dispach.js
 import { waterfallList } from "../spawn-controller/waterfall/waterfall-manager/waterfall-place.js";
 import { bridgeList } from "../spawn-controller/bridges/bridge-manager/bridge-place.js";
 import { goombasList } from "../spawn-controller/gombas/gombas-manager/gombas-dispach.js";
+import { fenceList } from "../spawn-controller/fences/fences-dispach.js";
+import { houseList } from "../spawn-controller/houses/houses-dispach.js";
 
 
 
 export function getCloserToTheObjects() {
+
+   houseList.forEach((house) => {
+      house.position.x -= player.speed
+   })
+
+   fenceList.forEach((fence) => {
+      fence.position.x -= player.speed
+   })
 
     treeList.forEach((tree) => {
         tree.position.x -= player.speed
@@ -44,6 +54,10 @@ export function getCloserToTheObjects() {
 
     platformList150x72.forEach((createPlatform) => {
         createPlatform.position.x -= player.speed
+     })
+
+     platformList158x78.forEach((createPlatform) => {
+      createPlatform.position.x -= player.speed
      })
 
      platformList202x56.forEach((createPlatform) => {

@@ -6,7 +6,7 @@ function adjustWaterfallPositionsRelativeToOtherWaterfall() {
         for (let i = 0; i < waterfallList.length; i++) {
             for (let j = i + 1; j < waterfallList.length; j++) {
                 if (waterfallList[i].overlapsWith(waterfallList[j])) {
-                    console.log("overlaps waterfall with other waterfall");
+                    // console.log("overlaps waterfall with other waterfall");
                     waterfallList[j].placeWaterfallAwayFromOtherWaterfall(waterfallList[i]);
                 }
             }

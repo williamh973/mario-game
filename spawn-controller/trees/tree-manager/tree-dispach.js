@@ -35,7 +35,7 @@ function dispachTree(tree) {
 
     for (let i = 0; i < treeList.length; i++) {
         if (tree.overlapsWith(treeList[i])) {
-            console.log("overlaps tree with other tree");
+            // console.log("overlaps tree with other tree");
             tree.placeTreeOnRandomPlatform500x43(randomPlatform);
         }
         

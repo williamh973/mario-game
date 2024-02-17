@@ -6,12 +6,12 @@ import { blueMushroomList } from "./blueMushrooms-dispach.js";
 
 export function collideOnTheLeftOrRightBlueMushroom() {
     blueMushroomList.forEach((blueMushroom) => {
-        if ((            
+        if (            
             player.position.y + player.height >= blueMushroom.position.y &&
             player.position.y <= blueMushroom.position.y + blueMushroom.height &&
             player.position.x + player.width >= blueMushroom.position.x &&
             player.position.x <= blueMushroom.position.x + blueMushroom.width
-         ))
+         )
         {
             respawnPlayer(blueMushroom);
         }

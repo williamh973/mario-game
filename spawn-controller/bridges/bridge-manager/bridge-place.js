@@ -21,7 +21,7 @@ export function placeBridgeOnPlatform630x217() {
             )
 
             bridgeList.push(bridgeLeft, bridgeRight)
-            console.log(bridgeList);
+            // console.log(bridgeList);
             const indexPlatform630x217 = platformList630x217.length - 1;
             const platform630x217 = platformList630x217[indexPlatform630x217];  
             

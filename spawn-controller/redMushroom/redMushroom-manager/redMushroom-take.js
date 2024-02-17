@@ -6,14 +6,23 @@ import { redMushroomList } from "./redMushroom-dispach.js";
 export function takeRedMushroom() {
     redMushroomList.forEach((redMushroom) => {
         if (
-            player.position.y + player.height <= redMushroom.position.y + 60 &&
-            player.position.y + player.height + player.velocity.y >= redMushroom.position.y &&
-            player.position.x + player.width >= redMushroom.position.x + 25 && 
-            player.position.x + player.width <= redMushroom.position.x + redMushroom.width + 25  
-        ) {
-            redMushroom.position.y = redMushroom.position.y - 500
+            player.position.y + player.height >= redMushroom.position.y &&
+            player.position.y <= redMushroom.position.y + redMushroom.height - 15 &&
+            player.position.x + player.width >= redMushroom.position.x + 30 &&
+            player.position.x <= redMushroom.position.x + redMushroom.width + 30
+            ) {
+            deleteRedMushroom(redMushroom);
             showParticlesRedMushroom();
             addLife();
         }
     }) 
+};
+
+
+function deleteRedMushroom(redMushroom) {
+    const foundIndex = redMushroomList.indexOf(redMushroom);
+            
+    if (foundIndex !== -1) {
+        redMushroomList.splice(foundIndex, 1);
+    }
 };

@@ -6,7 +6,7 @@ function adjustBridgePositionsRelativeToOtherBridge() {
         for (let i = 0; i < bridgeList.length; i++) {
             for (let j = i + 1; j < bridgeList.length; j++) {
                 if (bridgeList[i].overlapsWith(bridgeList[j])) {
-                    console.log("overlaps bridge with other bridge");
+                    // console.log("overlaps bridge with other bridge");
                     bridgeList[j].placeBridgeAwayFromOtherBridge(bridgeList[i]);
                 }
             }

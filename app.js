@@ -1,12 +1,12 @@
 import { canvasParams } from "./canvas.js";
 import { player } from "./keyboard.js";
-import { spawnAreaLevelOne, spawnAreaLevelTwo } from "./areas/area-level-one/area.js"; 
-import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
-import { genericObjectList } from "./spawn-controller/generic/generic-manager/generic-place.js";
+import { spawnAreaLevelOneScrollOffsetXMoreThan5_900, spawnAreaLevelOneScrollOffsetX_0 } from "./areas/area-level-one/area.js"; 
+import { platformList494x72, platformList202x56, platformList84x72, platformList150x72, platformList500x43, platformList630x217, platformList158x78, } from "./spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { genericObjectList, skyList } from "./spawn-controller/generic/generic-manager/generic-place.js";
 import { takeCoin } from "./spawn-controller/coins/coins-manager/coin-take.js";
 import { goldCoinList } from "./spawn-controller/coins/coins-manager/coins-adjustment.js";
 import { particulesCoinList } from "./spawn-controller/particles/particles-manager/particle-coin.js";
-import { scrollOffsetX, scrollOffsetY, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
+import { scrollOffsetX, objectMovements, canvasTrackingOffsetX, overTheCanvasLimit } from "./objects-movement-handler/movementHandler.js";
 import { takeRedMushroom } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-take.js";
 import { particulesRedMushroomList } from "./spawn-controller/particles/particles-manager/particle-redMushroom.js";
 import { redMushroomList } from "./spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
@@ -23,6 +23,8 @@ import { treeList } from "./spawn-controller/trees/tree-manager/tree-dispach.js"
 import { goombasList } from "./spawn-controller/gombas/gombas-manager/gombas-dispach.js";
 import { collideOnBelowGoombas, collideOnTheLeftOrRightGoombas, collideOnTheTopGoombas } from "./spawn-controller/gombas/gombas-manager/goombas-collide.js";
 import { particulesGoombaList } from "./spawn-controller/particles/particles-manager/particle-goomba.js";
+import { fenceList } from "./spawn-controller/fences/fences-dispach.js";
+import { houseList } from "./spawn-controller/houses/houses-dispach.js";
 
  
 
@@ -85,8 +87,6 @@ import { particulesGoombaList } from "./spawn-controller/particles/particles-man
 //     // plateformBigSteel03 = new PlatformBigSteel03();
 //     // plateformBigSteel04 = new PlatformBigSteel04();
 
-//     // waterfall = new Waterfall();
-//     // waterfall02 = new Waterfall02();
 
 //     scoreTag = document.getElementById('score');
 //     lifeTag = document.getElementById('vie');
@@ -136,19 +136,26 @@ let isAreaLevelTwoAdded = false;
 
 function animate() {
     requestAnimationFrame(animate)
-    canvasParams.c.fillStyle = ' white '
+    canvasParams.c.fillStyle = 'white'
     canvasParams.c.fillRect(0, 0, canvasParams.canvas.width, canvasParams.canvas.height) 
     
+
     if (!isAreaLevelOneAdded && scrollOffsetX === 0) {
-        spawnAreaLevelOne(isAreaLevelOneAdded);
+        spawnAreaLevelOneScrollOffsetX_0(isAreaLevelOneAdded);
         isAreaLevelOneAdded = true;
     }
+    // window.location.reload();
 // console.log(scrollOffsetX); 
-    // if (!isAreaLevelTwoAdded && scrollOffsetX >= 1) {
-    //     spawnAreaLevelTwo(isAreaLevelTwoAdded);
-    //     isAreaLevelTwoAdded = true;
-    // }
+    if (!isAreaLevelTwoAdded && scrollOffsetX >= 5900) {
+        spawnAreaLevelOneScrollOffsetXMoreThan5_900(isAreaLevelTwoAdded);
+        isAreaLevelTwoAdded = true;
+    }
 
+    skyList.forEach((sky) => {
+        sky.draw()
+    })
+
+    // console.log(scrollOffsetX); 5900
     
     genericObjectList.forEach((genericObject) => {
         genericObject.draw()
@@ -161,7 +168,11 @@ function animate() {
     bigCloudList.forEach((cloud) => {
         cloud.draw()
     })
-    
+
+    platformList158x78.forEach((platform) => {
+        platform.draw()
+    })
+
     platformList202x56.forEach((platform) => {
         platform.draw()
     })
@@ -169,8 +180,7 @@ function animate() {
     platformList494x72.forEach((platform) => {
         platform.draw()
     })
-
-    
+  
     platformList150x72.forEach((platform) => {
         platform.draw()
     })
@@ -186,7 +196,12 @@ function animate() {
     platformList630x217.forEach((platform) => {
         platform.draw()
     })
-    
+
+    houseList.forEach((house) => {
+        house.draw()
+        house.drawDebugCollisionSquare()
+    })
+
     bridgeList.forEach((bridge) => {
         bridge.draw()
     })
@@ -195,13 +210,13 @@ function animate() {
         waterfall.update()
     })
 
+    fenceList.forEach((fence) => {
+        fence.draw()
+    })
     
     treeList.forEach((tree) => {
         tree.draw()
-        // tree.drawDebugCollisionSquare()
     })
-
-    // console.log(scrollOffsetX);
     
     bushList120x100.forEach((bush) => {
         bush.draw()
@@ -210,10 +225,9 @@ function animate() {
 
 
     goldCoinList.forEach((coin) => {
-        if (!coin.isTaken) {
             coin.update()
-        }
-    })
+            // coin.drawDebugCollisionSquare()
+        })
 
     redMushroomList.forEach((redMushroom) => {
         if (!redMushroom.isTaken) {
@@ -221,6 +235,7 @@ function animate() {
         }
     })
     
+
     blueMushroomList.forEach((blueMushroom) => {
             blueMushroom.update()
             // blueMushroom.drawDebugCollisionSquare();
@@ -277,72 +292,10 @@ function animate() {
         cloud.position.x -= player.speed / 50
      })
 
-    // waters.forEach((water) => {
-        //     water.draw()
-    // // })
-
-    // rocks.forEach((theRock) => {
-    //     theRock.draw()
-    // })
-
-    // crates.forEach((theCrate) => {
-    //     theCrate.draw()
-    // })
-
-    // crates.forEach((thecrateSmall) => {
-    //     thecrateSmall.draw()
-    // })
-
-
-    // signs.forEach((theSign) => {
-    //     theSign.draw()
-    // })
-
-    // houses.forEach((theHouse01) => {
-    //     theHouse01.draw()
-    // })
-
-    // houses.forEach((theHouse02) => {
-    //     theHouse02.draw()
-    // })
-
-    // houses.forEach((theHouse03) => {
-    //     theHouse03.draw()
-    // })
-
-    // leaves.forEach((theLeaves) => {
-    //     theLeaves.draw()
-    // })
-
-    // bushs.forEach((theBush) => {
-    //     theBush.draw()
-    // })
-
-    // fences.forEach((theFence) => {
-    //     theFence.draw()
-    // })
-
-    // barrels.forEach((theBarrel) => {
-    //     theBarrel.draw()
-    // })
-
-    // bridges.forEach((theBridgeLeft) => {
-    //     theBridgeLeft.draw()
-    // })
-  
-    // flags.forEach((flag) => {
-    //     flag.draw()
-    // })
-
-
+ 
 canvasTrackingOffsetX();
 objectMovements()
 overTheCanvasLimit();
-
-
-
-
-
 
  
 takeCoin();
@@ -444,43 +397,6 @@ animate()
 // setTimeout( function() {
 // clearInterval(loading)
 // }, 30000)
-
-
-
-// // disappearance and reappearance of metal platforms. 
-// function DisepearSteelPlatform() {
-
-// if(scrollOffset > 14637)
-// counterDiseapearBigS++
-
-// if (counterDiseapearBigS >= 300) {
-//             counterDiseapearBigS = 0
-//         }
-//         // Big steel platform 01
-//         if( counterDiseapearBigS >= 150) { 
-//             plateformBigSteel.position.y = -400 
-//         } else{   
-//             plateformBigSteel.position.y = 400 
-//         }
-//          // Big steel platform 02
-//          if( counterDiseapearBigS >= 150) { 
-//             plateformBigSteel02.position.y = -400 
-//         } else{   
-//             plateformBigSteel02.position.y = 490 
-//         }
-//          // Big steel platform 03
-//          if( counterDiseapearBigS >= 150) { 
-//             plateformBigSteel03.position.y = -400 
-//         } else{   
-//             plateformBigSteel03.position.y = 315 
-//         }
-//   // Big steel platform 04
-//   if( counterDiseapearBigS >= 150) { 
-//     plateformBigSteel04.position.y = -400 
-// } else{   
-//     plateformBigSteel04.position.y = 470 
-// }
-//     }
 
 
 canvasParams.c.imageSmoothingEnabled = true
