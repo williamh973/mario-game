@@ -1,6 +1,6 @@
 import { interfaceVariables } from "../../interface/interface.js";
 import { isRightDirection, player } from "../../keyboard.js";
-import { allPlatformList } from "../platforms/platforms-manager/platforms-list.js";
+import { substractBomb } from "../../player-actions/player-interactions.js";
 import { Bomb } from "./bomb.class.js";
 
 export let bombList = [];
@@ -12,14 +12,13 @@ export function spawnBomb() {
     if (interfaceVariables.bombs > 0) {
         bombPosition = { x: player.position.x, y: player.position.y };
         bomb = new Bomb(bombPosition);
-        console.log(bomb.position);
+        
         if (!isRightDirection) {
             bomb.reverseDirection();
         }
         bombList.push(bomb);
         
-        interfaceVariables.bombs -= 1;
-        interfaceVariables.bombsTag.innerText = "Bombs: " + interfaceVariables.bombs;
+        substractBomb();
     }
 };
 

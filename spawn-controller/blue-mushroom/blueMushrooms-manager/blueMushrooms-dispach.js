@@ -4,7 +4,7 @@ import { interfaceVariables } from "../../../interface/interface.js";
 
 
 export let blueMushroomList = [];
-
+export let blueMushroom = new BlueMushroom();
 
 export async function dispachAllBlueMushrooms() {
     return new Promise((resolve) => {

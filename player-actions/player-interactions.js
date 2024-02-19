@@ -21,9 +21,15 @@ export function loseLife() {
     interfaceVariables.lifeTag.innerText = "Life" + " : " + interfaceVariables.life;
 }
 
+export function substractEnemy() {
+    interfaceVariables.enemies -= 1;
+    interfaceVariables.enemiesTag.innerText = "Enemies : " + interfaceVariables.enemies;
+}
 
-
-
+export function substractBomb() {
+    interfaceVariables.bombs -= 1;
+    interfaceVariables.bombsTag.innerText = "Bombs: " + interfaceVariables.bombs;
+}
 
 
 

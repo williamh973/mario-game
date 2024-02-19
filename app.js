@@ -23,7 +23,7 @@ import { houseList } from "./spawn-controller/houses/houses-dispach.js";
 import { bombList } from "./spawn-controller/bomb/bomb-spawn.js";
 import { allPlatformList } from "./spawn-controller/platforms/platforms-manager/platforms-list.js";
 import { allParticleList } from "./spawn-controller/particles/particles-manager/particle-list.js";
-import { bombCollideOnPlatforms } from "./spawn-controller/bomb/bomb-collide.js";
+import { bombCollideOnBlueMushrooms, bombCollideOnPlatforms } from "./spawn-controller/bomb/bomb-collide.js";
  
 
 
@@ -202,7 +202,7 @@ function animate() {
     
     bombList.forEach((bomb) => {
        bomb.update()
-       bomb.drawDebugCollisionSquare()
+    //    bomb.drawDebugCollisionSquare()
     })
     
     canvasTrackingOffsetX();
@@ -221,7 +221,7 @@ collideOnTheLeftOrRightGoombas();
 collideOnTheTopGoombas();
 collideOnBelowGoombas();
 bombCollideOnPlatforms();
-
+bombCollideOnBlueMushrooms()
 
 // //  if the timer reaches zero, the game is lost and resets.
 // if(time === 0) {

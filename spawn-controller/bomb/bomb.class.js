@@ -44,12 +44,12 @@ export class Bomb {
         this.velocity.x = -5
     }
 
-    bombOnPlatform(currentPlatform) {
+    collide(otherObject) {
         return (
-            this.position.y + this.height >= currentPlatform.position.y &&
-            this.position.y <= currentPlatform.position.y + currentPlatform.height &&
-            this.position.x + this.width >= currentPlatform.position.x &&
-            this.position.x <= currentPlatform.position.x + currentPlatform.width
+            this.position.y + this.height >= otherObject.position.y &&
+            this.position.y <= otherObject.position.y + otherObject.height &&
+            this.position.x + this.width >= otherObject.position.x &&
+            this.position.x <= otherObject.position.x + otherObject.width
         );
     };
 
