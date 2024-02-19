@@ -6,7 +6,7 @@ export let platformList500x43 = [];
 export let platformList630x217 = [];
 export let platformList158x78 = [];
 export let platformList105x73 = [];
-
+export let platformList89x180 = [];
 
 
 export function adjustGrassPlatform494x72Positions(platformList494x72) {
@@ -181,8 +181,8 @@ export async function ajustAllPlatforms(platformList494x72, platformList84x72, p
 };
 
 
-export async function checkFiveTimesIfPlatformsAreAdjusted() {
-    for (let i = 0; i < 5; i++) {
+export async function checkIfPlatformsAdjusted() {
+    for (let i = 0; i < 6; i++) {
       await ajustAllPlatforms(platformList494x72, platformList84x72, platformList150x72, platformList202x56, platformList500x43, platformList630x217);
     }
 

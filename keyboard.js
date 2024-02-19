@@ -3,14 +3,17 @@ import { Player } from "./class/player/player.class.js";
 
 export let player = new Player();
 export let isPlayerCanMove = true;
+export let isRightDirection = false;
+export let isLeftDirection = false;
 
 export let keys = {
-    ArrowLeft: { pressed: false },
-    ArrowRight: { pressed: false },
-    ArrowUp: { pressed: false },
-    q: { pressed: false },
-    d: { pressed: false },
-    z: { pressed: false }
+    ArrowLeft : { pressed: false },
+    ArrowRight : { pressed: false },
+    ArrowUp :  { pressed: false },
+    q : { pressed: false },
+    d : { pressed: false },
+    z : { pressed: false },
+    space : { pressed: false }
 };
 
 
@@ -48,11 +51,18 @@ window.addEventListener('keydown', (event) => {
 
             break
             case ' ':
+                keys.space.pressed = true;
+                if(event.repeat) {
+                    return 
+                }
+                player.shoot()
             break
             // -----------------------------------------------------------------
             case 'q':
                 if (isPlayerCanMove) {   
                     keys.q.pressed = true;
+                    isLeftDirection = true;
+                    isRightDirection = false;
                     player.currentSprite = player.sprites.run.left
                     player.currentCropWidth = player.sprites.run.cropWidth
                     player.width = player.sprites.run.width
@@ -61,22 +71,22 @@ window.addEventListener('keydown', (event) => {
             case 'd':
                 if (isPlayerCanMove) {
                     keys.d.pressed = true;
+                    isLeftDirection = false;
+                    isRightDirection = true;
                     player.currentSprite = player.sprites.run.right
                     player.currentCropWidth = player.sprites.run.cropWidth
-                    player.width = player.sprites.run.width
-                    
+                    player.width = player.sprites.run.width                   
                 }
                 break
             case 'z':
                 keys.z.pressed = true;
-                // player.frames = 1
-                // player.currentSprite.src = "./images/SpriteJumpRight.png"
-                // player.currentCropWidth = player.sprites.jump.cropWidth
-                // player.width = player.sprites.jump.width
+
                 if(event.repeat) {
                     return 
                 }
+
                 counterKeydown++
+
                 if( counterKeydown === 1) {
                     keys.z.pressed = true;
                     player.velocity.y -= 12
@@ -84,6 +94,7 @@ window.addEventListener('keydown', (event) => {
                         counterKeydown = 0
                        }, 600); 
                     }
+                    
                 break
             case 's':
     
@@ -115,6 +126,9 @@ window.addEventListener('keyup', (event) => {
         case 'ArrowDown':
 
             break
+            case ' ':
+                keys.space.pressed = false;
+            break
             // -----------------------------------------------------
             case 'q':
                 keys.q.pressed = false;
@@ -131,12 +145,6 @@ window.addEventListener('keyup', (event) => {
     
             case 'z':
                 keys.z.pressed = false;
-                // if (condition) {
-                    
-                // }
-                // player.currentSprite = player.sprites.stand.right
-                // player.currentCropWidth = player.sprites.stand.cropWidth
-                // player.width = player.sprites.stand.width
                 break
             case 's':
     

@@ -1,5 +1,6 @@
 import { gravity } from "../../app.js";
 import { canvasParams } from "../../canvas.js";
+import { spawnBomb } from "../../spawn-controller/bomb/bomb-spawn.js";
 import { createSpriteDrown, createSpriteJumpLeft, createSpriteJumpRight, createSpriteRunLeft, createSpriteRunRight, createSpriteSLeft, createSpriteSRight, marioDrowns, marioJumpLeft, marioJumpRight, marioRunLeft, marioRunRight, marioStandLeft, marioStandRight } from "./player-assets.js";
 
 
@@ -8,7 +9,7 @@ export class Player {
     constructor() {
         this.speed = 7  
         this.position = {  
-            x: 380, 
+            x: 30, 
             y: 100 
         }
         this.velocity = {  
@@ -82,11 +83,17 @@ export class Player {
             this.frames = 0
 
         this.draw()
+
         this.position.y += this.velocity.y,  
-            this.position.x += this.velocity.x
+        this.position.x += this.velocity.x
 
         if (this.position.y + this.height + this.velocity.y <= canvas.height)
             this.velocity.y += gravity
+    }
+
+    shoot() {
+        spawnBomb();
+
     }
     
     drawDebugCollisionSquare() {

@@ -1,7 +1,7 @@
 import { player } from "../../../keyboard.js";
 import { Particle } from "./particle-class.js";
+import { particulesCoinList } from "./particle-list.js";
 
-export let particulesCoinList = [];
 
 export function showParticlesCoin() {
 

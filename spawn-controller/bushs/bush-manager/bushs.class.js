@@ -10,7 +10,7 @@ export class Bush {
         this.image = image
         this.width = image.width
         this.height = image.height
-        this.scale = 0.45
+        this.scale = 0.65
     }
     draw() {
         canvasParams.c.drawImage(
@@ -24,18 +24,18 @@ export class Bush {
 
     placeBushOnRandomPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width / 1.5));
+        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - 50) + 50);
     
         this.position.x = referencePlatform.position.x + randomNumberX;
-        this.position.y = referencePlatform.position.y - this.height + 57;
+        this.position.y = referencePlatform.position.y - this.height + 40;
     }
     
     placeBushOnRandomPlatform202x56(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (50));
+        let randomNumberX = Math.floor(randomFactorX * (50) + 20);
     
         this.position.x = referencePlatform.position.x + randomNumberX;
-        this.position.y = referencePlatform.position.y - this.height + 57;
+        this.position.y = referencePlatform.position.y - this.height + 40;
     }
 
     overlapsWith(otherObject) {
@@ -59,6 +59,23 @@ export class Bush {
         let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - 20) + 20);
     
         this.position.x = referencePlatform.position.x + randomNumberX;
-        this.position.y = referencePlatform.position.y - this.height + 57;
+        this.position.y = referencePlatform.position.y - this.height + 40;
+    }
+
+    drawDebugCollisionSquare() {
+        const ctx = canvasParams.c;
+        ctx.beginPath();
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 1;
+
+        ctx.rect(
+            this.position.x,
+            this.position.y,
+            this.width * this.scale,
+            this.height * this.scale
+        );
+
+        ctx.stroke();
+        ctx.closePath();
     }
 }

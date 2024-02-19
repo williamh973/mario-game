@@ -1,3 +1,4 @@
+import { interfaceVariables } from "../../../interface/interface.js";
 import { keys, player } from "../../../keyboard.js";
 import { loseLife } from "../../../player-actions/player-interactions.js";
 import { showParticlesGoomba } from "../../particles/particles-manager/particle-goomba.js";
@@ -24,7 +25,7 @@ export function collideOnTheTopGoombas() {
     goombasList.forEach((goomba) => {
         if (
             player.position.y + player.height <= goomba.position.y + 1 &&
-            player.position.y + player.height + player.velocity.y >= goomba.position.y + 1 &&
+            player.position.y + player.height + player.velocity.y >= goomba.position.y &&
             player.position.x + player.width >= goomba.position.x &&
             player.position.x <= goomba.position.x + goomba.width
         ) {
@@ -32,10 +33,9 @@ export function collideOnTheTopGoombas() {
             showParticlesGoomba(goomba);   
             goomba.shooted();
 
-            // setTimeout(() => {
-            //     goombasList.splice(index, 1)
-            //     console.log("goombasList", goombasList);
-            // }, 500);
+            interfaceVariables.enemies -= 1;
+            interfaceVariables.enemiesTag.innerText = "Enemies" + " : " + interfaceVariables.enemies;
+       
         }
     });
 };

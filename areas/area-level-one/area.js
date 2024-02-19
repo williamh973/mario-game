@@ -1,5 +1,5 @@
 import { dispachGrassPlatforms494x72, dispachGrassPlatforms84x72, dispachGrassPlatforms202x56, dispachGrassPlatforms150x72, dispachGrassPlatforms500x43, dispachGrassPlatform630x217, dispachGrassPlatforms202x56OnPlatform630x217, dispachGrassPlatforms158x78 } from "../../spawn-controller/platforms/platforms-manager/platform-dispach.js";
-import { checkFiveTimesIfPlatformsAreAdjusted } from "../../spawn-controller/platforms/platforms-manager/platform-adjustment.js";
+import { checkIfPlatformsAdjusted } from "../../spawn-controller/platforms/platforms-manager/platform-adjustment.js";
 import { dispachAllRedMushroom } from "../../spawn-controller/redMushroom/redMushroom-manager/redMushroom-dispach.js";
 import { dispachRandomGoldCoins } from "../../spawn-controller/coins/coins-manager/coins-dispach.js";
 import { checkFiveTimesIfAllGoldCoinsAreAdjusted } from "../../spawn-controller/coins/coins-manager/coins-adjustment.js";
@@ -18,6 +18,7 @@ import { checkGoombasAreAdjusted } from "../../spawn-controller/gombas/gombas-ma
 import { dispachFence } from "../../spawn-controller/fences/fences-dispach.js";
 import { checkFencesAreAdjusted } from "../../spawn-controller/fences/fences-ajust.js";
 import { dispachHouses } from "../../spawn-controller/houses/houses-dispach.js";
+import { dispachGreenPlatforms105x73, dispachGreenPlatforms89x180 } from "../../spawn-controller/platforms/platforms-manager/platform-green-dispach.js";
 
 
 
@@ -36,7 +37,10 @@ export async function spawnAreaLevelOneScrollOffsetX_0(isAreaLevelOneAdded) {
    await dispachGrassPlatforms202x56OnPlatform630x217();
    await dispachGrassPlatforms500x43();
    await dispachGrassPlatforms158x78();
-   await checkFiveTimesIfPlatformsAreAdjusted();
+   await dispachGreenPlatforms105x73();
+   await dispachGreenPlatforms89x180();
+
+   await checkIfPlatformsAdjusted();
    
    await placeWaterfallOnPlatform630x217();
    await checkIfWaterfallsAreAdjusted();

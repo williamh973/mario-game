@@ -1,5 +1,5 @@
 import { RedMushroom } from "./redMushroom.class.js";
-import { platformList150x72, platformList202x56, platformList494x72, platformList84x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { platformList105x73, platformList150x72, platformList158x78, platformList202x56, platformList494x72, platformList84x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
 
 export let redMushroomList = [];
 
@@ -23,7 +23,7 @@ function spawnRedMushroom() {
 
 function dispachRedMushroom(redMushroom) {
         let randomFactor = Math.random(); 
-        let randomNumber = Math.floor(randomFactor * (400));
+        let randomNumber = Math.floor(randomFactor * (600));
     
         if (randomNumber <= 100) {
             
@@ -64,6 +64,26 @@ function dispachRedMushroom(redMushroom) {
                 const randomPlatform = platformList84x72[randomPlatformIndex]; 
                 
                 redMushroom.placeRedMushroomOnRandomPlatform84x72(randomPlatform);
+            }
+
+        } else if (randomNumber > 400 && randomNumber <= 500) {
+
+            for (let i = 0; i < redMushroomList.length; i++) {
+                
+                const randomPlatformIndex = Math.floor(Math.random() * platformList158x78.length);
+                const randomPlatform = platformList158x78[randomPlatformIndex]; 
+                
+                redMushroom.placeRedMushroomOnRandomPlatform158x78(randomPlatform);
+            }
+
+        } else if (randomNumber > 500 && randomNumber <= 600) {
+
+            for (let i = 0; i < redMushroomList.length; i++) {
+                
+                const randomPlatformIndex = Math.floor(Math.random() * platformList105x73.length);
+                const randomPlatform = platformList105x73[randomPlatformIndex]; 
+                
+                redMushroom.placeRedMushroomOnRandomPlatform105x73(randomPlatform);
             }
 
         }

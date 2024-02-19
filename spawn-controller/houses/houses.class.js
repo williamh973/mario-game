@@ -24,7 +24,7 @@ export class House {
     
     placeHouseOnRandomPlatform494x72(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - this.width - 20) + 20);
+        let randomNumberX = Math.floor(randomFactorX * (100) + 20);
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 38;
@@ -49,14 +49,10 @@ export class House {
 
      placeHouseOnOtherRandomPlatform(referencePlatform) {
         let randomFactorX = Math.random(); 
-        let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - 20) + 20);
+        let randomNumberX = Math.floor(randomFactorX * (100) + 20);
     
         this.position.x = referencePlatform.position.x + randomNumberX;
         this.position.y = referencePlatform.position.y - this.height + 57;
-     }
-
-     placeHouseAwayFromPlatform84x72(referencePlatform) {
-        this.position.x = referencePlatform.position.x + 100
      }
 
     drawDebugCollisionSquare() {

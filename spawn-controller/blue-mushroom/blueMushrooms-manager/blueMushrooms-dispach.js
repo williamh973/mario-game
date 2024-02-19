@@ -1,5 +1,6 @@
 import { BlueMushroom } from "./blue-mushroom.class.js";
 import { platformList150x72, platformList202x56, platformList494x72 } from "../../platforms/platforms-manager/platform-adjustment.js";
+import { interfaceVariables } from "../../../interface/interface.js";
 
 
 export let blueMushroomList = [];
@@ -7,8 +8,10 @@ export let blueMushroomList = [];
 
 export async function dispachAllBlueMushrooms() {
     return new Promise((resolve) => {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 10; i++) {
             spawnBlueMushroom();
+            interfaceVariables.enemies += 1;
+            interfaceVariables.enemiesTag.innerText = "Enemies" + " : " + interfaceVariables.enemies;
         }
         resolve();
     })

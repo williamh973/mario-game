@@ -1,7 +1,5 @@
 import { Particle } from "./particle-class.js";
-
-
-export let particulesGoombaList = [];
+import { particulesGoombaList } from "./particle-list.js";
 
 
 export function showParticlesGoomba(goomba) {

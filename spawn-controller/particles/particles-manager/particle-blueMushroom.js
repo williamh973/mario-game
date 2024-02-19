@@ -1,7 +1,5 @@
 import { Particle } from "./particle-class.js";
-
-
-export let particulesBlueMushroomList = [];
+import { particulesBlueMushroomList } from "./particle-list.js";
 
 
 export function showParticlesBlueMushroom(blueMushroom) {

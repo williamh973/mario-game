@@ -89,7 +89,7 @@ function createPlateformGreen() {
 
 function createPlateformGreenSmall() {
     const plateformGreenS = new Image()
-    plateformGreenS.src = "../../images/plateform-green02.png"
+    plateformGreenS.src = "../../images/plateform-green-small.png"
     return plateformGreenS
 }
 
@@ -110,5 +110,5 @@ export let theplateform202x56 = createPlatform12("../../images/plateform12.png")
 export let thePlatform150x72 = createPlatformSmallTall("../../images/platformSmallTall.png")
 export let thePlatformSmall = createPlatformSmall("../../images/platformSmall.png") 
 
-export let theplateformGreen = createPlateformGreen("../../images/plateform-green.png")
+export let theplateformGreen89x180 = createPlateformGreen("../../images/plateform-green.png")
 export let theplateformGreenSmall = createPlateformGreenSmall("../../images/plateform-green-small.png")

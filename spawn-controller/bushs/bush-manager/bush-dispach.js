@@ -29,7 +29,7 @@ function spawnBushes() {
 
 
 
-function dispachBushes(bush) {
+async function dispachBushes(bush) {
     let randomFactor = Math.random(); 
     let randomNumber = Math.floor(randomFactor * (300));
 
@@ -40,7 +40,7 @@ function dispachBushes(bush) {
 
         bush.placeBushOnRandomPlatform494x72(randomPlatform);
 
-        checkIfAllBushesAreAdjusted(bush, randomPlatform);
+     checkIfAllBushesAreAdjusted(bush, randomPlatform);
 
     } else if (randomNumber > 100 && randomNumber <= 200) {
         
@@ -49,7 +49,7 @@ function dispachBushes(bush) {
         
         bush.placeBushOnRandomPlatform202x56(randomPlatform);
 
-        checkIfAllBushesAreAdjusted(bush, randomPlatform);
+     checkIfAllBushesAreAdjusted(bush, randomPlatform);
 
     } else if (randomNumber > 200 && randomNumber <= 300) {
             

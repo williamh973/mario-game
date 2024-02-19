@@ -103,5 +103,14 @@ export class RedMushroom {
         this.position.y = referencePlatform.position.y - this.height + 10;
     }
    
+    placeRedMushroomOnRandomPlatform158x78(referencePlatform) {
+        this.position.x = referencePlatform.position.x;
+        this.position.y = referencePlatform.position.y - this.height + 10;
+    }
+
+    placeRedMushroomOnRandomPlatform105x73(referencePlatform) {
+        this.position.x = referencePlatform.position.x;
+        this.position.y = referencePlatform.position.y - this.height + 10;
+    }
 }
 

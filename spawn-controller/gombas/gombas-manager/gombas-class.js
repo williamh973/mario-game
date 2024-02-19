@@ -5,7 +5,7 @@ import { createBoombaSpriteLeft, createBoombaSpriteRight, goombaSpriteLeft, goom
 
 export class Goomba {
     constructor() {
-        this.speed = 1
+        this.speed = 1.2
         this.position = {
             x: 0,
             y: 0
@@ -14,8 +14,8 @@ export class Goomba {
          x: 0,
          y: 0
         },
-        this.width = 60
-        this.height = 60
+        this.width = 59
+        this.height = 59
         this.scale = 1
         this.framesMax = 5
         this.framesCurrent = 0
@@ -82,7 +82,15 @@ export class Goomba {
       );
    }
 
-   placeGombasnRandomplatformList500x43(referencePlatform) {
+   placeGoombasRandomPlatformList500x43(referencePlatform) {
+      let randomFactorX = Math.random(); 
+      let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - this.width / 1.2));
+   
+      this.position.x = referencePlatform.position.x + randomNumberX;
+      this.position.y = referencePlatform.position.y - this.height + 3;
+   }
+
+   placeGoombasRandomPlatformList494x72(referencePlatform) {
       let randomFactorX = Math.random(); 
       let randomNumberX = Math.floor(randomFactorX * (referencePlatform.width - this.width / 1.2));
    
@@ -92,7 +100,6 @@ export class Goomba {
 
    moving() {
       if (this.isMovingRight) {
-      
          if (this.position.x + this.width < this.onPlatform.position.x + this.onPlatform.width) {
              this.image = this.sprites.right;
              this.position.x += this.speed;
