@@ -1,0 +1,50 @@
+@keyframes animateProgress {
+    100% {
+        right: 0%;
+    }
+    0% {
+        right: 100%;
+    }
+}
+
+
+@keyframes lose {
+    100%{
+        scale: 1.0;
+    }
+    0% {
+       scale: 15;
+    }
+}
+
+@keyframes win {
+    100%{
+        scale: 1.0;
+    }
+    0% {
+       scale: 15;
+    }
+} 
+
+@keyframes restart {
+    /* 100%{
+        position: absolute;
+        left: 645px;
+        top: 395px;
+    }
+    90%{
+        position: absolute;
+        left: 645px;
+        top: 390px;
+    }
+    80%{
+        position: absolute;
+        left: 645px;
+        top: 410px;
+    }
+    0% {
+        position: absolute;
+        left: 645px;
+        top: -50px;
+    } */
+}

@@ -17,20 +17,21 @@ export let interfaceVariables = {
     bombs : 10,
     life : 2,
     time : 300,
-    counter : 0,
-    counterDiseapearBigS : 0  // counter for the disappearance of metal platforms
-};
+   };
+   
+   interfaceVariables.btnRestart.addEventListener('click', restart);
 
+ 
+   function displayInfos() {
+    interfaceVariables.scoreTag.innerText = "Score" + " : " + interfaceVariables.score;
+    interfaceVariables.lifeTag.innerText = "Life" + " : " + interfaceVariables.life;
+    interfaceVariables.timerTag.innerText = "Time" + " : " + interfaceVariables.time;
+    interfaceVariables.userNameTag.innerText = interfaceVariables.userName;
+    interfaceVariables.enemiesTag.innerText = "Enemies" + " : " + interfaceVariables.enemies;
+    interfaceVariables.bombsTag.innerText = "Bombs" + " : " + interfaceVariables.bombs;
+ };
+ displayInfos();
 
-function displayInfos() {
-   interfaceVariables.scoreTag.innerText = "Score" + " : " + interfaceVariables.score;
-   interfaceVariables.lifeTag.innerText = "Life" + " : " + interfaceVariables.life;
-   interfaceVariables.timerTag.innerText = "Time" + " : " + interfaceVariables.time;
-   interfaceVariables.userNameTag.innerText = interfaceVariables.userName;
-   interfaceVariables.enemiesTag.innerText = "Enemies" + " : " + interfaceVariables.enemies;
-   interfaceVariables.bombsTag.innerText = "Bombs" + " : " + interfaceVariables.bombs;
-};
-displayInfos();
 
  function timer() {
     let minutes = parseInt(interfaceVariables.time / 60, 10)
@@ -44,3 +45,6 @@ displayInfos();
 
 
 
+function restart() {
+    window.location.reload();
+}

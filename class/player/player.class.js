@@ -48,6 +48,7 @@ export class Player {
         this.currentSprite = this.sprites.stand.right
         this.currentCropWidth = 40
         this.scale = 1
+        this.isCanMove = true;
     }
 
     draw() {
@@ -93,9 +94,13 @@ export class Player {
 
     shoot() {
         spawnBomb();
-
     }
     
+    isBlocked() {
+        this.isCanMove = false;
+        this.speed = 0
+    }
+
     drawDebugCollisionSquare() {
         const ctx = canvasParams.c;
         ctx.beginPath();

@@ -24,6 +24,7 @@ import { bombList } from "./spawn-controller/bomb/bomb-spawn.js";
 import { allPlatformList } from "./spawn-controller/platforms/platforms-manager/platforms-list.js";
 import { allParticleList } from "./spawn-controller/particles/particles-manager/particle-list.js";
 import { bombCollideOnBlueMushrooms, bombCollideOnPlatforms } from "./spawn-controller/bomb/bomb-collide.js";
+import { timeUp } from "./game-over.js";
  
 
 
@@ -56,17 +57,7 @@ import { bombCollideOnBlueMushrooms, bombCollideOnPlatforms } from "./spawn-cont
 
 
 // appearance of the "Restart" button
-// btnRestart.addEventListener('click', restart);
 
-// function restart() {
-//     loseTag.style.display = "none";
-//     btnRestart.style.display = "none";
-//     init()
-//     vie = 1;
-//     lifeTag.innerText = "Vie : " + vie;
-//     stock = 0;
-//     scoreTag.innerText = "Score : " + stock;
-// }
 
 
 export const gravity = 0.5;
@@ -82,7 +73,6 @@ function animate() {
     canvasParams.c.fillStyle = 'white'
     canvasParams.c.fillRect(0, 0, canvasParams.canvas.width, canvasParams.canvas.height) 
 
-    // window.location.reload();
 // console.log(scrollOffsetX); 
 // console.log(scrollOffsetX); 5900
 
@@ -223,19 +213,9 @@ collideOnBelowGoombas();
 bombCollideOnPlatforms();
 bombCollideOnBlueMushrooms()
 
-// //  if the timer reaches zero, the game is lost and resets.
-// if(time === 0) {
-//     blackScreen.style.display = "flex";
-//     loseTag.style.display = "block";
-//     winTag.style.display = "none";
-//     btnRestart.style.display = "block";
-//     player.speed = 0
-//     player.position.x = -50
-//     player.velocity.x = 0
-//     player.velocity.y = 0
-// }
-// gameOver()
 
+// gameOver()
+timeUp();
 
 }
 animate()
