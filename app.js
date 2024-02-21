@@ -24,41 +24,8 @@ import { bombList } from "./spawn-controller/bomb/bomb-spawn.js";
 import { allPlatformList } from "./spawn-controller/platforms/platforms-manager/platforms-list.js";
 import { allParticleList } from "./spawn-controller/particles/particles-manager/particle-list.js";
 import { bombCollideOnBlueMushrooms, bombCollideOnPlatforms } from "./spawn-controller/bomb/bomb-collide.js";
-import { timeUp } from "./game-over.js";
+import { gameOver } from "./game-over.js";
  
-
-
-
-//     scoreTag = document.getElementById('score');
-//     lifeTag = document.getElementById('vie');
-//     timerTag = document.getElementById('timer');
-//     blackScreen = document.querySelector('.blackScreen');
-//     loseTag = document.getElementById('lose');
-//     winTag = document.getElementById('win');
-//     btnRestart = document.querySelector('#reload');
-//     progScreen = document.getElementById('container-prog');
-//     progBar = document.querySelector('.progress-bar');
-//     vie = 1;
-//     stock = 0;
-//     time = 300; // 60 * 5 secondes = 300
-//     counter = 0;
-//     counterDiseapearBigS = 0; // counter for the disappearance of metal platforms
-//     compteurGoomba = 0
-//     counterKeydown = 0
-
-
-
-// // remove the black mask at the initialization of the game when we win or lose
-    // blackScreen.style.display = "none";
-
-
-// }
-
-
-
-// appearance of the "Restart" button
-
-
 
 export const gravity = 0.5;
 
@@ -96,27 +63,20 @@ function animate() {
     
     littleCloudList.forEach((cloud) => {
         cloud.draw()
+        cloud.movementOnLeft()
     })
     
     bigCloudList.forEach((cloud) => {
         cloud.draw()
+        cloud.movementOnLeft()
     })
-
-    for (let i = 0; i < allPlatformList.length; i++) {
-        const platformList = allPlatformList[i];
-    
-        for (let j = 0; j < platformList.length; j++) {
-            const platform = platformList[j];
-            
-            platform.draw()
-        }
-    }
-
 
     houseList.forEach((house) => {
         house.draw()
-        // house.drawDebugCollisionSquare()
     })
+
+    drawPlatforms();
+
 
     bridgeList.forEach((bridge) => {
         bridge.draw()
@@ -136,12 +96,10 @@ function animate() {
     
     bushList120x100.forEach((bush) => {
         bush.draw()
-        // bush.drawDebugCollisionSquare()
     })
 
     goldCoinList.forEach((coin) => {
             coin.update()
-            // coin.drawDebugCollisionSquare()
         })
 
     redMushroomList.forEach((redMushroom) => {
@@ -153,16 +111,57 @@ function animate() {
 
     blueMushroomList.forEach((blueMushroom) => {
             blueMushroom.update()
-            // blueMushroom.drawDebugCollisionSquare();
     })
 
     goombasList.forEach((goombas) => {
         goombas.update();
         goombas.moving();
-        // goombas.drawDebugCollisionSquare();
     })
 
+    bombList.forEach((bomb) => {
+       bomb.update()
+    })
 
+    updateParticles()
+      
+    player.update();    
+    
+    canvasTrackingOffsetX();
+    objectMovements()
+    overTheCanvasLimit();
+
+    takeCoin();
+    takeRedMushroom(); 
+    
+    platformCollide();
+    bridgeCollide();
+    collideOnTheLeftOrRightBlueMushroom();
+    collideOnTheTopBlueMushroom();
+    collideOnBelowBlueMushroom();
+    collideOnTheLeftOrRightGoombas();
+    collideOnTheTopGoombas();
+    collideOnBelowGoombas();
+    bombCollideOnPlatforms();
+    bombCollideOnBlueMushrooms()
+
+    gameOver();
+}
+animate()
+
+function drawPlatforms() {
+    for (let i = 0; i < allPlatformList.length; i++) {
+        const platformList = allPlatformList[i];
+    
+        for (let j = 0; j < platformList.length; j++) {
+            const platform = platformList[j];
+            
+            platform.draw()
+        }
+    }
+}
+
+
+function updateParticles() {
     for (let i = 0; i < allParticleList.length; i++) {
         const particleList = allParticleList[i];
     
@@ -176,92 +175,6 @@ function animate() {
                 }
         }
     };
-  
-    
-    player.update();
-    // player.drawDebugCollisionSquare();
-    
-    
-    littleCloudList.forEach((cloud) => {
-        cloud.position.x -= player.speed / 50
-    })
-    
-    bigCloudList.forEach((cloud) => {
-        cloud.position.x -= player.speed / 50
-    })
-    
-    bombList.forEach((bomb) => {
-       bomb.update()
-    //    bomb.drawDebugCollisionSquare()
-    })
-    
-    canvasTrackingOffsetX();
-    objectMovements()
-overTheCanvasLimit();
-
- 
-takeCoin();
-takeRedMushroom(); 
-platformCollide();
-bridgeCollide();
-collideOnTheLeftOrRightBlueMushroom();
-collideOnTheTopBlueMushroom();
-collideOnBelowBlueMushroom();
-collideOnTheLeftOrRightGoombas();
-collideOnTheTopGoombas();
-collideOnBelowGoombas();
-bombCollideOnPlatforms();
-bombCollideOnBlueMushrooms()
-
-
-// gameOver()
-timeUp();
-
 }
-animate()
-
-// function gameOver() {
-//     if(vie <= -1) { 
-//         blackScreen.style.display = "flex";
-//         loseTag.style.display = "block";
-//         winTag.style.display = "none";
-//         btnRestart.style.display = "block";
-//         player.speed = 0
-//         player.position.x = -50
-//         player.velocity.x = 0
-//         player.velocity.y = 0  
-//     }
-// }
-
-
-
-
-// // 30s loading screen with initialization
-
-//   let loading = setInterval(() => {
-//            // appearance of the opaque black mask with loading bar
-//            progScreen.style.display = "none";
-//            progBar.style.display = "block";
-    
-//         const el = document.querySelector('.number');
-//         const elValue =  Number(el.getAttribute('data-value'));
-//            if (counter !== elValue) {
-//                counter++;
-//                el.innerHTML = `${counter}` + ` %`;
-//            }
-//            if( counter === 100) {
-//                init()
-//                vie = 1;
-//                lifeTag.innerText = "Vie : " + vie;
-//                time = 300;
-//                progScreen.style.display = "none";
-//                progBar.style.display = "none";
-//            }
-// }, 300);
-
-// setTimeout( function() {
-// clearInterval(loading)
-// }, 30000)
-
 
 canvasParams.c.imageSmoothingEnabled = true

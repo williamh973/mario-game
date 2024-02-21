@@ -74,9 +74,6 @@ export async function spawnAreaLevelOneScrollOffsetX_0(isAreaLevelOneAdded) {
 
 export async function spawnAreaLevelOneScrollOffsetXMoreThan5_900(isAreaLevelTwoAdded) {
    await spawnGenericObject();
-   // await dispachLittleClouds();
-   // await dispachBigClouds();
-   // await dispachGrassPlatforms500x43();
    isAreaLevelTwoAdded = false;
  };
  

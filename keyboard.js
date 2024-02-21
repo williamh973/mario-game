@@ -1,4 +1,4 @@
-import { Player } from "./class/player/player.class.js";
+import { Player } from "./spawn-controller/player/player.class.js";
 
 
 export let player = new Player();

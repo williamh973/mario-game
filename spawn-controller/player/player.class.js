@@ -1,6 +1,6 @@
 import { gravity } from "../../app.js";
 import { canvasParams } from "../../canvas.js";
-import { spawnBomb } from "../../spawn-controller/bomb/bomb-spawn.js";
+import { spawnBomb } from "../bomb/bomb-spawn.js";
 import { createSpriteDrown, createSpriteJumpLeft, createSpriteJumpRight, createSpriteRunLeft, createSpriteRunRight, createSpriteSLeft, createSpriteSRight, marioDrowns, marioJumpLeft, marioJumpRight, marioRunLeft, marioRunRight, marioStandLeft, marioStandRight } from "./player-assets.js";
 
 

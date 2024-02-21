@@ -1,4 +1,5 @@
 import { canvasParams } from "../../../canvas.js";
+import { player } from "../../../keyboard.js";
 
 
 export class Cloud {
@@ -13,5 +14,10 @@ export class Cloud {
     }
     draw() {
         canvasParams.c.drawImage(this.image, this.position.x, this.position.y)
+    }
+
+    movementOnLeft() {
+        const speedAdjust = 50;
+        this.position.x -= player.speed / speedAdjust
     }
 };
