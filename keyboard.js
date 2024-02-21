@@ -43,24 +43,17 @@ window.addEventListener('keyup', (event) => {
     if (player.isCanMove) {
         switch (event.key) {
             case 'q':
-                keys.q.pressed = false;
-                player.currentSprite = player.sprites.stand.left
-                player.currentCropWidth = player.sprites.stand.cropWidth
-                player.width = player.sprites.stand.width
+                playerStoppedMovingLeft();      
                 break
-            case 'd':
-                keys.d.pressed = false;
-                player.currentSprite = player.sprites.stand.right
-                player.currentCropWidth = player.sprites.stand.cropWidth
-                player.width = player.sprites.stand.width
-                break
-    
-            case 'z':
-                keys.z.pressed = false;
-                break
-            case ' ':
-                keys.space.pressed = false;  
-                break
+                case 'd':
+                    playerStoppedMovingRight();
+                    break
+                    case 'z':
+                        keys.z.pressed = false;
+                        break
+                        case ' ':
+                            keys.space.pressed = false;  
+                            break
         }
     }
 })
@@ -85,6 +78,20 @@ function playerMovingOnRight() {
     player.currentCropWidth = player.sprites.run.cropWidth
     player.width = player.sprites.run.width 
 };
+
+function playerStoppedMovingRight() {
+    keys.d.pressed = false;
+    player.currentSprite = player.sprites.stand.right
+    player.currentCropWidth = player.sprites.stand.cropWidth
+    player.width = player.sprites.stand.width
+};
+
+function playerStoppedMovingLeft() {
+    keys.q.pressed = false;
+    player.currentSprite = player.sprites.stand.left
+    player.currentCropWidth = player.sprites.stand.cropWidth
+    player.width = player.sprites.stand.width
+}
 
 
 function playerJumping() {
