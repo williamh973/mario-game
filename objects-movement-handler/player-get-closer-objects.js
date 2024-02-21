@@ -19,6 +19,16 @@ import { allPlatformList } from "../spawn-controller/platforms/platforms-manager
 
 
 export function getCloserToTheObjects() {
+   
+   for (let i = 0; i < allPlatformList.length; i++) {
+      const platformList = allPlatformList[i];
+   
+      for (let j = 0; j < platformList.length; j++) {
+          const platform = platformList[j];
+          
+          platform.position.x -= player.speed
+      }
+   }
 
    bombList.forEach((bomb) => {
       bomb.position.x -= player.speed
@@ -48,53 +58,6 @@ export function getCloserToTheObjects() {
         cloud.position.x -= player.speed / 10
      })
 
-     
-   //  platformList89x180.forEach((createPlatform) => {
-   //    createPlatform.position.x -= player.speed
-   // })
-
-   //  platformList494x72.forEach((createPlatform) => {
-   //      createPlatform.position.x -= player.speed
-   //   })
-
-   //  platformList84x72.forEach((createPlatform) => {
-   //     createPlatform.position.x -= player.speed
-   //  })
-
-   //  platformList150x72.forEach((createPlatform) => {
-   //      createPlatform.position.x -= player.speed
-   //   })
-
-   //   platformList105x73.forEach((createPlatform) => {
-   //    createPlatform.position.x -= player.speed
-   //   })
-
-   //   platformList158x78.forEach((createPlatform) => {
-   //    createPlatform.position.x -= player.speed
-   //   })
-
-   //   platformList202x56.forEach((createPlatform) => {
-   //      createPlatform.position.x -= player.speed
-   //   })
-
-   //   platformList500x43.forEach((createPlatform) => {
-   //    createPlatform.position.x -= player.speed
-   //   })
-
-   //   platformList630x217.forEach((createPlatform) => {
-   //    createPlatform.position.x -= player.speed
-   //   })
-
-   for (let i = 0; i < allPlatformList.length; i++) {
-      const platformList = allPlatformList[i];
-  
-      for (let j = 0; j < platformList.length; j++) {
-          const platform = platformList[j];
-          
-          platform.position.x -= player.speed
-      }
-  }
-  
 
 
     genericObjectList.forEach((genericObject) => {

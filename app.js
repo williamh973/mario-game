@@ -21,18 +21,16 @@ import { collideOnBelowGoombas, collideOnTheLeftOrRightGoombas, collideOnTheTopG
 import { fenceList } from "./spawn-controller/fences/fences-dispach.js";
 import { houseList } from "./spawn-controller/houses/houses-dispach.js";
 import { bombList } from "./spawn-controller/bomb/bomb-spawn.js";
-import { allPlatformList } from "./spawn-controller/platforms/platforms-manager/platforms-list.js";
-import { allParticleList } from "./spawn-controller/particles/particles-manager/particle-list.js";
 import { bombCollideOnBlueMushrooms, bombCollideOnPlatforms } from "./spawn-controller/bomb/bomb-collide.js";
 import { gameOver } from "./game-over.js";
+import { drawPlatforms } from "./spawn-controller/platforms/platforms-manager/platforms-draw.js";
+import { updateParticles } from "./spawn-controller/particles/particles-manager/particle-update.js";
  
 
 export const gravity = 0.5;
 
-
 let isAreaLevelOneAdded = false;
 let isAreaLevelTwoAdded = false;
-
 
 
 function animate() {
@@ -99,8 +97,8 @@ function animate() {
     })
 
     goldCoinList.forEach((coin) => {
-            coin.update()
-        })
+        coin.update()
+    })
 
     redMushroomList.forEach((redMushroom) => {
         if (!redMushroom.isTaken) {
@@ -108,7 +106,6 @@ function animate() {
         }
     })
     
-
     blueMushroomList.forEach((blueMushroom) => {
             blueMushroom.update()
     })
@@ -147,34 +144,5 @@ function animate() {
     gameOver();
 }
 animate()
-
-function drawPlatforms() {
-    for (let i = 0; i < allPlatformList.length; i++) {
-        const platformList = allPlatformList[i];
-    
-        for (let j = 0; j < platformList.length; j++) {
-            const platform = platformList[j];
-            
-            platform.draw()
-        }
-    }
-}
-
-
-function updateParticles() {
-    for (let i = 0; i < allParticleList.length; i++) {
-        const particleList = allParticleList[i];
-    
-        for (let j = 0; j < particleList.length; j++) {
-            const particle = particleList[j];
-
-                if (particle.opacity <= 0) {
-                    particleList.splice(j, 1);
-                } else {
-                    particle.update()
-                }
-        }
-    };
-}
 
 canvasParams.c.imageSmoothingEnabled = true
