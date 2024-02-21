@@ -1,8 +1,8 @@
 export function createBountySprite() {
     const bountyStand = new Image()
-    bountyStand.src = "../../images/bounty2.png"
+    bountyStand.src = "../../assets/images/gold-coin.png"
     return bountyStand
 }
-export let bountyStand = createBountySprite("../../images/bounty2.png");
+export let bountyStand = createBountySprite("../../assets/images/gold-coin.png");
 
 

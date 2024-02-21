@@ -2,11 +2,11 @@ import { canvasParams } from "../../canvas.js";
 
 function createFlag() {
     const createFlag = new Image()
-    createFlag.src = "../../images/flag.png"
+    createFlag.src = "../../assets/images/flag.png"
     return createFlag
 }
 
-export let theFlag = createFlag("../../images/flag.png")
+export let theFlag = createFlag("../../assets/images/flag.png")
 
 
 export class Flag {

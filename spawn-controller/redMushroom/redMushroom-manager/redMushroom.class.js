@@ -1,14 +1,5 @@
 import { canvasParams } from "../../../canvas.js";
-
-
-function createMushroomRouge() {
-    const MushroomRSprite = new Image()
-    MushroomRSprite.src = "../../images/MushroomRougeSprite.png"
-    return MushroomRSprite
-}
-let mushroomRSprite = createMushroomRouge("../../images/MushroomRougeSprite.png");
-
-
+import { createMushroomRouge, mushroomRSprite } from "./redMushroom-assets.js";
 
  
 export class RedMushroom {

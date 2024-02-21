@@ -3,11 +3,11 @@ import { canvasParams } from "../../canvas.js";
 
 function createSign() {
     const Sign = new Image()
-    Sign.src = "../../images/sign.png"
+    Sign.src = "../../assets/images/sign.png"
     return Sign
 }
 
-export let theSign = createSign("../../images/sign.png")
+export let theSign = createSign("../../assets/images/sign.png")
 
 
 export class Sign {

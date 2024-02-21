@@ -1,5 +1,6 @@
 import { platformList630x217 } from "../../platforms/platforms-manager/platform-adjustment.js";
-import { Waterfall, waterfallStand } from "./waterfall.class.js";
+import { Waterfall } from "./waterfall.class.js";
+
 
 export let waterfallList = [];
 

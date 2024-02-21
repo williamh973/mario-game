@@ -2,19 +2,19 @@ import { canvasParams } from "../../../canvas.js";
 
 function createSky() {
     const sky = new Image()
-    sky.src = "../../images/sky.png"
+    sky.src = "../../assets/images/sky.png"
     return sky
 }
 
 function createHills() {
     const hills = new Image()
-    hills.src = "../../images/mountains.png"
+    hills.src = "../../assets/images/mountains.png"
     return hills
 }
 
 
-export let theSky = createSky("../../images/sky.png")
-export let theHills = createHills("../../images/mountains.png")
+export let theSky = createSky("../../assets/images/sky.png")
+export let theHills = createHills("../../assets/images/mountains.png")
 
 
 export class GenericObject {

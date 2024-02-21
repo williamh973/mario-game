@@ -1,12 +1,5 @@
 import { canvasParams } from "../../../canvas.js";
-
-function createWatefall() {
-    const waterfallStand = new Image()
-    waterfallStand.src = "../../images/waterfallSprite.png"
-    return waterfallStand
-}
-
-export let waterfallStand = createWatefall("../../images/waterfallSprite.png")
+import { createWatefall, waterfallStand } from "./waterfall-assets.js";
 
 
 export class Waterfall {
@@ -18,7 +11,7 @@ export class Waterfall {
         this.width = 95
         this.height = 179
         this.image = new Image()
-        this.image.src = 'images/waterfallSprite.png'
+        this.image = createWatefall(waterfallStand)
         this.scale = 1.5
         this.framesMax = 8
         this.framesCurrent = 0

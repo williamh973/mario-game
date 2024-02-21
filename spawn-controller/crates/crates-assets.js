@@ -1,15 +1,15 @@
 export function createCrate() {
     const crate = new Image()
-    crate.src = "../../images/caisse.png"
+    crate.src = "../../assets/images/caisse.png"
     return crate
 }
 
 export function createCrateSmall() {
     const crateSmall = new Image()
-    crateSmall.src = "../../images/crate_small.png"
+    crateSmall.src = "../../assets/images/crate70x70.png"
     return crateSmall
 }
 
 
-export let theCrate = createCrate("../../images/caisse.png")
-export let thecrateSmall = createCrateSmall("../../images/crate_small.png")
+export let theCrate = createCrate("../../assets/images/crate70x70.png")
+export let thecrateSmall = createCrateSmall("../../assets/images/crate40x40.png")

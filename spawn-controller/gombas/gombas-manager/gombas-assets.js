@@ -1,16 +1,16 @@
 export function createBoombaSpriteRight() {
    const goomba = new Image()
-   goomba.src = "../../images/goombaSpriteRight.png"
+   goomba.src = "../../assets/images/goombaSpriteRight.png"
    return goomba
 }
-export let goombaSpriteRight = createBoombaSpriteRight("../../images/goombaSpriteRight.png");
+export let goombaSpriteRight = createBoombaSpriteRight("../../assets/images/goombaSpriteRight.png");
 
 
 
 export function createBoombaSpriteLeft() {
    const goomba = new Image()
-   goomba.src = "../../images/goombaSpriteLeft.png"
+   goomba.src = "../../assets/images/goombaSpriteLeft.png"
    return goomba
 }
-export let goombaSpriteLeft = createBoombaSpriteLeft("../../images/goombaSpriteLeft.png");
+export let goombaSpriteLeft = createBoombaSpriteLeft("../../assets/images/goombaSpriteLeft.png");
 
