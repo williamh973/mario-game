@@ -4,11 +4,10 @@ export let particulesGoombaList = [];
 export let particulesRedMushroomList = [];
 export let particulesBombList = [];
 
-
 export let allParticleList = [
-    particulesBlueMushroomList,
-    particulesCoinList,
-    particulesGoombaList,
-    particulesRedMushroomList,
-    particulesBombList
-]
+  particulesBlueMushroomList,
+  particulesCoinList,
+  particulesGoombaList,
+  particulesRedMushroomList,
+  particulesBombList,
+];

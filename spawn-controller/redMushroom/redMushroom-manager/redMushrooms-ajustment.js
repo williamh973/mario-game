@@ -1,7 +1,5 @@
 // import { redMushroomList } from "./redMushrooms-dispach.js";
 
- 
-
 // function adjustRedMushroomsPositionsRelativeToOtherRedMushroom(redMushroomList) {
 //     return new Promise((resolve) => {
 //         for (let i = 0; i < redMushroomList.length; i++) {
@@ -11,12 +9,10 @@
 //                     redMushroomList[j].placeRedMushroomAwayFromOtherRedMushroom(redMushroomList[i]);
 //                 }
 //             }
-//         }  
+//         }
 //         resolve()
 //     })
 // };
-
-
 
 // export async function checkFiveTimesIfRedMushroomAreAdjusted() {
 //     for (let i = 0; i < 5; i++) {

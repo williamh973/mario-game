@@ -1,7 +1,8 @@
 export function createMushroomRouge() {
-    const mushroomRSprite = new Image()
-    mushroomRSprite.src = "../../assets/images/mushroomRougeSprite.png"
-    return mushroomRSprite
+  const mushroomRSprite = new Image();
+  mushroomRSprite.src = "../../assets/images/mushroomRougeSprite.png";
+  return mushroomRSprite;
 }
-export let mushroomRSprite = createMushroomRouge("../../assets/images/mushroomRougeSprite.png");
-
+export let mushroomRSprite = createMushroomRouge(
+  "../../assets/images/mushroomRougeSprite.png",
+);

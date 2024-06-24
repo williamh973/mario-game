@@ -1,49 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="index-style.css">
-    <link rel="stylesheet" href="animations.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="index-style.css" />
+    <link rel="stylesheet" href="animations.css" />
     <title>Mario</title>
-</head>
-<body>
-    
-        <canvas id="canvas"></canvas>
-        
-        <div id="container-UI">
-            <div id="container-stats">
-              <p id="score"></p>
-              <p id="user-name"></p>
-              <p id="enemies"></p>
-              <p id="bombs"></p>
-              <p id="life"></p>
-              <p id="timer"></p>
-            </div>
-        </div>
-        
-    
-    <div class="blackScreen">
-        <div id="container-menu">
-            <p id="win">Win!</p>
-            <p id="lose">Lose!</p>
-            <p id="reload">Restart</p>
-        </div>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <div id="container-UI">
+      <div id="container-stats">
+        <p id="score"></p>
+        <p id="user-name"></p>
+        <p id="enemies"></p>
+        <p id="bombs"></p>
+        <p id="life"></p>
+        <p id="timer"></p>
+      </div>
     </div>
-  
+
+    <div class="blackScreen">
+      <div id="container-menu">
+        <p id="win">Win!</p>
+        <p id="lose">Lose!</p>
+        <p id="reload">Restart</p>
+      </div>
+    </div>
+
     <div id="container-prog">
-    
-<div class="progress-bar">
-    <div id="purple-bar"></div>
-    <span class="number" data-value="100"></span>
-    <svg height="150" width="150">
-    </svg>
-</div>
-</div>
+      <div class="progress-bar">
+        <div id="purple-bar"></div>
+        <span class="number" data-value="100"></span>
+        <svg height="150" width="150"></svg>
+      </div>
+    </div>
 
-
-
-<script src="./interface/interface.js" type="module"></script>
-<script src="app.js" type="module"></script>
-</body>
+    <script src="./interface/interface.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+  </body>
 </html>
